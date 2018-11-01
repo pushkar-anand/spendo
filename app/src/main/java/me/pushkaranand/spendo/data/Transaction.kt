@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 @Entity(
     tableName = "transactions",
     foreignKeys = [ForeignKey(
-        entity = Categories::class,
+        entity = Category::class,
         parentColumns = ["categoryID"], childColumns = ["transactionID"]
     )]
 )
