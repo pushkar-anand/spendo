@@ -19,7 +19,7 @@ import me.pushkaranand.spendo.helpers.PrefHelper
 class IntroSliderActivity : AppCompatActivity() {
 
     private var dots: Array<TextView?>? = null
-    var pagerAdapter: IntroSliderPagerAdapter? = null;
+    var pagerAdapter: IntroSliderPagerAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,11 +35,11 @@ class IntroSliderActivity : AppCompatActivity() {
         viewPager.addOnPageChangeListener(viewPagerPageChangeListener)
 
 
-        skipBtn.setOnClickListener { _ ->
+        skipBtn.setOnClickListener {
             launchApp()
         }
 
-        nextBtn.setOnClickListener { _ ->
+        nextBtn.setOnClickListener {
             val current: Int = getItem(+1)
             if (current < pagerAdapter!!.layouts.size) {
                 viewPager.currentItem = current
