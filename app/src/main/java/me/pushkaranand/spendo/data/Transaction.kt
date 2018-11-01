@@ -12,7 +12,7 @@ import androidx.room.PrimaryKey
         parentColumns = ["categoryID"], childColumns = ["transactionID"]
     )]
 )
-data class Transactions(
+data class Transaction(
     var amount: Double, var type: String, var category: String, var category_id: Int, var date: String,
     var notes: String?, var day: String, var year: Int, var month: String
 ) {
