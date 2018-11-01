@@ -1,5 +1,6 @@
 package me.pushkaranand.spendo.ui
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -12,6 +13,7 @@ import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_intro_slider.*
 import me.pushkaranand.spendo.R
 import me.pushkaranand.spendo.adapters.IntroSliderPagerAdapter
+import me.pushkaranand.spendo.helpers.PrefHelper
 
 
 class IntroSliderActivity : AppCompatActivity() {
@@ -49,7 +51,11 @@ class IntroSliderActivity : AppCompatActivity() {
     }
 
     private fun launchApp() {
-
+        val prefHelper = PrefHelper(this)
+        prefHelper.setFirstTimeLaunchDone()
+        val intent = Intent(this, HomeActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun getItem(i: Int): Int {
