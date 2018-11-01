@@ -18,6 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             app:fabAlignmentMode="center"
+            app:hideOnScroll="true"
+            app:layout_scrollFlags="scroll|enterAlways"
             app:navigationIcon="@drawable/menu_black" />
 
         <com.google.android.material.button.MaterialButton
