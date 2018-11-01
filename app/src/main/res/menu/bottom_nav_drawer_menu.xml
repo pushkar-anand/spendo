@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="none">
-        <item
-            android:id="@+id/nav1"
-            android:title="XXX" />
-        <item
-            android:id="@+id/nav2"
-            android:title="YYY" />
-        <item
-            android:id="@+id/nav3"
-            android:title="ZZZ" />
+        <item android:title="XXX" />
+        <item android:title="YYY" />
+        <item android:title="ZZZ" />
     </group>
 </menu>

@@ -10,12 +10,7 @@
     <string name="slide_2_desc">Learn about the different meditation techniques and practice them</string>
     <string name="slide_3_title">Diet Chart</string>
     <string name="slide_3_desc">Make your diet chart by the help of health experts</string>
-    <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
-    <string name="play_again">Play Again</string>
     <string name="title_activity_home">Spendo</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
 
     <string name="fab_title">New Transaction</string>
 </resources>

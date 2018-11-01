@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constrainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.IntroSliderActivity">
@@ -14,7 +13,6 @@
         android:layout_height="match_parent" />
 
     <LinearLayout
-        android:id="@+id/layoutDots"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dots_height"
         android:layout_marginBottom="@dimen/dots_margin_bottom"
@@ -34,7 +32,6 @@
 
 
     <Button
-        android:id="@+id/nextBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
@@ -44,7 +41,6 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/skipBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"

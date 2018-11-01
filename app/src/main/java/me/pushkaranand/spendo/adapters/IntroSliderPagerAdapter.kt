@@ -8,7 +8,7 @@ import androidx.viewpager.widget.PagerAdapter
 import me.pushkaranand.spendo.R
 
 class IntroSliderPagerAdapter internal constructor(private val context: Context) : PagerAdapter() {
-    public val layouts: Array<Int> =
+    val layouts: Array<Int> =
         arrayOf(R.layout.intro_slide_one, R.layout.intro_slide_two, R.layout.intro_slide_three)
 
     override fun instantiateItem(container: ViewGroup, position: Int): View {

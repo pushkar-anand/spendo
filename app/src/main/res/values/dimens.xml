@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
     <dimen name="dots_height">30dp</dimen>
     <dimen name="dots_margin_bottom">20dp</dimen>
     <dimen name="img_width_height">150dp</dimen>
@@ -11,11 +8,8 @@
     <dimen name="slide_desc">16sp</dimen>
     <dimen name="desc_padding">40dp</dimen>
 
-    <dimen name="app_bar_elevation">4dp</dimen>
-    <dimen name="toolbar_height">56dp</dimen>
     <dimen name="fab_size">56dp</dimen>
     <dimen name="fab_corner_radius">28dp</dimen>
-    <dimen name="bottom_app_bar_fake_elevation_height">4dp</dimen>
     <dimen name="bottom_sheet_corner_radius">16dp</dimen>
     <dimen name="bottom_sheet_top_padding">8dp</dimen>
 </resources>
