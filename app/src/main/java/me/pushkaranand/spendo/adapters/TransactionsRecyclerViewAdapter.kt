@@ -35,7 +35,7 @@ class TransactionsRecyclerViewAdapter internal constructor(context: Context) :
         }
     }
 
-    fun setTransactions(transactions: ArrayList<Transaction>) {
+    fun setTransactions(transactions: List<Transaction>) {
         this.transactions = transactions
         notifyDataSetChanged()
     }

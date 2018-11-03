@@ -5,15 +5,21 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.content_home.*
 import me.pushkaranand.spendo.R
 import me.pushkaranand.spendo.adapters.TransactionsRecyclerViewAdapter
+import me.pushkaranand.spendo.db.entity.Transaction
 import me.pushkaranand.spendo.fragments.BottomNavigationDrawerFragment
 import me.pushkaranand.spendo.helpers.PrefHelper
+import me.pushkaranand.spendo.viewmodel.TransactionViewModel
 
 class HomeActivity : AppCompatActivity() {
+
+    var transactionViewModel: TransactionViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +39,12 @@ class HomeActivity : AppCompatActivity() {
         transactionRecyclerView.adapter = adapter
         transactionRecyclerView.layoutManager = LinearLayoutManager(this)
 
+        transactionViewModel =
+                ViewModelProviders.of(this).get(TransactionViewModel::class.java)
+
+        transactionViewModel?.getAllTransactions()?.observe(this, Observer<List<Transaction>> {
+            adapter.setTransactions(it)
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

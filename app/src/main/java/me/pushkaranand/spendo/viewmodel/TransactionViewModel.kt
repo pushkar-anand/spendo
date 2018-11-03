@@ -16,6 +16,10 @@ class TransactionViewModel(application: Application) : AndroidViewModel(applicat
         allTransactions = transactionRepository.getAllTransactions()
     }
 
+    fun getAllTransactions(): LiveData<List<Transaction>>? {
+        return allTransactions
+    }
+
     fun insert(transaction: Transaction) {
         transactionRepository.insert(transaction)
     }
