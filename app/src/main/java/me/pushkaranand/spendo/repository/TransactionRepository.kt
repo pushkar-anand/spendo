@@ -2,6 +2,7 @@ package me.pushkaranand.spendo.repository
 
 import android.app.Application
 import android.os.AsyncTask
+import androidx.lifecycle.LiveData
 import me.pushkaranand.spendo.db.SpendoDatabase
 import me.pushkaranand.spendo.db.dao.TransactionDao
 import me.pushkaranand.spendo.db.entity.Transaction
@@ -9,7 +10,7 @@ import me.pushkaranand.spendo.db.entity.Transaction
 class TransactionRepository(application: Application) {
 
     private var transactionDao: TransactionDao? = null
-    private var transactions: ArrayList<Transaction>? = null
+    private var transactions: LiveData<ArrayList<Transaction>>? = null
 
     init {
         val spendoDatabase = SpendoDatabase.getDatabase(application)
@@ -17,7 +18,7 @@ class TransactionRepository(application: Application) {
         transactions = transactionDao?.allTransactions
     }
 
-    fun getAllTransactions(): ArrayList<Transaction>? {
+    fun getAllTransactions(): LiveData<ArrayList<Transaction>>? {
         return transactions
     }
 

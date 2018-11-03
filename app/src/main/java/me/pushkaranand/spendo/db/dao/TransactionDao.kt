@@ -1,5 +1,6 @@
 package me.pushkaranand.spendo.db.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -10,7 +11,7 @@ import me.pushkaranand.spendo.db.entity.Transaction
 interface TransactionDao {
 
     @get:Query("SELECT * FROM transactions")
-    val allTransactions: ArrayList<Transaction>
+    val allTransactions: LiveData<ArrayList<Transaction>>
 
     @Insert
     fun newTransaction(transaction: Transaction)

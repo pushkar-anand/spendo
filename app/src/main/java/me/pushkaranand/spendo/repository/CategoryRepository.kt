@@ -2,6 +2,7 @@ package me.pushkaranand.spendo.repository
 
 import android.app.Application
 import android.os.AsyncTask
+import androidx.lifecycle.LiveData
 import me.pushkaranand.spendo.db.SpendoDatabase
 import me.pushkaranand.spendo.db.dao.CategoryDao
 import me.pushkaranand.spendo.db.entity.Category
@@ -9,7 +10,7 @@ import me.pushkaranand.spendo.db.entity.Category
 class CategoryRepository(application: Application) {
 
     private var categoryDao: CategoryDao? = null
-    private var allCategories: ArrayList<Category>? = null
+    private var allCategories: LiveData<ArrayList<Category>>? = null
 
     init {
         val spendoDatabase = SpendoDatabase.getDatabase(application)
@@ -17,7 +18,7 @@ class CategoryRepository(application: Application) {
         allCategories = categoryDao!!.allCategories
     }
 
-    fun getAllCategories(): ArrayList<Category>? {
+    fun getAllCategories(): LiveData<ArrayList<Category>>? {
         return allCategories
     }
 

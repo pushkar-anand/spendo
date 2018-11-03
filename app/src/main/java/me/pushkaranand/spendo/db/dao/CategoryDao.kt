@@ -1,5 +1,6 @@
 package me.pushkaranand.spendo.db.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
@@ -8,7 +9,7 @@ import me.pushkaranand.spendo.db.entity.Category
 interface CategoryDao {
 
     @get:Query("SELECT * FROM categories")
-    val allCategories: ArrayList<Category>
+    val allCategories: LiveData<ArrayList<Category>>
 
     @Insert
     fun newCategory(category: Category)
