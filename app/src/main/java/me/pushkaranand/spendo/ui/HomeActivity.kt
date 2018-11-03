@@ -46,10 +46,17 @@ class HomeActivity : AppCompatActivity() {
             adapter.setTransactions(it)
         })
 
+        transactionViewModel?.getTotalAmount()?.observe(this, Observer<Double> {
+            val str = getString(R.string.rupee_symbol) + it.toString()
+            amountView.text = str
+        })
+
+
         addTxnBtn.setOnClickListener {
 
         }
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater = menuInflater

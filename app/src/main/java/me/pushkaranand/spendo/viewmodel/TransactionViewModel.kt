@@ -20,6 +20,10 @@ class TransactionViewModel(application: Application) : AndroidViewModel(applicat
         return allTransactions
     }
 
+    fun getTotalAmount(): LiveData<Double> {
+        return transactionRepository.getTotalAmount()
+    }
+
     fun insert(transaction: Transaction) {
         transactionRepository.insert(transaction)
     }

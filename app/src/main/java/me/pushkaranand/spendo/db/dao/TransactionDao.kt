@@ -19,6 +19,9 @@ interface TransactionDao {
     @Update
     fun updateTransactions(vararg transaction: Transaction)
 
+    @Query("SELECT SUM(amount) FROM transactions")
+    fun getTotalAmount(): LiveData<Double>
+
     @Query("DELETE FROM transactions")
     fun deleteAll()
 

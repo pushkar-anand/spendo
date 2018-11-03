@@ -26,6 +26,10 @@ class TransactionRepository(application: Application) {
         InsertAsyncTask(transactionDao).execute(transaction)
     }
 
+    fun getTotalAmount(): LiveData<Double> {
+        return transactionDao!!.getTotalAmount();
+    }
+
     private companion object {
         class InsertAsyncTask(dao: TransactionDao?) : AsyncTask<Transaction, Void, Void>() {
             private var transactionDao: TransactionDao? = null

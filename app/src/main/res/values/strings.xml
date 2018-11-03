@@ -22,4 +22,6 @@
     <!--BottomDrawerNavigationMenu Items-->
     <string name="item_category">Categories</string>
     <string name="item_settings">Settings</string>
+
+    <string name="rupee_symbol">\u20B9</string>
 </resources>
