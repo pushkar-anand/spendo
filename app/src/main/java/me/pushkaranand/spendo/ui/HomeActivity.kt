@@ -21,42 +21,19 @@ class HomeActivity : AppCompatActivity() {
 
     private var transactionViewModel: TransactionViewModel? = null
 
+    private val adapter = TransactionsRecyclerViewAdapter(this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         setSupportActionBar(bottomAppBar)
-
-
-        val prefHelper = PrefHelper(this)
-
-        if (prefHelper.shouldShowIntro()) {
-            val intent = Intent(this, IntroSliderActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
-        val adapter = TransactionsRecyclerViewAdapter(this)
-        transactionRecyclerView.adapter = adapter
-        transactionRecyclerView.layoutManager = LinearLayoutManager(this)
-
-        transactionViewModel =
-                ViewModelProviders.of(this).get(TransactionViewModel::class.java)
-
-        transactionViewModel?.getAllTransactions()?.observe(this, Observer<List<Transaction>> {
-            adapter.setTransactions(it)
-        })
-
-        transactionViewModel?.getTotalAmount()?.observe(this, Observer<Double> {
-            val str = getString(R.string.rupee_symbol) + it.toString()
-            amountView.text = str
-        })
-
-
-        addTxnBtn.setOnClickListener {
-
-        }
+        checkFirstRun()
+        initRecyclerView()
+        initViewModel()
+        setupLiveObserver()
+        attachClickListeners()
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater = menuInflater
@@ -72,6 +49,44 @@ class HomeActivity : AppCompatActivity() {
             }
         }
         return true
+    }
+
+    private fun checkFirstRun() {
+        val prefHelper = PrefHelper(this)
+
+        if (prefHelper.shouldShowIntro()) {
+            val intent = Intent(this, IntroSliderActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
+
+    private fun attachClickListeners() {
+
+        addTxnBtn.setOnClickListener {
+
+        }
+    }
+
+    private fun initViewModel() {
+        transactionViewModel =
+                ViewModelProviders.of(this).get(TransactionViewModel::class.java)
+    }
+
+    private fun initRecyclerView() {
+        transactionRecyclerView.adapter = adapter
+        transactionRecyclerView.layoutManager = LinearLayoutManager(this)
+    }
+
+    private fun setupLiveObserver() {
+        transactionViewModel?.getAllTransactions()?.observe(this, Observer<List<Transaction>> {
+            adapter.setTransactions(it)
+        })
+
+        transactionViewModel?.getTotalAmount()?.observe(this, Observer<Double> {
+            val str = getString(R.string.rupee_symbol) + it.toString()
+            amountView.text = str
+        })
     }
 
 }
