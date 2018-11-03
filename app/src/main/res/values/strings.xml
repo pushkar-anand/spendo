@@ -6,14 +6,14 @@
     <string name="skip">SKIP</string>
     <string name="start">GOT IT</string>
 
-    <string name="slide_1_title">Daily Workout</string>
-    <string name="slide_1_desc">Set your daily workout routine by the help of trainer</string>
+    <string name="slide_1_title">Title 1</string>
+    <string name="slide_1_desc">Description 1</string>
 
-    <string name="slide_2_title">Meditation Techniques </string>
-    <string name="slide_2_desc">Learn about the different meditation techniques and practice them</string>
+    <string name="slide_2_title">Title 2</string>
+    <string name="slide_2_desc">Description 2</string>
 
-    <string name="slide_3_title">Diet Chart</string>
-    <string name="slide_3_desc">Make your diet chart by the help of health experts</string>
+    <string name="slide_3_title">Title 3</string>
+    <string name="slide_3_desc">Description</string>
 
     <!--HomeActivity-->
     <string name="title_activity_home">Spendo</string>
