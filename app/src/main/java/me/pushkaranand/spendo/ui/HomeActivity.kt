@@ -5,8 +5,11 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.content_home.*
 import me.pushkaranand.spendo.R
+import me.pushkaranand.spendo.adapters.TransactionsRecyclerViewAdapter
 import me.pushkaranand.spendo.fragments.BottomNavigationDrawerFragment
 import me.pushkaranand.spendo.helpers.PrefHelper
 
@@ -25,6 +28,11 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+        val adapter = TransactionsRecyclerViewAdapter(this)
+        transactionRecyclerView.adapter = adapter
+        transactionRecyclerView.layoutManager = LinearLayoutManager(this)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

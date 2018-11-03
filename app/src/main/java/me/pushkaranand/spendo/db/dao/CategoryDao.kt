@@ -1,15 +1,17 @@
 package me.pushkaranand.spendo.db.dao
 
 import androidx.lifecycle.LiveData
+import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import me.pushkaranand.spendo.db.entity.Category
 
+@Dao
 interface CategoryDao {
 
-    @get:Query("SELECT * FROM categories")
-    val allCategories: LiveData<ArrayList<Category>>
+    @Query("SELECT * FROM categories")
+    fun getAllCategories(): LiveData<List<Category>>
 
     @Insert
     fun newCategory(category: Category)

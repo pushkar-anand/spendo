@@ -10,7 +10,7 @@ import me.pushkaranand.spendo.repository.TransactionRepository
 class TransactionViewModel(application: Application) : AndroidViewModel(application) {
 
     private val transactionRepository: TransactionRepository = TransactionRepository(application)
-    private val allTransactions: LiveData<ArrayList<Transaction>>?
+    private val allTransactions: LiveData<List<Transaction>>?
 
     init {
         allTransactions = transactionRepository.getAllTransactions()

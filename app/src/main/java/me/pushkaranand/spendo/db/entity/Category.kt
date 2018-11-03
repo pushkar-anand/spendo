@@ -4,8 +4,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "categories")
-data class Category(var name: String, var spend: Double, var spendLimit: Double) {
-
-    @PrimaryKey(autoGenerate = true)
-    val categoryID: Int? = null
-}
+data class Category(
+    @PrimaryKey(autoGenerate = true) var categoryID: Int,
+    var name: String,
+    var spend: Double,
+    var spendLimit: Double
+)

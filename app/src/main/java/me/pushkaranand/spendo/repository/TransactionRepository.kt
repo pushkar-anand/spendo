@@ -10,15 +10,15 @@ import me.pushkaranand.spendo.db.entity.Transaction
 class TransactionRepository(application: Application) {
 
     private var transactionDao: TransactionDao? = null
-    private var transactions: LiveData<ArrayList<Transaction>>? = null
+    private var transactions: LiveData<List<Transaction>>? = null
 
     init {
         val spendoDatabase = SpendoDatabase.getDatabase(application)
         transactionDao = spendoDatabase!!.transactionDao()
-        transactions = transactionDao?.allTransactions
+        transactions = transactionDao?.getAllTransactions()
     }
 
-    fun getAllTransactions(): LiveData<ArrayList<Transaction>>? {
+    fun getAllTransactions(): LiveData<List<Transaction>>? {
         return transactions
     }
 

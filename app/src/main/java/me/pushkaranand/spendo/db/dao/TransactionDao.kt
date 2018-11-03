@@ -10,8 +10,8 @@ import me.pushkaranand.spendo.db.entity.Transaction
 @Dao
 interface TransactionDao {
 
-    @get:Query("SELECT * FROM transactions")
-    val allTransactions: LiveData<ArrayList<Transaction>>
+    @Query("SELECT * FROM transactions")
+    fun getAllTransactions(): LiveData<List<Transaction>>
 
     @Insert
     fun newTransaction(transaction: Transaction)
@@ -29,6 +29,6 @@ interface TransactionDao {
     fun deleteTransaction(id: Long)
 
     @Query("SELECT * FROM transactions WHERE category = :category")
-    fun getAllInCategory(category: String): ArrayList<Transaction>
+    fun getAllInCategory(category: String): List<Transaction>
 
 }
