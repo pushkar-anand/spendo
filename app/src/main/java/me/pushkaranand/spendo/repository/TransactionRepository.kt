@@ -5,7 +5,6 @@ import android.os.AsyncTask
 import me.pushkaranand.spendo.db.SpendoDatabase
 import me.pushkaranand.spendo.db.dao.TransactionDao
 import me.pushkaranand.spendo.db.entity.Transaction
-import java.util.*
 
 class TransactionRepository(application: Application) {
 
