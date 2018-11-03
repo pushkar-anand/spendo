@@ -22,11 +22,11 @@ class TransactionRepository(application: Application) {
     }
 
     fun insert(transaction: Transaction) {
-        insertAsyncTask(transactionDao).execute(transaction)
+        InsertAsyncTask(transactionDao).execute(transaction)
     }
 
     private companion object {
-        class insertAsyncTask(dao: TransactionDao?) : AsyncTask<Transaction, Void, Void>() {
+        class InsertAsyncTask(dao: TransactionDao?) : AsyncTask<Transaction, Void, Void>() {
             private var transactionDao: TransactionDao? = null
 
             init {
