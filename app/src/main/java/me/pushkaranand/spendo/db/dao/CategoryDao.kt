@@ -1,9 +1,9 @@
-package me.pushkaranand.spendo.dao
+package me.pushkaranand.spendo.db.dao
 
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import me.pushkaranand.spendo.data.Category
+import me.pushkaranand.spendo.db.entity.Category
 
 interface CategoryDao {
 

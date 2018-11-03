@@ -1,4 +1,4 @@
-package me.pushkaranand.spendo.data
+package me.pushkaranand.spendo.db.entity
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
