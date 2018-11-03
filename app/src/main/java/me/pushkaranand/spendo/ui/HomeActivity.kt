@@ -45,6 +45,10 @@ class HomeActivity : AppCompatActivity() {
         transactionViewModel?.getAllTransactions()?.observe(this, Observer<List<Transaction>> {
             adapter.setTransactions(it)
         })
+
+        addTxnBtn.setOnClickListener {
+
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

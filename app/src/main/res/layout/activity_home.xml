@@ -23,7 +23,7 @@
             app:navigationIcon="@drawable/menu_black" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/addBtn"
+            android:id="@+id/addTxnBtn"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/fab_size"
             android:elevation="5dp"
