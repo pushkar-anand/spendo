@@ -19,7 +19,7 @@ import me.pushkaranand.spendo.viewmodel.TransactionViewModel
 
 class HomeActivity : AppCompatActivity() {
 
-    var transactionViewModel: TransactionViewModel? = null
+    private var transactionViewModel: TransactionViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

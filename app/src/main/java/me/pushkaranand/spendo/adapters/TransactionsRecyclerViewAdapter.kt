@@ -41,10 +41,10 @@ class TransactionsRecyclerViewAdapter internal constructor(context: Context) :
     }
 
     override fun getItemCount(): Int {
-        if (transactions != null) {
-            return transactions!!.size
+        return if (transactions != null) {
+            transactions!!.size
         } else {
-            return 0;
+            0
         }
     }
 }
