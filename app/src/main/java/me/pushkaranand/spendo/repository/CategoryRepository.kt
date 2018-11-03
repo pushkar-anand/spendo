@@ -1,0 +1,42 @@
+package me.pushkaranand.spendo.repository
+
+import android.app.Application
+import android.os.AsyncTask
+import me.pushkaranand.spendo.db.SpendoDatabase
+import me.pushkaranand.spendo.db.dao.CategoryDao
+import me.pushkaranand.spendo.db.entity.Category
+
+class CategoryRepository(application: Application) {
+
+    private var categoryDao: CategoryDao? = null
+    private var allCategories: ArrayList<Category>? = null
+
+    init {
+        val spendoDatabase = SpendoDatabase.getDatabase(application)
+        categoryDao = spendoDatabase!!.categoryDao()
+        allCategories = categoryDao!!.allCategories
+    }
+
+    fun getAllCategories(): ArrayList<Category>? {
+        return allCategories
+    }
+
+    fun insert(category: Category) {
+        InsertAsyncTask(categoryDao).execute(category)
+    }
+
+    private companion object {
+        class InsertAsyncTask(dao: CategoryDao?) : AsyncTask<Category, Void, Void>() {
+            private var categoryDao: CategoryDao? = null
+
+            init {
+                categoryDao = dao
+            }
+
+            override fun doInBackground(vararg params: Category): Void? {
+                categoryDao!!.newCategory(params[0])
+                return null
+            }
+        }
+    }
+}
