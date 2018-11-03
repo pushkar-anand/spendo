@@ -13,7 +13,7 @@ class TransactionsRecyclerViewAdapter internal constructor(context: Context) :
     RecyclerView.Adapter<TransactionsRecyclerViewAdapter.TransactionsViewHolder>() {
 
     private val mInflater: LayoutInflater = LayoutInflater.from(context)
-    private var transactions: ArrayList<Transaction>? = null
+    private var transactions: List<Transaction>? = null
 
     class TransactionsViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val dateTV: TextView = itemView.findViewById(R.id.dateTextView)
@@ -41,6 +41,10 @@ class TransactionsRecyclerViewAdapter internal constructor(context: Context) :
     }
 
     override fun getItemCount(): Int {
-        return transactions!!.size
+        if (transactions != null) {
+            return transactions!!.size
+        } else {
+            return 0;
+        }
     }
 }
