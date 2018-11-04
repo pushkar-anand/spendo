@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.content_home.*
 import me.pushkaranand.spendo.R
@@ -16,11 +17,13 @@ import me.pushkaranand.spendo.adapters.TransactionsRecyclerViewAdapter
 import me.pushkaranand.spendo.db.entity.Transaction
 import me.pushkaranand.spendo.fragments.BottomNavigationDrawerFragment
 import me.pushkaranand.spendo.helpers.PrefHelper
+import me.pushkaranand.spendo.viewmodel.CategoryViewModel
 import me.pushkaranand.spendo.viewmodel.TransactionViewModel
 
 class HomeActivity : AppCompatActivity() {
 
     private var transactionViewModel: TransactionViewModel? = null
+    private var categoryViewModel: CategoryViewModel? = null
 
     companion object {
         private const val NEW_TRANSACTION_REQUEST_CODE = 100
@@ -77,6 +80,8 @@ class HomeActivity : AppCompatActivity() {
     private fun initViewModel() {
         transactionViewModel =
                 ViewModelProviders.of(this).get(TransactionViewModel::class.java)
+        categoryViewModel =
+                ViewModelProviders.of(this).get(CategoryViewModel::class.java)
     }
 
     private fun initRecyclerView() {
@@ -118,11 +123,18 @@ class HomeActivity : AppCompatActivity() {
                     } else {
                         amountString.toDouble()
                     }
-
+                    val gson = Gson();
+                    val categoryList = gson.fromJson(categories, ArrayList::class.java)
                     val transaction =
                         Transaction(amount = amount, type = type, category = categories, date = date, notes = notes)
 
                     transactionViewModel?.insert(transaction)
+                    if (type == getString(R.string.debit_choice)) {
+                        for (category in categoryList) {
+                            val pair = Pair(category as String, amountString.toDouble())
+                            categoryViewModel?.update(pair)
+                        }
+                    }
                 }
             }
         }

@@ -26,6 +26,10 @@ class CategoryRepository(application: Application) {
         InsertAsyncTask(categoryDao).execute(category)
     }
 
+    fun updateSpend(pairOfStringAndDouble: Pair<String, Double>) {
+        UpdateAsyncTask(categoryDao).execute(pairOfStringAndDouble)
+    }
+
     private companion object {
         class InsertAsyncTask(dao: CategoryDao?) : AsyncTask<Category, Void, Void>() {
             private var categoryDao: CategoryDao? = null
@@ -36,6 +40,22 @@ class CategoryRepository(application: Application) {
 
             override fun doInBackground(vararg params: Category): Void? {
                 categoryDao!!.newCategory(params[0])
+                return null
+            }
+        }
+
+        class UpdateAsyncTask(dao: CategoryDao?) : AsyncTask<Pair<String, Double>, Void, Void>() {
+            private var categoryDao: CategoryDao? = null
+
+            init {
+                categoryDao = dao
+            }
+
+            override fun doInBackground(vararg params: Pair<String, Double>): Void? {
+                for (p in params) {
+                    val id = categoryDao!!.getCategoryID(p.first)
+                    categoryDao!!.updateSpend(id, p.second)
+                }
                 return null
             }
         }

@@ -19,6 +19,9 @@ interface CategoryDao {
     @Update
     fun updateCategories(vararg category: Category)
 
+    @Query("SELECT categoryID FROM categories WHERE name = :name")
+    fun getCategoryID(name: String): Long
+
     @Query("UPDATE categories SET spendLimit = :newLimit WHERE categoryID = :id")
     fun updateLimit(id: Long, newLimit: Double)
 
@@ -33,5 +36,6 @@ interface CategoryDao {
 
     @Query("DELETE FROM categories WHERE categoryID = :id")
     fun deleteCategory(id: Long)
+
 
 }
