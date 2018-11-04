@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#cfd8dc</color>
     <color name="colorAccent">#546e7a</color>
 
+    <color name="colorBackground">#f5f5f5</color>
+
     <color name="white">#FFFFFF</color>
 
     <!-- Screens background color-->
