@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import me.pushkaranand.spendo.R
 import me.pushkaranand.spendo.db.entity.Transaction
+
 
 class TransactionsRecyclerViewAdapter internal constructor(context: Context) :
     RecyclerView.Adapter<TransactionsRecyclerViewAdapter.TransactionsViewHolder>() {
@@ -28,10 +30,16 @@ class TransactionsRecyclerViewAdapter internal constructor(context: Context) :
 
     override fun onBindViewHolder(holder: TransactionsViewHolder, position: Int) {
         if (transactions != null) {
-            val (amount, _, category, _, date) = transactions!![position]
-            holder.dateTV.text = date
-            holder.categoryTV.text = category
-            holder.amountTV.text = amount.toString()
+            val transaction = transactions!![position]
+
+            val str = "${transaction.day}/${transaction.month}"
+            holder.dateTV.text = str
+
+            val gson = Gson()
+            val list = gson.fromJson(transaction.category, ArrayList::class.java)
+            holder.categoryTV.text = list[0].toString()
+
+            holder.amountTV.text = transaction.amount.toString()
         }
     }
 

@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.chip.Chip
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_new_transaction.*
 import kotlinx.android.synthetic.main.content_new_transaction.*
 import me.pushkaranand.spendo.R
@@ -16,6 +17,7 @@ import me.pushkaranand.spendo.fragments.DatePickerFragment
 import me.pushkaranand.spendo.viewmodel.CategoryViewModel
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 class NewTransactionActivity : AppCompatActivity() {
 
@@ -133,7 +135,8 @@ class NewTransactionActivity : AppCompatActivity() {
             }
 
             if (selectedCategories.size > 0) {
-                intent.putExtra(TRANSACTION_CATEGORIES, selectedCategories.toString())
+                val gson = Gson()
+                intent.putExtra(TRANSACTION_CATEGORIES, gson.toJson(selectedCategories))
             } else {
                 proceed = false
                 Toast.makeText(
