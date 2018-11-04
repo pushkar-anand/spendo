@@ -8,6 +8,7 @@
     <dimen name="slide_desc">16sp</dimen>
     <dimen name="desc_padding">40dp</dimen>
 
+    <dimen name="fab_margin">16dp</dimen>
     <dimen name="fab_size">56dp</dimen>
     <dimen name="fab_corner_radius">28dp</dimen>
     <dimen name="bottom_sheet_corner_radius">16dp</dimen>

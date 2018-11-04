@@ -13,7 +13,6 @@ interface CategoryDao {
     @Query("SELECT * FROM categories")
     fun getAllCategories(): LiveData<List<Category>>
 
-
     @Insert
     fun newCategory(category: Category)
 
