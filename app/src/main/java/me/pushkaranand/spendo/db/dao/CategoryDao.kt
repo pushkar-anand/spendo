@@ -11,10 +11,8 @@ import me.pushkaranand.spendo.db.entity.Category
 interface CategoryDao {
 
     @Query("SELECT * FROM categories")
-    fun getAllCategories(): List<Category>
+    fun getAllCategories(): LiveData<List<Category>>
 
-    @Query("SELECT * FROM categories")
-    fun getAllCategoriesLiveData(): LiveData<List<Category>>
 
     @Insert
     fun newCategory(category: Category)

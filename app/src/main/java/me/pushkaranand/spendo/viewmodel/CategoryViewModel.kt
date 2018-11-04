@@ -9,21 +9,16 @@ import me.pushkaranand.spendo.repository.CategoryRepository
 class CategoryViewModel(application: Application) : AndroidViewModel(application) {
 
     private val categoryRepository = CategoryRepository(application)
-    private val allCategories: List<Category>?
-    private val allCategoriesLiveData: LiveData<List<Category>>?
+    private val allCategories: LiveData<List<Category>>?
 
     init {
         allCategories = categoryRepository.getAllCategories()
-        allCategoriesLiveData = categoryRepository.getAllCategoriesLiveData()
     }
 
-    fun getAllCategories(): List<Category>? {
+    fun getAllCategories(): LiveData<List<Category>>? {
         return allCategories
     }
 
-    fun getAllCategoriesLiveData(): LiveData<List<Category>>? {
-        return allCategoriesLiveData
-    }
 
     fun insert(category: Category) {
         categoryRepository.insert(category)

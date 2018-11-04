@@ -3,6 +3,8 @@ package me.pushkaranand.spendo.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.chip.Chip
+import kotlinx.android.synthetic.main.activity_new_transaction.*
 import me.pushkaranand.spendo.R
 import me.pushkaranand.spendo.db.entity.Category
 import me.pushkaranand.spendo.viewmodel.CategoryViewModel
@@ -24,9 +26,10 @@ class NewTransactionActivity : AppCompatActivity() {
     }
 
     fun addCategoryChips() {
-        val categories: List<Category>? = categoryViewModel?.getAllCategories()
+        val categories: List<Category>? = categoryViewModel?.getAllCategories()?.value
         if (categories != null) {
-
+            val chip = Chip(categoryGroup.context)
+            categoryGroup.addView(chip)
         }
     }
 }
