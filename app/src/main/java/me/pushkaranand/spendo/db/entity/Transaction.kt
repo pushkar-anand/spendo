@@ -13,7 +13,6 @@ import androidx.room.PrimaryKey
     )]
 )
 data class Transaction(
-    @PrimaryKey(autoGenerate = true) var transactionID: Long,
     var amount: Double,
     var type: String,
     var category: String,
@@ -23,4 +22,7 @@ data class Transaction(
     var day: String,
     var year: Int,
     var month: String
-)
+) {
+    @PrimaryKey(autoGenerate = true)
+    var transactionID: Long = 0
+}

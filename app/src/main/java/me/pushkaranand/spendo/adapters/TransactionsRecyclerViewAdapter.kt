@@ -28,7 +28,7 @@ class TransactionsRecyclerViewAdapter internal constructor(context: Context) :
 
     override fun onBindViewHolder(holder: TransactionsViewHolder, position: Int) {
         if (transactions != null) {
-            val (_, amount, _, category, _, date) = transactions!![position]
+            val (amount, _, category, _, date) = transactions!![position]
             holder.dateTV.text = date
             holder.categoryTV.text = category
             holder.amountTV.text = amount.toString()
