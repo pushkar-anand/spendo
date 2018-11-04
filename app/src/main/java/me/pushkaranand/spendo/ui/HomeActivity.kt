@@ -104,10 +104,25 @@ class HomeActivity : AppCompatActivity() {
 
             when (resultCode) {
                 Activity.RESULT_OK -> {
+                    val amount: Double
+                    val amountString = intent.getStringExtra(NewTransactionActivity.TRANSACTION_AMOUNT)
+                    val type = intent.getStringExtra(NewTransactionActivity.TRANSACTION_TYPE)
+                    val categories = intent.getStringExtra(NewTransactionActivity.TRANSACTION_CATEGORIES)
+                    val date = intent.getStringExtra(NewTransactionActivity.TRANSACTION_DATE)
+                    var notes: String? = null
+                    if (intent.hasCategory(NewTransactionActivity.TRANSACTION_NOTES)) {
+                        notes = intent.getStringExtra(NewTransactionActivity.TRANSACTION_NOTES)
+                    }
+                    amount = if (type == getString(R.string.debit_choice)) {
+                        -amountString.toDouble()
+                    } else {
+                        amountString.toDouble()
+                    }
 
-                }
-                Activity.RESULT_CANCELED -> {
+                    val transaction =
+                        Transaction(amount = amount, type = type, category = categories, date = date, notes = notes)
 
+                    transactionViewModel?.insert(transaction)
                 }
             }
         }
