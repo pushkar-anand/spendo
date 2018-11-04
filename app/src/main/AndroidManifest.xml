@@ -30,7 +30,7 @@
             android:theme="@style/AppTheme.ActionBar" />
         <activity android:name=".ui.ViewTransactionActivity" />
         <activity android:name=".ui.CategoryDisplayActivity" />
-        <activity android:name=".ui.SettingsActivity"></activity>
+        <activity android:name=".ui.SettingsActivity" />
     </application>
 
 </manifest>
