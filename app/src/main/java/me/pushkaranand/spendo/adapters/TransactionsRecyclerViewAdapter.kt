@@ -32,7 +32,7 @@ class TransactionsRecyclerViewAdapter internal constructor(context: Context) :
         if (transactions != null) {
             val transaction = transactions!![position]
 
-            val str = "${transaction.day}/${transaction.month}"
+            val str = "${transaction.day}-${transaction.month}"
             holder.dateTV.text = str
 
             val gson = Gson()

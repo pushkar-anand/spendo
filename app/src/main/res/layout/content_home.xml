@@ -15,14 +15,14 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:elevation="5dp"
-        android:textSize="24sp"
+        android:text="@string/default_amount"
+        android:textSize="30sp"
         app:cornerRadius="40dp"
         app:layout_constraintBottom_toTopOf="@+id/transactionRecyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/default_amount" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/transactionRecyclerView"
