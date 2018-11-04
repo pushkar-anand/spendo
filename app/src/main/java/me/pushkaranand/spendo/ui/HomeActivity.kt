@@ -1,5 +1,6 @@
 package me.pushkaranand.spendo.ui
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -20,6 +21,10 @@ import me.pushkaranand.spendo.viewmodel.TransactionViewModel
 class HomeActivity : AppCompatActivity() {
 
     private var transactionViewModel: TransactionViewModel? = null
+
+    companion object {
+        private const val NEW_TRANSACTION_REQUEST_CODE = 100
+    }
 
     private val adapter = TransactionsRecyclerViewAdapter(this)
 
@@ -64,7 +69,8 @@ class HomeActivity : AppCompatActivity() {
     private fun attachClickListeners() {
 
         addTxnBtn.setOnClickListener {
-
+            val intent = Intent(this, NewTransactionActivity::class.java)
+            startActivityForResult(intent, NEW_TRANSACTION_REQUEST_CODE)
         }
     }
 
@@ -89,4 +95,18 @@ class HomeActivity : AppCompatActivity() {
         })
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        if (requestCode == NEW_TRANSACTION_REQUEST_CODE) {
+
+            when (resultCode) {
+                Activity.RESULT_OK -> {
+
+                }
+                Activity.RESULT_CANCELED -> {
+
+                }
+            }
+        }
+    }
 }
