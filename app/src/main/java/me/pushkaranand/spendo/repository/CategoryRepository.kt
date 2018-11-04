@@ -10,16 +10,22 @@ import me.pushkaranand.spendo.db.entity.Category
 class CategoryRepository(application: Application) {
 
     private var categoryDao: CategoryDao? = null
-    private var allCategories: LiveData<List<Category>>? = null
+    private var allCategories: List<Category>? = null
+    private var allCategoriesLiveData: LiveData<List<Category>>? = null
 
     init {
         val spendoDatabase = SpendoDatabase.getDatabase(application)
         categoryDao = spendoDatabase!!.categoryDao()
         allCategories = categoryDao!!.getAllCategories()
+        allCategoriesLiveData = categoryDao!!.getAllCategoriesLiveData()
     }
 
-    fun getAllCategories(): LiveData<List<Category>>? {
+    fun getAllCategories(): List<Category>? {
         return allCategories
+    }
+
+    fun getAllCategoriesLiveData(): LiveData<List<Category>>? {
+        return allCategoriesLiveData
     }
 
     fun insert(category: Category) {
