@@ -105,13 +105,13 @@ class HomeActivity : AppCompatActivity() {
             when (resultCode) {
                 Activity.RESULT_OK -> {
                     val amount: Double
-                    val amountString = intent.getStringExtra(NewTransactionActivity.TRANSACTION_AMOUNT)
-                    val type = intent.getStringExtra(NewTransactionActivity.TRANSACTION_TYPE)
-                    val categories = intent.getStringExtra(NewTransactionActivity.TRANSACTION_CATEGORIES)
-                    val date = intent.getStringExtra(NewTransactionActivity.TRANSACTION_DATE)
+                    val amountString = data!!.getStringExtra(NewTransactionActivity.TRANSACTION_AMOUNT)
+                    val type = data.getStringExtra(NewTransactionActivity.TRANSACTION_TYPE)
+                    val categories = data.getStringExtra(NewTransactionActivity.TRANSACTION_CATEGORIES)
+                    val date = data.getStringExtra(NewTransactionActivity.TRANSACTION_DATE)
                     var notes: String? = null
-                    if (intent.hasCategory(NewTransactionActivity.TRANSACTION_NOTES)) {
-                        notes = intent.getStringExtra(NewTransactionActivity.TRANSACTION_NOTES)
+                    if (data.hasCategory(NewTransactionActivity.TRANSACTION_NOTES)) {
+                        notes = data.getStringExtra(NewTransactionActivity.TRANSACTION_NOTES)
                     }
                     amount = if (type == getString(R.string.debit_choice)) {
                         -amountString.toDouble()
