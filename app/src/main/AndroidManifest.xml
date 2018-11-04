@@ -28,6 +28,7 @@
             android:name=".ui.NewTransactionActivity"
             android:label="@string/title_activity_new_transaction"
             android:theme="@style/AppTheme.ActionBar" />
+        <activity android:name=".ui.ViewTransactionActivity"></activity>
     </application>
 
 </manifest>
