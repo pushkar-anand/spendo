@@ -26,7 +26,7 @@ class HomeActivity : AppCompatActivity() {
         private const val NEW_TRANSACTION_REQUEST_CODE = 100
     }
 
-    private val adapter = TransactionsRecyclerViewAdapter(this)
+    private var adapter: TransactionsRecyclerViewAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -80,18 +80,21 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerView() {
+        adapter = TransactionsRecyclerViewAdapter(this)
         transactionRecyclerView.adapter = adapter
         transactionRecyclerView.layoutManager = LinearLayoutManager(this)
     }
 
     private fun setupLiveObserver() {
         transactionViewModel?.getAllTransactions()?.observe(this, Observer<List<Transaction>> {
-            adapter.setTransactions(it)
+            adapter?.setTransactions(it)
         })
 
         transactionViewModel?.getTotalAmount()?.observe(this, Observer<Double> {
-            val str = getString(R.string.rupee_symbol) + it.toString()
-            amountView.text = str
+            if (it != null) {
+                val str = getString(R.string.rupee_symbol) + it.toString()
+                amountView.text = str
+            }
         })
     }
 

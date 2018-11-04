@@ -24,7 +24,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.NewTransactionActivity"></activity>
+        <activity
+            android:name=".ui.NewTransactionActivity"
+            android:label="@string/title_activity_new_transaction"
+            android:theme="@style/AppTheme.ActionBar" />
     </application>
 
 </manifest>

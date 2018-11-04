@@ -19,6 +19,14 @@
     <string name="title_activity_home">Spendo</string>
     <string name="fab_title">New Transaction</string>
 
+    <!--NewTransactionActivity-->
+    <string name="title_activity_new_transaction">New Transaction</string>
+    <string name="title_new_transaction">Add new transaction</string>
+    <string name="amount_hint">Amount</string>
+    <string name="credit_choice">Credit</string>
+    <string name="debit_choice">Debit</string>
+    <string name="category_section_heading">Choose Category</string>
+
     <!--BottomDrawerNavigationMenu Items-->
     <string name="item_category">Categories</string>
     <string name="item_settings">Settings</string>
