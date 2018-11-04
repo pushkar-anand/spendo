@@ -123,7 +123,7 @@ class HomeActivity : AppCompatActivity() {
                     } else {
                         amountString.toDouble()
                     }
-                    val gson = Gson();
+                    val gson = Gson()
                     val categoryList = gson.fromJson(categories, ArrayList::class.java)
                     val transaction =
                         Transaction(amount = amount, type = type, category = categories, date = date, notes = notes)
