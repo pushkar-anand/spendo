@@ -20,35 +20,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/amountTextInputLayout"
-        android:layout_width="0dp"
+    <com.google.android.material.chip.Chip
+        android:id="@+id/dateChip"
+        style="@style/Widget.MaterialComponents.Chip.Action"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:text="@string/date_placeholder"
+        android:textAppearance="@style/DateChip"
+        app:chipCornerRadius="5dp"
+        app:chipIcon="@drawable/ic_calendar_black"
+        app:chipMinHeight="40dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleView">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/amount_hint" />
-
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintTop_toBottomOf="@id/titleView" />
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/typeGroup"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="gravity"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/amountTextInputLayout"
+        app:layout_constraintTop_toBottomOf="@+id/dateChip"
         app:singleLine="true"
         app:singleSelection="true">
 
@@ -68,17 +65,23 @@
 
     </com.google.android.material.chip.ChipGroup>
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/amountTextInputLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:background="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/typeGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/typeGroup">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/amount_hint" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/categoryDisplayTV"
@@ -91,7 +94,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider" />
+        app:layout_constraintTop_toBottomOf="@+id/amountTextInputLayout" />
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/categoryGroup"
@@ -119,15 +122,5 @@
             android:singleLine="false" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/dateChip"
-        style="@style/Widget.MaterialComponents.Chip.Action"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="@string/date_placeholder"
-        app:chipIcon="@drawable/ic_calendar_black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/notesTextInputLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
