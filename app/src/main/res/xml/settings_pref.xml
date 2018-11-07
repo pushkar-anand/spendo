@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="0">
 
-    <PreferenceScreen android:title="@string/screen_title_general">
+    <PreferenceScreen
+        android:key="1"
+        android:title="@string/screen_title_general">
 
     </PreferenceScreen>
 
-    <PreferenceScreen android:title="@string/screen_title_notifications">
+    <PreferenceScreen
+        android:key="2"
+        android:title="@string/screen_title_notifications">
 
         <SwitchPreference
             android:defaultValue="false"
@@ -16,7 +21,9 @@
 
     </PreferenceScreen>
 
-    <PreferenceScreen android:title="@string/screen_title_backup">
+    <PreferenceScreen
+        android:key="3"
+        android:title="@string/screen_title_backup">
 
         <PreferenceCategory android:title="Device Backup">
 
