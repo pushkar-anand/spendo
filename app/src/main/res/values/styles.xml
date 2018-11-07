@@ -32,6 +32,9 @@
         <item name="bottomSheetStyle">@style/BottomSheet</item>
     </style>
 
+    <style name="AppTheme.PreferenceScreen" parent="PreferenceThemeOverlay.v14.Material">
+
+    </style>
 
     <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog">
         <item name="android:statusBarColor">@android:color/transparent</item>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="entries_backup_drive_freq">
+        <item>Manual</item>
+        <item>Daily</item>
+        <item>Weekly</item>
+    </string-array>
+
+    <string-array name="entry_values_backup_drive_freq">
+        <item>manual</item>
+        <item>daily</item>
+        <item>weekly</item>
+    </string-array>
+
+</resources>

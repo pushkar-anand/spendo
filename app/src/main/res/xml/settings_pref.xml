@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceScreen android:title="@string/screen_title_general">
+
+    </PreferenceScreen>
+
+    <PreferenceScreen android:title="@string/screen_title_notifications">
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/key_daily_add_reminder"
+            android:summary="@string/summary_daily_add_reminder"
+            android:title="@string/title_daily_add_reminder" />
+
+
+    </PreferenceScreen>
+
+    <PreferenceScreen android:title="@string/screen_title_backup">
+
+        <PreferenceCategory android:title="Device Backup">
+
+            <SwitchPreference
+                android:defaultValue="false"
+                android:key="@string/key_backup_device"
+                android:summary="@string/summary_backup_device"
+                android:title="@string/title_backup_device" />
+
+        </PreferenceCategory>
+        <PreferenceCategory android:title="Google Drive Backup">
+
+            <SwitchPreference
+                android:defaultValue="false"
+                android:key="@string/key_backup_drive"
+                android:summary="@string/summary_backup_drive"
+                android:title="@string/title_backup_drive" />
+
+            <ListPreference
+                android:defaultValue="@string/default_backup_drive_freq"
+                android:dependency="@string/key_backup_drive"
+                android:dialogTitle="@string/title_backup_drive_freq"
+                android:entries="@array/entries_backup_drive_freq"
+                android:entryValues="@array/entry_values_backup_drive_freq"
+                android:key="@string/key_backup_drive_freq"
+                android:title="@string/title_backup_drive_freq" />
+
+            <SwitchPreference
+                android:defaultValue="true"
+                android:dependency="@string/key_backup_drive"
+                android:key="@string/key_backup_drive_wifi"
+                android:summary="@string/summary_backup_drive_wifi"
+                android:title="@string/title_backup_drive_wifi" />
+
+        </PreferenceCategory>
+
+        <Preference android:layout="@layout/backup_pref_btn" />
+
+    </PreferenceScreen>
+
+
+</PreferenceScreen>
