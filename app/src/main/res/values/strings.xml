@@ -42,10 +42,15 @@
     <string name="screen_title_backup">Backup &amp; Restore</string>
 
     <!--SettingsPref keys, tittle & summary -->
-    <string name="title_activity_settings">Spendo</string>
+    <string name="title_activity_settings">Settings</string>
     <string name="key_daily_add_reminder">daily_add_reminder</string>
     <string name="title_daily_add_reminder">Daily Reminder</string>
     <string name="summary_daily_add_reminder">Get daily reminder to add transactions for the day.</string>
+
+    <string name="key_remind_time">remind_time</string>
+    <string name="title_remind_time">Time</string>
+    <string name="summary_remind_time">Time to get add reminder</string>
+
 
     <string name="key_backup_device">backup_device</string>
     <string name="title_backup_device">Device Backup</string>

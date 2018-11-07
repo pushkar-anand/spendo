@@ -18,6 +18,11 @@
             android:summary="@string/summary_daily_add_reminder"
             android:title="@string/title_daily_add_reminder" />
 
+        <me.pushkaranand.spendo.custom.TimePreference
+            android:key="@string/key_remind_time"
+            android:summary="@string/summary_remind_time"
+            android:title="@string/title_remind_time" />
+
 
     </PreferenceScreen>
 
