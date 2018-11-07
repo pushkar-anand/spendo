@@ -42,6 +42,7 @@
     <string name="screen_title_backup">Backup &amp; Restore</string>
 
     <!--SettingsPref keys, tittle & summary -->
+    <string name="title_activity_settings">Spendo</string>
     <string name="key_daily_add_reminder">daily_add_reminder</string>
     <string name="title_daily_add_reminder">Daily Reminder</string>
     <string name="summary_daily_add_reminder">Get daily reminder to add transactions for the day.</string>
