@@ -6,6 +6,7 @@
 
 
     <com.google.android.material.navigation.NavigationView
+        android:id="@+id/bottomNavView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
