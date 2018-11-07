@@ -3,6 +3,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.CategoryDisplayActivity">
+
+    <include layout="@layout/content_category_display" />
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottomAppBarCategoryActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:fabAlignmentMode="center"
+            app:hideOnScroll="true"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:navigationIcon="@drawable/menu_black" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addCategoryBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/fab_size"
+            android:elevation="5dp"
+            android:text="@string/fab_title_category"
+            android:textAllCaps="false"
+            app:cornerRadius="@dimen/fab_corner_radius"
+            app:icon="@drawable/fab_add_white"
+            app:layout_anchor="@id/bottomAppBarCategoryActivity"
+            app:layout_anchorGravity="center_horizontal|top"
+            app:textAllCaps="false" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
