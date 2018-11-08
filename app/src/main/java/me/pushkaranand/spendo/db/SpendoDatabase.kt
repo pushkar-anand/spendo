@@ -69,6 +69,7 @@ abstract class SpendoDatabase : RoomDatabase() {
 
             override fun doInBackground(vararg params: Void?): Void? {
 
+                categoryDao?.deleteAll()
                 val categories = getPreDefinedCategories()
                 for (category in categories) {
                     categoryDao?.newCategory(category)
