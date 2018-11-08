@@ -30,6 +30,7 @@
     <string name="date_placeholder">Date</string>
 
     <!--BottomDrawerNavigationMenu Items-->
+    <string name="item_transaction">Transactions</string>
     <string name="item_category">Categories</string>
     <string name="item_settings">Settings</string>
 

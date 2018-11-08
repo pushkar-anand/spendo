@@ -11,6 +11,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_bottomsheet.*
 import me.pushkaranand.spendo.R
 import me.pushkaranand.spendo.ui.CategoryDisplayActivity
+import me.pushkaranand.spendo.ui.HomeActivity
 import me.pushkaranand.spendo.ui.SettingsActivity
 
 class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
@@ -28,6 +29,10 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
         bottomNavView.setNavigationItemSelectedListener { menuItem ->
 
             when (menuItem.itemId) {
+                R.id.nav_transactions -> {
+                    val intent = Intent(context, HomeActivity::class.java)
+                    context!!.startActivity(intent)
+                }
                 R.id.nav_settings -> {
                     val intent = Intent(context, SettingsActivity::class.java)
                     context!!.startActivity(intent)

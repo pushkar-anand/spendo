@@ -3,6 +3,10 @@
 
     <group>
         <item
+            android:id="@+id/nav_transactions"
+            android:title="@string/item_transaction" />
+
+        <item
             android:id="@+id/nav_categories"
             android:icon="@drawable/ic_categories_black"
             android:title="@string/item_category" />
