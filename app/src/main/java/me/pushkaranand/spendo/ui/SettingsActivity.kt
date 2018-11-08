@@ -11,7 +11,7 @@ class SettingsActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPrefere
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //supportActionBar?.setDefaultDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportFragmentManager.beginTransaction()
             .replace(android.R.id.content, SettingsFragment())
             .commit()
