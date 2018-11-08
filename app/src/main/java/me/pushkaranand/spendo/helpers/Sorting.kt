@@ -14,7 +14,7 @@ class Sorting {
                 val dateString2: String = t2.date
 
                 if (dateString1 == dateString2) {
-                    return@Comparator t2.date.compareTo(t2.date)
+                    return@Comparator t2.transactionID.compareTo(t1.transactionID)
                 } else {
                     val df = SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault())
 

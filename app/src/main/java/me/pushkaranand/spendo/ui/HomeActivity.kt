@@ -17,6 +17,7 @@ import me.pushkaranand.spendo.adapters.TransactionsRecyclerViewAdapter
 import me.pushkaranand.spendo.db.entity.Transaction
 import me.pushkaranand.spendo.fragments.BottomNavigationDrawerFragment
 import me.pushkaranand.spendo.helpers.PrefHelper
+import me.pushkaranand.spendo.helpers.Sorting
 import me.pushkaranand.spendo.viewmodel.CategoryViewModel
 import me.pushkaranand.spendo.viewmodel.TransactionViewModel
 
@@ -84,7 +85,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun setupLiveObserver() {
         transactionViewModel?.getAllTransactions()?.observe(this, Observer<List<Transaction>> {
-            adapter?.setTransactions(it)
+            adapter?.setTransactions(Sorting.sortByDateDescending(it as ArrayList<Transaction>))
         })
 
         transactionViewModel?.getTotalAmount()?.observe(this, Observer<Double> {
