@@ -10,6 +10,10 @@ class ViewTransactionActivity : AppCompatActivity() {
 
     private var transactionViewModel: TransactionViewModel? = null
 
+    companion object {
+        const val TRANSACTION_ID = "me.pushkaranand.spendo.ui.TRANSACTION_ID"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_transaction)

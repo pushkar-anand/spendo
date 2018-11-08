@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import me.pushkaranand.spendo.R
@@ -16,11 +17,21 @@ class TransactionsRecyclerViewAdapter(context: Context) :
 
     private val mInflater: LayoutInflater = LayoutInflater.from(context)
     private var transactions: List<Transaction>? = null
+    private var onTransactionClick: OnTransactionClickListener? = null
 
     class TransactionsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val transactionItemConstrain: ConstraintLayout = itemView.findViewById(R.id.transactionItemConstrain)
         val dateTV: TextView = itemView.findViewById(R.id.dateTextView)
         val categoryTV: TextView = itemView.findViewById(R.id.categoryTextView)
         val amountTV: TextView = itemView.findViewById(R.id.amountTextView)
+    }
+
+    interface OnTransactionClickListener {
+        fun onClick(transactionId: Long)
+    }
+
+    fun setOnTransactionClickListener(onTransactionClick: OnTransactionClickListener) {
+        this.onTransactionClick = onTransactionClick
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionsViewHolder {
@@ -40,6 +51,10 @@ class TransactionsRecyclerViewAdapter(context: Context) :
             holder.categoryTV.text = list[0].toString()
 
             holder.amountTV.text = transaction.amount.toString()
+
+            holder.transactionItemConstrain.setOnClickListener {
+                onTransactionClick?.onClick(transaction.transactionID)
+            }
         }
     }
 

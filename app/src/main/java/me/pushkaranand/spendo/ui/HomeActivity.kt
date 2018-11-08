@@ -69,14 +69,6 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun attachClickListeners() {
-
-        addTxnBtn.setOnClickListener {
-            val intent = Intent(this, NewTransactionActivity::class.java)
-            startActivityForResult(intent, NEW_TRANSACTION_REQUEST_CODE)
-        }
-    }
-
     private fun initViewModel() {
         transactionViewModel =
                 ViewModelProviders.of(this).get(TransactionViewModel::class.java)
@@ -102,6 +94,26 @@ class HomeActivity : AppCompatActivity() {
             }
         })
     }
+
+    private val transactionClickListener: TransactionsRecyclerViewAdapter.OnTransactionClickListener =
+        object : TransactionsRecyclerViewAdapter.OnTransactionClickListener {
+            override fun onClick(transactionId: Long) {
+                val intent = Intent(this@HomeActivity, ViewTransactionActivity::class.java)
+                intent.putExtra(ViewTransactionActivity.TRANSACTION_ID, transactionId)
+                startActivity(intent)
+            }
+        }
+
+    private fun attachClickListeners() {
+
+        addTxnBtn.setOnClickListener {
+            val intent = Intent(this, NewTransactionActivity::class.java)
+            startActivityForResult(intent, NEW_TRANSACTION_REQUEST_CODE)
+        }
+
+        adapter?.setOnTransactionClickListener(transactionClickListener)
+    }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
