@@ -74,9 +74,8 @@ class ViewTransactionActivity : AppCompatActivity() {
                 ViewModelProviders.of(this).get(TransactionViewModel::class.java)
     }
 
-    private fun setupViewModelObserver() {
-        transactionViewModel?.getTransaction(transactionId!!)?.observe(this, Observer {
-
+    private val observer = Observer<Transaction> {
+        if (it != null) {
             val t = it.amount.toString().replace("-", "")
             var tmp = "${getString(R.string.rupee_symbol)}$t"
             amountTextView.text = tmp
@@ -92,7 +91,11 @@ class ViewTransactionActivity : AppCompatActivity() {
                 tmp += "$c\n"
             }
             categoriesTextView.text = tmp
-        })
+        }
+    }
+
+    private fun setupViewModelObserver() {
+        transactionViewModel?.getTransaction(transactionId!!)?.observe(this, observer)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -113,7 +116,11 @@ class ViewTransactionActivity : AppCompatActivity() {
             .setTitle(getString(R.string.delete_dialog_title))
             .setMessage(getString(R.string.delete_dialog_message))
             .setPositiveButton(getString(R.string.delete_positive_action)) { _, _ ->
+                transactionViewModel?.getTransaction(transactionId!!)?.removeObservers(this)
                 transactionViewModel?.delete(transactionId!!)
+                val intent = Intent(this, HomeActivity::class.java)
+                startActivity(intent)
+                finish()
             }
             .setNegativeButton(getString(R.string.delete_negative_action)) { dialog, _ -> dialog.dismiss() }
             .setCancelable(false)

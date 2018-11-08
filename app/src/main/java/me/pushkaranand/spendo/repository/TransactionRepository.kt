@@ -39,7 +39,7 @@ class TransactionRepository(application: Application) {
     }
 
     fun delete(transactionId: Long) {
-        transactionDao!!.deleteTransaction(transactionId)
+        DeleteAsyncTask(transactionDao).execute(transactionId)
     }
 
     private companion object {
@@ -65,6 +65,20 @@ class TransactionRepository(application: Application) {
 
             override fun doInBackground(vararg params: Transaction): Void? {
                 transactionDao!!.updateTransactions(params[0])
+                return null
+            }
+        }
+
+        class DeleteAsyncTask(dao: TransactionDao?) : AsyncTask<Long, Void, Void>() {
+
+            private var transactionDao: TransactionDao? = null
+
+            init {
+                transactionDao = dao
+            }
+
+            override fun doInBackground(vararg params: Long?): Void? {
+                transactionDao!!.deleteTransaction(params[0]!!)
                 return null
             }
         }
