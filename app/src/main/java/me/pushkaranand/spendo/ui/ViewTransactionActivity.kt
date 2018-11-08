@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -59,6 +60,7 @@ class ViewTransactionActivity : AppCompatActivity() {
                 true
             }
             R.id.item_delete -> {
+                showDeleteDialog()
                 true
             }
             else -> {
@@ -104,5 +106,17 @@ class ViewTransactionActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun showDeleteDialog() {
+        AlertDialog.Builder(this)
+            .setTitle(getString(R.string.delete_dialog_title))
+            .setMessage(getString(R.string.delete_dialog_message))
+            .setPositiveButton(getString(R.string.delete_positive_action)) { _, _ ->
+                transactionViewModel?.delete(transactionId!!)
+            }
+            .setNegativeButton(getString(R.string.delete_negative_action)) { dialog, _ -> dialog.dismiss() }
+            .setCancelable(false)
+            .show()
     }
 }

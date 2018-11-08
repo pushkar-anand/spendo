@@ -41,6 +41,14 @@
     <!--CategoryDisplayActivity -->
     <string name="fab_title_category">Add New Category</string>
 
+
+    <!--ViewTransactionActivity -->
+    <string name="delete_dialog_title">Delete</string>
+    <string name="delete_dialog_message">Are you sure you want to delete this transaction?</string>
+    <string name="delete_positive_action">Delete</string>
+    <string name="delete_negative_action">Cancel</string>
+
+
     <string name="screen_title_general">General</string>
     <string name="screen_title_notifications">Notifications</string>
     <string name="screen_title_backup">Backup &amp; Restore</string>
@@ -77,5 +85,6 @@
 
 
     <string name="title_activity_edit_transaction">Edit Transaction</string>
+
 
 </resources>
