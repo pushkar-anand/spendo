@@ -11,13 +11,13 @@ import me.pushkaranand.spendo.R
 import me.pushkaranand.spendo.db.entity.Transaction
 
 
-class TransactionsRecyclerViewAdapter internal constructor(context: Context) :
+class TransactionsRecyclerViewAdapter(context: Context) :
     RecyclerView.Adapter<TransactionsRecyclerViewAdapter.TransactionsViewHolder>() {
 
     private val mInflater: LayoutInflater = LayoutInflater.from(context)
     private var transactions: List<Transaction>? = null
 
-    class TransactionsViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class TransactionsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val dateTV: TextView = itemView.findViewById(R.id.dateTextView)
         val categoryTV: TextView = itemView.findViewById(R.id.categoryTextView)
         val amountTV: TextView = itemView.findViewById(R.id.amountTextView)
