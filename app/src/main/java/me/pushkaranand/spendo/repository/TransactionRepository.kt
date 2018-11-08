@@ -30,6 +30,10 @@ class TransactionRepository(application: Application) {
         return transactionDao!!.getTotalAmount();
     }
 
+    fun getTransaction(id: Long): LiveData<Transaction> {
+        return transactionDao!!.getSingle(id)
+    }
+
     private companion object {
         class InsertAsyncTask(dao: TransactionDao?) : AsyncTask<Transaction, Void, Void>() {
             private var transactionDao: TransactionDao? = null
