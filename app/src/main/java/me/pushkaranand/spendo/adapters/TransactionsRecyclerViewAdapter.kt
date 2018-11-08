@@ -55,6 +55,12 @@ class TransactionsRecyclerViewAdapter(context: Context) :
             holder.transactionItemConstrain.setOnClickListener {
                 onTransactionClick?.onClick(transaction.transactionID)
             }
+
+            /*if (transaction.type == "Debit") {
+                holder.transactionItemConstrain.setBackgroundColor(Color.RED)
+            } else {
+                holder.transactionItemConstrain.setBackgroundColor(Color.GREEN)
+            }*/
         }
     }
 

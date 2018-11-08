@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:elevation="0dp"
     tools:context=".ui.HomeActivity">
 
     <include layout="@layout/content_home" />
@@ -11,6 +12,13 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@drawable/shadow_drawable"
+            app:layout_anchor="@+id/bottomAppBar"
+            app:layout_anchorGravity="top" />
 
         <com.google.android.material.bottomappbar.BottomAppBar
             android:id="@+id/bottomAppBar"
@@ -20,13 +28,14 @@
             app:fabAlignmentMode="center"
             app:hideOnScroll="true"
             app:layout_scrollFlags="scroll|enterAlways"
+            style="@style/Widget.MaterialComponents.BottomAppBar"
             app:navigationIcon="@drawable/menu_black" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/addTxnBtn"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/fab_size"
-            android:elevation="5dp"
+            android:elevation="12dp"
             android:text="@string/fab_title"
             android:textAllCaps="false"
             app:cornerRadius="@dimen/fab_corner_radius"
@@ -35,15 +44,6 @@
             app:layout_anchorGravity="center_horizontal|top"
             app:textAllCaps="false" />
 
-        <!--<com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/addFab"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            app:elevation="5dp"
-            app:layout_anchor="@id/bottomAppBar"
-            app:srcCompat="@drawable/fab_add_white" />-->
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

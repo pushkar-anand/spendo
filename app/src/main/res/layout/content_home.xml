@@ -17,7 +17,7 @@
         android:elevation="5dp"
         android:text="@string/default_amount"
         android:textSize="30sp"
-        app:cornerRadius="40dp"
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toTopOf="@+id/transactionRecyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

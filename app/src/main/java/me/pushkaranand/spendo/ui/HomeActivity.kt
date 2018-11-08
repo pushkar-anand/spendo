@@ -19,6 +19,7 @@ import me.pushkaranand.spendo.helpers.PrefHelper
 import me.pushkaranand.spendo.helpers.Sorting
 import me.pushkaranand.spendo.viewmodel.TransactionViewModel
 
+
 class HomeActivity : AppCompatActivity() {
 
     private var transactionViewModel: TransactionViewModel? = null
@@ -76,6 +77,9 @@ class HomeActivity : AppCompatActivity() {
         adapter = TransactionsRecyclerViewAdapter(this)
         transactionRecyclerView.adapter = adapter
         transactionRecyclerView.layoutManager = LinearLayoutManager(this)
+
+        /*val itemDecor = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
+        transactionRecyclerView.addItemDecoration(itemDecor)*/
     }
 
     private fun setupLiveObserver() {

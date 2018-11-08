@@ -16,12 +16,6 @@
         <item name="android:colorBackground">@color/colorBackground</item>
     </style>
 
-    <style name="DateChip" parent="TextAppearance.MaterialComponents.Chip">
-        <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/colorPrimaryDark</item>
-        <item name="android:typeface">monospace</item>
-    </style>
-
     <!-- set the rounded drawable as background to your bottom sheet -->
     <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/bg_bottom_sheet_dialog_fragment</item>
@@ -32,12 +26,18 @@
         <item name="bottomSheetStyle">@style/BottomSheet</item>
     </style>
 
-    <style name="AppTheme.PreferenceScreen" parent="PreferenceThemeOverlay.v14.Material">
-
-    </style>
-
     <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog">
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@color/white</item>
+    </style>
+
+    <style name="DateChip" parent="TextAppearance.MaterialComponents.Chip">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:typeface">monospace</item>
+    </style>
+
+    <style name="AppTheme.PreferenceScreen" parent="PreferenceThemeOverlay.v14.Material">
+
     </style>
 </resources>

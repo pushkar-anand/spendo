@@ -12,12 +12,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@drawable/shadow_drawable"
+            app:layout_anchor="@+id/bottomAppBarCategoryActivity"
+            app:layout_anchorGravity="top" />
+
         <com.google.android.material.bottomappbar.BottomAppBar
             android:id="@+id/bottomAppBarCategoryActivity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            app:fabAlignmentMode="center"
             app:hideOnScroll="true"
             app:layout_scrollFlags="scroll|enterAlways"
             app:navigationIcon="@drawable/menu_black" />
@@ -35,5 +41,5 @@
             app:layout_anchorGravity="center_horizontal|top"
             app:textAllCaps="false" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
+    
 </androidx.constraintlayout.widget.ConstraintLayout>
