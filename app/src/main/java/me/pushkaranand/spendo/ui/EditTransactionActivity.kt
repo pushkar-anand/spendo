@@ -1,8 +1,11 @@
 package me.pushkaranand.spendo.ui
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.widget.DatePicker
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -11,8 +14,12 @@ import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_new_transaction.*
 import kotlinx.android.synthetic.main.content_new_transaction.*
 import me.pushkaranand.spendo.R
+import me.pushkaranand.spendo.db.entity.Transaction
+import me.pushkaranand.spendo.fragments.DatePickerFragment
 import me.pushkaranand.spendo.viewmodel.CategoryViewModel
 import me.pushkaranand.spendo.viewmodel.TransactionViewModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 class EditTransactionActivity : AppCompatActivity() {
 
@@ -25,6 +32,8 @@ class EditTransactionActivity : AppCompatActivity() {
     private var transactionId: Long? = null
     private val selectedCategories = arrayListOf<String>()
     private var preChecked: List<Any>? = null
+    private var currTransaction: Transaction? = null
+    private val df = SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +47,7 @@ class EditTransactionActivity : AppCompatActivity() {
             transactionId = intent.getLongExtra(TRANSACTION_EDIT_ID, -1)
             initViewModel()
             setupObservers()
+            setupListeners()
         }
     }
 
@@ -52,7 +62,7 @@ class EditTransactionActivity : AppCompatActivity() {
         transactionViewModel
             ?.getTransaction(transactionId!!)
             ?.observe(this, Observer {
-
+                currTransaction = it
                 val t = it.amount.toString().replace("-", "")
                 amountTextInputLayout.isHintAnimationEnabled = false
                 amountEditText.setText(t, TextView.BufferType.EDITABLE)
@@ -102,9 +112,86 @@ class EditTransactionActivity : AppCompatActivity() {
             })
     }
 
-    private fun setupListeners() {
-        doneFab.setOnClickListener {
+    private val dateSetListener: DatePickerFragment.OnDateSetListener = object : DatePickerFragment.OnDateSetListener {
+        override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {
+            val calendar = Calendar.getInstance()
+            calendar.set(year, month, day)
+            val time = calendar.time
+            dateChip.text = df.format(time)
+            currTransaction?.date = dateChip.text.toString()
+        }
+    }
 
+    private fun setupDatePicker() {
+        dateChip.setOnClickListener {
+            val datePickerFragment = DatePickerFragment()
+            datePickerFragment.setOnDateSetListener(dateSetListener)
+            datePickerFragment.show(supportFragmentManager, datePickerFragment.tag)
+        }
+    }
+
+    private fun setupListeners() {
+        setupDatePicker()
+
+        doneFab.setOnClickListener {
+            var proceed = true
+
+            var type: String? = null
+            val typeChipID = typeGroup.checkedChipId
+            when (typeChipID) {
+                R.id.creditChip -> {
+                    type = creditChip.text.toString()
+                }
+                R.id.debitChip -> {
+                    type = debitChip.text.toString()
+                }
+            }
+
+            if (type == null) {
+                Toast.makeText(
+                    this,
+                    "Select credit/debit",
+                    Toast.LENGTH_SHORT
+                ).show()
+                proceed = false
+            } else {
+                currTransaction?.type = type
+                val amountString = amountTextInputLayout.editText?.text.toString().trim()
+                if (amountString.isEmpty()) {
+                    proceed = false
+                    amountTextInputLayout.error = "Required!!!"
+                } else {
+                    if (type == getString(R.string.debit_choice)) {
+                        currTransaction?.amount = -amountString.toDouble()
+                    } else {
+                        currTransaction?.amount = amountString.toDouble()
+                    }
+
+                    if (selectedCategories.size > 0) {
+                        val gson = Gson()
+                        currTransaction?.category = gson.toJson(selectedCategories)
+                        val notes = notesTextInputLayout.editText?.text.toString().trim()
+                        if (!notes.isEmpty()) {
+                            currTransaction?.notes = notes
+                        }
+                    } else {
+                        proceed = false
+                        Toast.makeText(
+                            this,
+                            "Select at least one category",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
+
+            if (proceed) {
+                val gson = Gson()
+                val intent = Intent()
+                intent.putExtra(ViewTransactionActivity.TRANSACTION_RESULT, gson.toJson(currTransaction))
+                setResult(Activity.RESULT_OK, intent)
+                finish()
+            }
         }
     }
 }

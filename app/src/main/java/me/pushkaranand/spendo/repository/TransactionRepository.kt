@@ -27,11 +27,15 @@ class TransactionRepository(application: Application) {
     }
 
     fun getTotalAmount(): LiveData<Double> {
-        return transactionDao!!.getTotalAmount();
+        return transactionDao!!.getTotalAmount()
     }
 
     fun getTransaction(id: Long): LiveData<Transaction> {
         return transactionDao!!.getSingle(id)
+    }
+
+    fun updateTransaction(transaction: Transaction) {
+        UpdateAsyncTask(transactionDao).execute(transaction)
     }
 
     private companion object {
@@ -44,6 +48,19 @@ class TransactionRepository(application: Application) {
 
             override fun doInBackground(vararg params: Transaction): Void? {
                 transactionDao!!.newTransaction(params[0])
+                return null
+            }
+        }
+
+        class UpdateAsyncTask(dao: TransactionDao?) : AsyncTask<Transaction, Void, Void>() {
+            private var transactionDao: TransactionDao? = null
+
+            init {
+                transactionDao = dao
+            }
+
+            override fun doInBackground(vararg params: Transaction): Void? {
+                transactionDao!!.updateTransactions(params[0])
                 return null
             }
         }

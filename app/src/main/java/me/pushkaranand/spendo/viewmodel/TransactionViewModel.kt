@@ -28,6 +28,10 @@ class TransactionViewModel(application: Application) : AndroidViewModel(applicat
         transactionRepository.insert(transaction)
     }
 
+    fun update(transaction: Transaction) {
+        transactionRepository.updateTransaction(transaction)
+    }
+
     fun getTransaction(transactionId: Long): LiveData<Transaction> {
         return transactionRepository.getTransaction(transactionId)
     }

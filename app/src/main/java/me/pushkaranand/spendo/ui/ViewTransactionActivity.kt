@@ -1,5 +1,6 @@
 package me.pushkaranand.spendo.ui
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -11,6 +12,7 @@ import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_view_transaction.*
 import kotlinx.android.synthetic.main.content_view_transaction.*
 import me.pushkaranand.spendo.R
+import me.pushkaranand.spendo.db.entity.Transaction
 import me.pushkaranand.spendo.viewmodel.TransactionViewModel
 
 class ViewTransactionActivity : AppCompatActivity() {
@@ -21,6 +23,7 @@ class ViewTransactionActivity : AppCompatActivity() {
     companion object {
         const val TRANSACTION_ID = "me.pushkaranand.spendo.ui.TRANSACTION_ID"
         private const val EDIT_TRANSACTION_REQUEST_CODE = 200
+        const val TRANSACTION_RESULT = "me.pushkaranand.spendo.TRANSACTION.EDITED"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +31,7 @@ class ViewTransactionActivity : AppCompatActivity() {
         setContentView(R.layout.activity_view_transaction)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close_black);
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close_black)
         supportActionBar?.title = "Transaction"
 
         if (!intent.hasExtra(TRANSACTION_ID)) {
@@ -88,5 +91,18 @@ class ViewTransactionActivity : AppCompatActivity() {
             }
             categoriesTextView.text = tmp
         })
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == EDIT_TRANSACTION_REQUEST_CODE) {
+            when (resultCode) {
+                Activity.RESULT_OK -> {
+                    val gson = Gson()
+                    val result = data?.getStringExtra(TRANSACTION_RESULT)
+                    val transaction: Transaction = gson.fromJson(result, Transaction::class.java)
+                    transactionViewModel?.update(transaction)
+                }
+            }
+        }
     }
 }
