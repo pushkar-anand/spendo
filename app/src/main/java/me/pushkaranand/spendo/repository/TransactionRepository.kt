@@ -38,6 +38,10 @@ class TransactionRepository(application: Application) {
         UpdateAsyncTask(transactionDao).execute(transaction)
     }
 
+    fun delete(transactionId: Long) {
+        transactionDao!!.deleteTransaction(transactionId)
+    }
+
     private companion object {
         class InsertAsyncTask(dao: TransactionDao?) : AsyncTask<Transaction, Void, Void>() {
             private var transactionDao: TransactionDao? = null

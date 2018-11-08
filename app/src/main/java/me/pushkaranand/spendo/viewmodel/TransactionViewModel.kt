@@ -37,7 +37,7 @@ class TransactionViewModel(application: Application) : AndroidViewModel(applicat
     }
 
     fun delete(transactionId: Long) {
-
+        transactionRepository.delete(transactionId)
     }
 
 }
