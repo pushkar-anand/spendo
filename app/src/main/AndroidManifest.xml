@@ -41,6 +41,10 @@
             android:label="@string/title_activity_settings"
             android:parentActivityName=".ui.HomeActivity"
             android:theme="@style/AppTheme.ActionBar" />
+        <activity
+            android:name=".ui.EditTransactionActivity"
+            android:label="@string/title_activity_edit_transaction"
+            android:theme="@style/AppTheme.ActionBar" />
     </application>
 
 </manifest>

@@ -1,7 +1,9 @@
 package me.pushkaranand.spendo.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -18,8 +20,9 @@ class ViewTransactionActivity : AppCompatActivity() {
 
     companion object {
         const val TRANSACTION_ID = "me.pushkaranand.spendo.ui.TRANSACTION_ID"
+        private const val EDIT_TRANSACTION_REQUEST_CODE = 200
     }
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_transaction)
@@ -42,6 +45,23 @@ class ViewTransactionActivity : AppCompatActivity() {
         val inflater = menuInflater
         inflater.inflate(R.menu.view_transaction_menu, menu)
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return when (item!!.itemId) {
+            R.id.item_edit -> {
+                val intent = Intent(this, EditTransactionActivity::class.java)
+                intent.putExtra(EditTransactionActivity.TRANSACTION_EDIT_ID, transactionId)
+                startActivityForResult(intent, EDIT_TRANSACTION_REQUEST_CODE)
+                true
+            }
+            R.id.item_delete -> {
+                true
+            }
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
+        }
     }
 
     private fun initViewModel() {

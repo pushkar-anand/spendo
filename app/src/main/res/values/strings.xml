@@ -75,4 +75,7 @@
     <string name="backup_btn">Backup Now</string>
     <string name="restore_btn">Restore</string>
 
+
+    <string name="title_activity_edit_transaction">Edit Transaction</string>
+
 </resources>
