@@ -24,8 +24,4 @@ class CategoryViewModel(application: Application) : AndroidViewModel(application
         categoryRepository.insert(category)
     }
 
-    fun update(pairOfStringAndDouble: Pair<String, Double>) {
-        categoryRepository.updateSpend(pairOfStringAndDouble)
-    }
-
 }

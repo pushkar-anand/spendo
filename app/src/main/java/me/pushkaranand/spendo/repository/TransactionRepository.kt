@@ -3,18 +3,22 @@ package me.pushkaranand.spendo.repository
 import android.app.Application
 import android.os.AsyncTask
 import androidx.lifecycle.LiveData
+import com.google.gson.Gson
 import me.pushkaranand.spendo.db.SpendoDatabase
+import me.pushkaranand.spendo.db.dao.CategoryDao
 import me.pushkaranand.spendo.db.dao.TransactionDao
 import me.pushkaranand.spendo.db.entity.Transaction
 
 class TransactionRepository(application: Application) {
 
     private var transactionDao: TransactionDao? = null
+    private var categoryDao: CategoryDao? = null
     private var transactions: LiveData<List<Transaction>>? = null
 
     init {
         val spendoDatabase = SpendoDatabase.getDatabase(application)
         transactionDao = spendoDatabase!!.transactionDao()
+        categoryDao = spendoDatabase.categoryDao()
         transactions = transactionDao?.getAllTransactions()
     }
 
@@ -23,7 +27,7 @@ class TransactionRepository(application: Application) {
     }
 
     fun insert(transaction: Transaction) {
-        InsertAsyncTask(transactionDao).execute(transaction)
+        InsertAsyncTask(transactionDao, categoryDao).execute(transaction)
     }
 
     fun getTotalAmount(): LiveData<Double> {
@@ -31,54 +35,85 @@ class TransactionRepository(application: Application) {
     }
 
     fun getTransaction(id: Long): LiveData<Transaction> {
-        return transactionDao!!.getSingle(id)
+        return transactionDao!!.getSingleTransactionLiveData(id)
     }
 
     fun updateTransaction(transaction: Transaction) {
-        UpdateAsyncTask(transactionDao).execute(transaction)
+        UpdateAsyncTask(transactionDao, categoryDao).execute(transaction)
     }
 
     fun delete(transactionId: Long) {
-        DeleteAsyncTask(transactionDao).execute(transactionId)
+        DeleteAsyncTask(transactionDao, categoryDao).execute(transactionId)
     }
 
     private companion object {
-        class InsertAsyncTask(dao: TransactionDao?) : AsyncTask<Transaction, Void, Void>() {
-            private var transactionDao: TransactionDao? = null
-
-            init {
-                transactionDao = dao
-            }
+        class InsertAsyncTask(tDao: TransactionDao?, cDao: CategoryDao?) : AsyncTask<Transaction, Void, Void>() {
+            private var transactionDao: TransactionDao? = tDao
+            private var categoryDao: CategoryDao? = cDao
 
             override fun doInBackground(vararg params: Transaction): Void? {
-                transactionDao!!.newTransaction(params[0])
+                val transaction = params[0]
+                transactionDao!!.newTransaction(transaction)
+                if (transaction.type == "Debit") {
+                    val gson = Gson()
+                    val categoryList = gson.fromJson(transaction.category, ArrayList::class.java)
+                    for (category in categoryList) {
+                        val id = categoryDao!!.getCategoryID(category as String)
+                        categoryDao?.updateSpend(id, -transaction.amount)
+                    }
+                }
                 return null
             }
         }
 
-        class UpdateAsyncTask(dao: TransactionDao?) : AsyncTask<Transaction, Void, Void>() {
-            private var transactionDao: TransactionDao? = null
-
-            init {
-                transactionDao = dao
-            }
+        class UpdateAsyncTask(tDao: TransactionDao?, cDao: CategoryDao?) : AsyncTask<Transaction, Void, Void>() {
+            private var transactionDao: TransactionDao? = tDao
+            private var categoryDao: CategoryDao? = cDao
 
             override fun doInBackground(vararg params: Transaction): Void? {
-                transactionDao!!.updateTransactions(params[0])
+                val newTransaction = params[0]
+                val oldTransaction = transactionDao!!.getSingleTransaction(newTransaction.transactionID)
+
+                val gson = Gson()
+
+                if (oldTransaction.type == "Debit") {
+                    val categoryList = gson.fromJson(oldTransaction.category, ArrayList::class.java)
+                    for (category in categoryList) {
+                        val id = categoryDao!!.getCategoryID(category as String)
+                        categoryDao?.updateSpend(id, oldTransaction.amount)
+                    }
+                }
+
+                if (newTransaction.type == "Debit") {
+                    val categoryList = gson.fromJson(newTransaction.category, ArrayList::class.java)
+                    for (category in categoryList) {
+                        val id = categoryDao!!.getCategoryID(category as String)
+                        categoryDao?.updateSpend(id, -newTransaction.amount)
+                    }
+                }
+                transactionDao!!.updateTransactions(newTransaction)
+
                 return null
             }
         }
 
-        class DeleteAsyncTask(dao: TransactionDao?) : AsyncTask<Long, Void, Void>() {
+        class DeleteAsyncTask(tDao: TransactionDao?, cDao: CategoryDao?) : AsyncTask<Long, Void, Void>() {
 
-            private var transactionDao: TransactionDao? = null
-
-            init {
-                transactionDao = dao
-            }
+            private var transactionDao: TransactionDao? = tDao
+            private var categoryDao: CategoryDao? = cDao
 
             override fun doInBackground(vararg params: Long?): Void? {
+                val transactionToDelete = transactionDao!!.getSingleTransaction(params[0]!!)
+                if (transactionToDelete.type == "Debit") {
+                    val gson = Gson()
+                    val categoryList = gson.fromJson(transactionToDelete.category, ArrayList::class.java)
+                    for (category in categoryList) {
+                        val id = categoryDao!!.getCategoryID(category as String)
+                        categoryDao?.updateSpend(id, transactionToDelete.amount)
+                    }
+                }
                 transactionDao!!.deleteTransaction(params[0]!!)
+
                 return null
             }
         }
