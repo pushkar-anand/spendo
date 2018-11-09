@@ -1,6 +1,7 @@
 package me.pushkaranand.spendo.helpers
 
 import android.content.Context
+import android.util.Log
 import com.firebase.jobdispatcher.FirebaseJobDispatcher
 import com.firebase.jobdispatcher.GooglePlayDriver
 import com.firebase.jobdispatcher.Lifetime
@@ -16,6 +17,8 @@ class JobHelpers {
 
         fun dispatchAddReminderJob(context: Context, minutesAfterMidnight: Int) {
 
+            Log.d(JobHelpers::class.java.simpleName, "scheduling dispatchAddReminderJob")
+
             val hour = minutesAfterMidnight / 60
             val minutes = minutesAfterMidnight % 60
 
@@ -27,8 +30,7 @@ class JobHelpers {
             if (calendar.timeInMillis < System.currentTimeMillis()) {
                 calendar.add(Calendar.DAY_OF_YEAR, 1)
             }
-            val windowStart: Int = (calendar.timeInMillis / 1000).toInt()
-
+            val windowStart: Int = ((calendar.timeInMillis - System.currentTimeMillis()) / 1000).toInt()
 
             val dispatcher = FirebaseJobDispatcher(GooglePlayDriver(context.applicationContext))
 
@@ -43,7 +45,13 @@ class JobHelpers {
                     .build()
 
             dispatcher.mustSchedule(addReminderJob)
+            Log.d(JobHelpers::class.java.simpleName, "scheduled to run after $windowStart seconds")
         }
 
+        fun cancelAddReminderJob(context: Context) {
+            Log.d(JobHelpers::class.java.simpleName, "canceling dispatchAddReminderJob")
+            val dispatcher = FirebaseJobDispatcher(GooglePlayDriver(context.applicationContext))
+            dispatcher.cancel(ADD_REMINDER_JOB_TAG)
+        }
     }
 }

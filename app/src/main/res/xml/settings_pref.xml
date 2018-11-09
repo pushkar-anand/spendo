@@ -3,13 +3,13 @@
     android:key="0">
 
     <PreferenceScreen
-        android:key="1"
+        android:key="@string/key_screen_title_general"
         android:title="@string/screen_title_general">
 
     </PreferenceScreen>
 
     <PreferenceScreen
-        android:key="2"
+        android:key="@string/key_screen_title_notifications"
         android:title="@string/screen_title_notifications">
 
         <SwitchPreference
@@ -18,16 +18,19 @@
             android:summary="@string/summary_daily_add_reminder"
             android:title="@string/title_daily_add_reminder" />
 
+        <!--suppress AndroidElementNotAllowed -->
         <me.pushkaranand.spendo.custom.TimePreference
             android:key="@string/key_remind_time"
             android:summary="@string/summary_remind_time"
+            android:defaultValue="1260"
+            android:dependency="@string/key_daily_add_reminder"
             android:title="@string/title_remind_time" />
 
 
     </PreferenceScreen>
 
     <PreferenceScreen
-        android:key="3"
+        android:key="@string/key_screen_title_backup"
         android:title="@string/screen_title_backup">
 
         <PreferenceCategory android:title="Device Backup">

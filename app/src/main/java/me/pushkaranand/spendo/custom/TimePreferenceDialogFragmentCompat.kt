@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.TimePicker
 import androidx.preference.PreferenceDialogFragmentCompat
 import me.pushkaranand.spendo.R
+import me.pushkaranand.spendo.helpers.JobHelpers
 
 @Suppress("DEPRECATION")
 class TimePreferenceDialogFragmentCompat : PreferenceDialogFragmentCompat() {
@@ -29,7 +30,7 @@ class TimePreferenceDialogFragmentCompat : PreferenceDialogFragmentCompat() {
         mTimePicker = view?.findViewById(R.id.timePickerPref)
 
         if (mTimePicker == null) {
-            throw IllegalStateException("Dialog view must contain a TimePicker with id 'edit'")
+            throw IllegalStateException("Dialog view must contain a TimePicker with id 'timePickerPref'")
         }
 
         var minutesAfterMidnight: Int? = null
@@ -76,6 +77,8 @@ class TimePreferenceDialogFragmentCompat : PreferenceDialogFragmentCompat() {
             if (preference is TimePreference) {
                 if (preference.callChangeListener(minutesAfterMidnight)) {
                     preference.setTime(minutesAfterMidnight)
+                    JobHelpers.dispatchAddReminderJob(context!!, minutesAfterMidnight)
+                    preference.setSummary()
                 }
             }
         }

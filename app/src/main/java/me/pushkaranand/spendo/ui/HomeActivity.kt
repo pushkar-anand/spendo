@@ -18,7 +18,7 @@ import me.pushkaranand.spendo.db.entity.Transaction
 import me.pushkaranand.spendo.fragments.BottomNavigationDrawerFragment
 import me.pushkaranand.spendo.helpers.PrefHelper
 import me.pushkaranand.spendo.helpers.Sorting
-import me.pushkaranand.spendo.notifications.Notification
+import me.pushkaranand.spendo.helpers.notifications.Notification
 import me.pushkaranand.spendo.viewmodel.TransactionViewModel
 
 

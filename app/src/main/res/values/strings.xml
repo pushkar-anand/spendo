@@ -50,8 +50,11 @@
 
 
     <string name="screen_title_general">General</string>
+    <string name="key_screen_title_general">general_screen</string>
     <string name="screen_title_notifications">Notifications</string>
+    <string name="key_screen_title_notifications">notification_screen</string>
     <string name="screen_title_backup">Backup &amp; Restore</string>
+    <string name="key_screen_title_backup">backup_screen</string>
 
     <!--SettingsPref keys, tittle & summary -->
     <string name="title_activity_settings">Settings</string>
@@ -60,8 +63,8 @@
     <string name="summary_daily_add_reminder">Get daily reminder to add transactions for the day.</string>
 
     <string name="key_remind_time" translatable="false">remind_time</string>
-    <string name="title_remind_time">Time</string>
-    <string name="summary_remind_time">Time to get add reminder</string>
+    <string name="title_remind_time">Reminder Time</string>
+    <string name="summary_remind_time">Time to get add reminder. Default: 9:00 P.M</string>
 
 
     <string name="key_backup_device" translatable="false">backup_device</string>
