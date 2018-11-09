@@ -2,6 +2,7 @@ package me.pushkaranand.spendo.ui
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -17,6 +18,7 @@ import me.pushkaranand.spendo.db.entity.Transaction
 import me.pushkaranand.spendo.fragments.BottomNavigationDrawerFragment
 import me.pushkaranand.spendo.helpers.PrefHelper
 import me.pushkaranand.spendo.helpers.Sorting
+import me.pushkaranand.spendo.notifications.Notification
 import me.pushkaranand.spendo.viewmodel.TransactionViewModel
 
 
@@ -62,6 +64,7 @@ class HomeActivity : AppCompatActivity() {
         val prefHelper = PrefHelper(this)
 
         if (prefHelper.shouldShowIntro()) {
+            createNotificationChannels()
             val intent = Intent(this, IntroSliderActivity::class.java)
             startActivity(intent)
             finish()
@@ -141,6 +144,12 @@ class HomeActivity : AppCompatActivity() {
                     transactionViewModel?.insert(transaction)
                 }
             }
+        }
+    }
+
+    private fun createNotificationChannels() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Notification.createAllNotificationChannels(this)
         }
     }
 }
