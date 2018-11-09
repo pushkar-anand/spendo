@@ -40,4 +40,5 @@
     <style name="AppTheme.PreferenceScreen" parent="PreferenceThemeOverlay.v14.Material">
 
     </style>
+
 </resources>

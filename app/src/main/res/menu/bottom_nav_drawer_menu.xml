@@ -4,6 +4,7 @@
     <group>
         <item
             android:id="@+id/nav_transactions"
+            android:icon="@drawable/ic_money_black"
             android:title="@string/item_transaction" />
 
         <item
