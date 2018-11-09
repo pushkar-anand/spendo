@@ -39,6 +39,8 @@ class EditTransactionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_transaction)
         titleView.text = getString(R.string.title_activity_edit_transaction)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close_black)
 
         if (!intent.hasExtra(TRANSACTION_EDIT_ID)) {
             setResult(Activity.RESULT_CANCELED)

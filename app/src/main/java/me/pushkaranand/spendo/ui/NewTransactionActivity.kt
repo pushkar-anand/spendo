@@ -37,6 +37,9 @@ class NewTransactionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_transaction)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close_black)
+
         initViewModel()
         addCategoryChips()
         addDefaultDate()

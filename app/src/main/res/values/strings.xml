@@ -21,7 +21,7 @@
 
     <!--NewTransactionActivity-->
     <string name="title_activity_new_transaction">New Transaction</string>
-    <string name="title_new_transaction">Add new transaction</string>
+    <string name="title_new_transaction">Fill in the details</string>
     <string name="amount_hint">Amount</string>
     <string name="credit_choice">Credit</string>
     <string name="debit_choice">Debit</string>
