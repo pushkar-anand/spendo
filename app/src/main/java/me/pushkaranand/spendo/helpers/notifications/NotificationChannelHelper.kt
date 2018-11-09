@@ -18,7 +18,7 @@ class NotificationChannelHelper {
             val channelName = "Add transaction reminder channel"
             val channelDescription =
                 "This channel is used to send reminders to add new transaction when user asks so."
-            val channelImportance = NotificationManager.IMPORTANCE_HIGH
+            val channelImportance = NotificationManager.IMPORTANCE_DEFAULT
 
             val notificationChannel =
                 NotificationChannel(
