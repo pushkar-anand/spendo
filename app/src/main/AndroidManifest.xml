@@ -45,6 +45,16 @@
             android:name=".ui.EditTransactionActivity"
             android:label="@string/title_activity_edit_transaction"
             android:theme="@style/AppTheme.ActionBar" />
+
+
+        <!--Services-->
+        <service
+            android:name=".services.jobs.DailyAddTransactionReminder"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

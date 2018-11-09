@@ -45,6 +45,8 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
 
+    implementation 'com.firebase:firebase-jobdispatcher:0.8.5'
+
     kapt "androidx.room:room-compiler:$room_version"
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
 
