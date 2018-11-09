@@ -27,6 +27,7 @@
         <activity
             android:name=".ui.NewTransactionActivity"
             android:label="@string/title_activity_new_transaction"
+            android:parentActivityName=".ui.HomeActivity"
             android:theme="@style/AppTheme.ActionBar" />
         <activity
             android:name=".ui.ViewTransactionActivity"
@@ -43,6 +44,7 @@
             android:theme="@style/AppTheme.ActionBar" />
         <activity
             android:name=".ui.EditTransactionActivity"
+            android:parentActivityName=".ui.ViewTransactionActivity"
             android:label="@string/title_activity_edit_transaction"
             android:theme="@style/AppTheme.ActionBar" />
 
