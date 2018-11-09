@@ -27,7 +27,11 @@ class CategoryRepository(application: Application) {
     }
 
     fun updateSpend(pairOfStringAndDouble: Pair<String, Double>) {
-        UpdateAsyncTask(categoryDao).execute(pairOfStringAndDouble)
+        UpdateSpendAsyncTask(categoryDao).execute(pairOfStringAndDouble)
+    }
+
+    fun updateLimit(categoryId: Long, newLimit: Double) {
+
     }
 
     private companion object {
@@ -44,7 +48,7 @@ class CategoryRepository(application: Application) {
             }
         }
 
-        class UpdateAsyncTask(dao: CategoryDao?) : AsyncTask<Pair<String, Double>, Void, Void>() {
+        class UpdateSpendAsyncTask(dao: CategoryDao?) : AsyncTask<Pair<String, Double>, Void, Void>() {
             private var categoryDao: CategoryDao? = null
 
             init {
@@ -55,6 +59,21 @@ class CategoryRepository(application: Application) {
                 for (p in params) {
                     val id = categoryDao!!.getCategoryID(p.first)
                     categoryDao!!.updateSpend(id, p.second)
+                }
+                return null
+            }
+        }
+
+        class UpdateLimitAsyncTask(dao: CategoryDao?) : AsyncTask<Pair<Long, Double>, Void, Void>() {
+            private var categoryDao: CategoryDao? = null
+
+            init {
+                categoryDao = dao
+            }
+
+            override fun doInBackground(vararg params: Pair<Long, Double>): Void? {
+                for (p in params) {
+                    categoryDao?.updateLimit(p.first, p.second)
                 }
                 return null
             }

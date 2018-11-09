@@ -24,4 +24,8 @@ class CategoryViewModel(application: Application) : AndroidViewModel(application
         categoryRepository.insert(category)
     }
 
+    fun updateLimit(categoryId: Long, newLimit: Double) {
+        categoryRepository.updateLimit(categoryId, newLimit)
+    }
+
 }
