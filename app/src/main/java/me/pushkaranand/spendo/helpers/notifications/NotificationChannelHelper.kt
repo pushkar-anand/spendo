@@ -1,4 +1,4 @@
-package me.pushkaranand.spendo.notifications
+package me.pushkaranand.spendo.helpers.notifications
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -10,7 +10,7 @@ class NotificationChannelHelper {
 
     companion object {
 
-        private const val ADD_TRANSACTION_REMINDER_CHANNEL_ID = "add_transaction_reminder"
+        const val ADD_TRANSACTION_REMINDER_CHANNEL_ID = "add_transaction_reminder"
 
         @RequiresApi(Build.VERSION_CODES.O)
         private fun getAddTransactionReminderChannel():
