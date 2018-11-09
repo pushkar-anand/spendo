@@ -41,7 +41,7 @@ class JobHelpers {
                     .setRecurring(false)
                     .setLifetime(Lifetime.FOREVER)
                     .setReplaceCurrent(true)
-                    .setTrigger(Trigger.executionWindow(windowStart, windowStart + 60))
+                    .setTrigger(Trigger.executionWindow(windowStart, windowStart + 10))
                     .build()
 
             dispatcher.mustSchedule(addReminderJob)
