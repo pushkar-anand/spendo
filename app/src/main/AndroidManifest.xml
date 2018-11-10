@@ -44,14 +44,28 @@
             android:theme="@style/AppTheme.ActionBar" />
         <activity
             android:name=".ui.EditTransactionActivity"
-            android:parentActivityName=".ui.ViewTransactionActivity"
             android:label="@string/title_activity_edit_transaction"
+            android:parentActivityName=".ui.ViewTransactionActivity"
             android:theme="@style/AppTheme.ActionBar" />
 
 
         <!--Services-->
         <service
             android:name=".services.jobs.DailyAddTransactionReminder"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".services.jobs.BackupToDeviceJob"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".services.jobs.BackupToDriveJob"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
