@@ -16,6 +16,7 @@ import me.pushkaranand.spendo.R
 import me.pushkaranand.spendo.adapters.TransactionsRecyclerViewAdapter
 import me.pushkaranand.spendo.db.entity.Transaction
 import me.pushkaranand.spendo.fragments.BottomNavigationDrawerFragment
+import me.pushkaranand.spendo.fragments.BottomOverFlowFragment
 import me.pushkaranand.spendo.helpers.PrefHelper
 import me.pushkaranand.spendo.helpers.Sorting
 import me.pushkaranand.spendo.helpers.notifications.Notification
@@ -115,6 +116,11 @@ class HomeActivity : AppCompatActivity() {
         }
 
         adapter?.setOnTransactionClickListener(transactionClickListener)
+
+        overflowIcon.setOnClickListener {
+            val bottomOverFlowFragment = BottomOverFlowFragment()
+            bottomOverFlowFragment.show(supportFragmentManager, bottomOverFlowFragment.tag)
+        }
     }
 
 

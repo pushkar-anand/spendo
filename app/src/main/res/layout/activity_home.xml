@@ -44,6 +44,15 @@
             app:layout_anchorGravity="center_horizontal|top"
             app:textAllCaps="false" />
 
+        <ImageButton
+            android:id="@+id/overflowIcon"
+            style="?android:attr/actionOverflowButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/overflow_icon"
+            app:layout_anchor="@id/bottomAppBar"
+            app:layout_anchorGravity="right|bottom" />
+
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
