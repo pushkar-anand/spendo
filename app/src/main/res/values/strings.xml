@@ -66,6 +66,10 @@
     <string name="title_remind_time">Reminder Time</string>
     <string name="summary_remind_time">Time to get add reminder. Default: 9:00 P.M</string>
 
+    <string name="key_feature_reminder">feature_reminder</string>
+    <string name="title_feature_reminder">New Features</string>
+    <string name="summary_feature_reminder">Get updates on new features</string>
+
 
     <string name="key_backup_device" translatable="false">backup_device</string>
     <string name="title_backup_device">Device Backup</string>
@@ -83,8 +87,15 @@
     <string name="title_backup_drive_wifi">Wi-Fi only</string>
     <string name="summary_backup_drive_wifi">Data charges may apply if this is off</string>
 
+    <string name="key_custom_backup" translatable="false">backup</string>
     <string name="backup_btn">Backup Now</string>
-    <string name="restore_btn">Restore</string>
+
+    <string name="key_custom_restore" translatable="false">backup</string>
+    <string name="restore_btn">Restore Last Backup</string>
+
+    <string name="key_custom_reset" translatable="false">reset</string>
+    <string name="title_custom_reset">Reset(Will clear all data)</string>
+    <string name="reset_btn">Reset</string>
 
 
     <string name="title_activity_edit_transaction">Edit Transaction</string>

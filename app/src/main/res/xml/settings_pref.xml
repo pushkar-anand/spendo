@@ -6,26 +6,42 @@
         android:key="@string/key_screen_title_general"
         android:title="@string/screen_title_general">
 
+
+        <PreferenceCategory>
+            <Preference
+                android:key="@string/key_custom_reset"
+                android:layout="@layout/reset_pref"
+                android:title="@string/title_custom_reset" />
+        </PreferenceCategory>
+
     </PreferenceScreen>
 
     <PreferenceScreen
         android:key="@string/key_screen_title_notifications"
         android:title="@string/screen_title_notifications">
 
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="@string/key_daily_add_reminder"
-            android:summary="@string/summary_daily_add_reminder"
-            android:title="@string/title_daily_add_reminder" />
+        <PreferenceCategory android:title="Add transaction reminder">
+            <SwitchPreference
+                android:defaultValue="false"
+                android:key="@string/key_daily_add_reminder"
+                android:summary="@string/summary_daily_add_reminder"
+                android:title="@string/title_daily_add_reminder" />
 
-        <!--suppress AndroidElementNotAllowed -->
-        <me.pushkaranand.spendo.custom.TimePreference
-            android:key="@string/key_remind_time"
-            android:summary="@string/summary_remind_time"
-            android:defaultValue="1260"
-            android:dependency="@string/key_daily_add_reminder"
-            android:title="@string/title_remind_time" />
-
+            <!--suppress AndroidElementNotAllowed -->
+            <me.pushkaranand.spendo.custom.TimePreference
+                android:defaultValue="1260"
+                android:dependency="@string/key_daily_add_reminder"
+                android:key="@string/key_remind_time"
+                android:summary="@string/summary_remind_time"
+                android:title="@string/title_remind_time" />
+        </PreferenceCategory>
+        <PreferenceCategory android:title="Others">
+            <SwitchPreference
+                android:defaultValue="true"
+                android:key="@string/key_feature_reminder"
+                android:summary="@string/summary_feature_reminder"
+                android:title="@string/title_feature_reminder" />
+        </PreferenceCategory>
 
     </PreferenceScreen>
 
@@ -68,7 +84,14 @@
 
         </PreferenceCategory>
 
-        <Preference android:layout="@layout/backup_pref_btn" />
+        <PreferenceCategory>
+            <Preference
+                android:key="@string/key_custom_backup"
+                android:layout="@layout/backup_pref_btn" />
+            <Preference
+                android:key="@string/key_custom_restore"
+                android:layout="@layout/restore_pref_btn" />
+        </PreferenceCategory>
 
     </PreferenceScreen>
 

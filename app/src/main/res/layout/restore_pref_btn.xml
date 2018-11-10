@@ -5,15 +5,15 @@
     android:layout_height="wrap_content">
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/backupNowBTN"
+        android:id="@+id/restoreNowBTN"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:text="@string/backup_btn"
+        android:text="@string/restore_btn"
+        app:backgroundTint="@android:color/holo_red_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

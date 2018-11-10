@@ -9,9 +9,9 @@
     <color name="white">#ffffff</color>
 
     <!-- Screens background color-->
-    <color name="bg_slider_screen1">#f4b241</color>
+    <color name="bg_slider_screen1">#ffab40</color>
     <color name="bg_slider_screen2">#16bc7d</color>
-    <color name="bg_slider_screen3">#203d8c</color>
+    <color name="bg_slider_screen3">#283593</color>
     <!-- dots inactive colors -->
     <color name="dot_inactive_screen1">#ffa000</color>
     <color name="dot_inactive_screen2">#008c57</color>
