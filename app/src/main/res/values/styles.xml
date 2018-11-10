@@ -31,6 +31,12 @@
         <item name="android:navigationBarColor">@color/white</item>
     </style>
 
+    <style name="BottomSheetEntryDivider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">#e0e0e0</item>
+    </style>
+
     <style name="DateChip" parent="TextAppearance.MaterialComponents.Chip">
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/colorPrimaryDark</item>

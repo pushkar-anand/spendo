@@ -13,4 +13,8 @@
     <dimen name="fab_corner_radius">28dp</dimen>
     <dimen name="bottom_sheet_corner_radius">16dp</dimen>
     <dimen name="bottom_sheet_top_padding">8dp</dimen>
+
+    <dimen name="guideline_depth_from_top">110dp</dimen>
+    <dimen name="third_keyline">60dp</dimen>
+    <dimen name="nav_icon_padding">24dp</dimen>
 </resources>
