@@ -45,7 +45,7 @@
 
     </PreferenceScreen>
 
-    <PreferenceScreen
+    <!--<PreferenceScreen
         android:key="@string/key_screen_title_backup"
         android:title="@string/screen_title_backup">
 
@@ -92,6 +92,13 @@
                 android:key="@string/key_custom_restore"
                 android:layout="@layout/restore_pref_btn" />
         </PreferenceCategory>
+
+    </PreferenceScreen>-->
+
+    <PreferenceScreen
+        android:key="@string/key_screen_title_about"
+        android:title="@string/screen_title_about">
+
 
     </PreferenceScreen>
 
