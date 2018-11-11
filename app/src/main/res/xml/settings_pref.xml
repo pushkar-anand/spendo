@@ -98,7 +98,7 @@
     <PreferenceScreen
         android:key="@string/key_screen_title_about"
         android:title="@string/screen_title_about">
-
+        <Preference />
 
     </PreferenceScreen>
 
