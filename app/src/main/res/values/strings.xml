@@ -6,14 +6,14 @@
     <string name="skip">SKIP</string>
     <string name="start">GOT IT</string>
 
-    <string name="slide_1_title">Title 1</string>
-    <string name="slide_1_desc">Description 1</string>
+    <string name="slide_1_title">Spendo\n Spend tracking app</string>
+    <string name="slide_1_desc">Record everything you earn and spend.</string>
 
-    <string name="slide_2_title">Title 2</string>
-    <string name="slide_2_desc">Description 2</string>
+    <string name="slide_2_title">Categorize every spend</string>
+    <string name="slide_2_desc">Tag your spends with different categories to keep a track of where you are spending more.</string>
 
-    <string name="slide_3_title">Title 3</string>
-    <string name="slide_3_desc">Description</string>
+    <string name="slide_3_title">Set monthly limits</string>
+    <string name="slide_3_desc">Set monthly limits on your spend categories to save more.</string>
 
     <!--HomeActivity-->
     <string name="title_activity_home">Spendo</string>
@@ -125,7 +125,7 @@
     <string name="rupee_symbol_text">Rupee symbol</string>
 
     <string name="reset_dialog_title">Reset</string>
-    <string name="reset_dialog_message">Are you sure you want to reset? It will erage all your transactions.</string>
+    <string name="reset_dialog_message">Are you sure you want to reset? It will erase all your transactions.</string>
     <string name="reset_dialog_positive">Reset</string>
     <string name="reset_dialog_negative">Cancel</string>
 

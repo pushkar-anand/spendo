@@ -14,7 +14,9 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <!-- Activities -->
-        <activity android:name=".ui.IntroSliderActivity" />
+        <activity
+            android:name=".ui.IntroSliderActivity"
+            android:theme="@style/AppTheme.Intro" />
         <activity
             android:name=".ui.HomeActivity"
             android:label="@string/title_activity_home">

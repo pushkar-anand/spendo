@@ -3,24 +3,26 @@
     <color name="colorPrimary">#ffffff</color>
     <color name="colorPrimaryDark">#e0e0e0</color>
     <color name="colorAccent">#546e7a</color>
-
     <color name="colorBackground">#ffffff</color>
-
     <color name="white">#ffffff</color>
     <color name="black">#000</color>
 
+    <!--FOR INTRO SLIDER -->
+    <color name="colorPrimaryIntro">#ffffff</color>
+    <color name="colorPrimaryDarkIntro">#3949ab</color>
+    <color name="colorAccentIntro">#0a0402</color>
     <!-- Screens background color-->
-    <color name="bg_slider_screen1">#ffab40</color>
-    <color name="bg_slider_screen2">#16bc7d</color>
-    <color name="bg_slider_screen3">#283593</color>
+    <color name="bg_slider_screen1">#006064</color>
+    <color name="bg_slider_screen2">#bf360c</color>
+    <color name="bg_slider_screen3">#2e7d32</color>
     <!-- dots inactive colors -->
-    <color name="dot_inactive_screen1">#ffa000</color>
-    <color name="dot_inactive_screen2">#008c57</color>
-    <color name="dot_inactive_screen3">#0e1e49</color>
+    <color name="dot_inactive_screen1">#051a25</color>
+    <color name="dot_inactive_screen2">#3e2723</color>
+    <color name="dot_inactive_screen3">#263238</color>
     <!-- dots active colors -->
-    <color name="dot_active_screen1">#f9c772</color>
-    <color name="dot_active_screen2">#74f7c5</color>
-    <color name="dot_active_screen3">#3a67e0</color>
+    <color name="dot_active_screen1">#90caf9</color>
+    <color name="dot_active_screen2">#ef9a9a</color>
+    <color name="dot_active_screen3">#69f0ae</color>
 
     <array name="array_dot_active">
         <item>@color/dot_active_screen1</item>

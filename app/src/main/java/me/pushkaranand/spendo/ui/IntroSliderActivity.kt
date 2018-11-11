@@ -1,12 +1,10 @@
 package me.pushkaranand.spendo.ui
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
 import android.view.View
-import android.view.WindowManager
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
@@ -27,7 +25,6 @@ class IntroSliderActivity : AppCompatActivity() {
 
         pagerAdapter = IntroSliderPagerAdapter(this)
 
-        changeStatusBarColor()
         addBottomDots(0)
 
         val viewPager: ViewPager = findViewById(R.id.viewPager)
@@ -60,14 +57,6 @@ class IntroSliderActivity : AppCompatActivity() {
 
     private fun getItem(i: Int): Int {
         return viewPager.currentItem + i
-    }
-
-    private fun changeStatusBarColor() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            val window = window
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            window.statusBarColor = Color.TRANSPARENT
-        }
     }
 
     private var viewPagerPageChangeListener: ViewPager.OnPageChangeListener = object : ViewPager.OnPageChangeListener {

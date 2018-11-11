@@ -19,8 +19,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/slide_title"
             android:layout_marginBottom="@dimen/slide_title"
             android:text="@string/slide_1_title"
+            android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="@dimen/slide_title"
             android:textStyle="bold" />
@@ -28,6 +30,7 @@
         <ImageView
             android:layout_width="@dimen/img_width_height"
             android:layout_height="@dimen/img_width_height"
+            android:contentDescription="@string/slide_1_desc"
             app:srcCompat="@mipmap/ic_launcher" />
 
         <TextView
