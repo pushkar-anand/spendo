@@ -116,11 +116,22 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+    private var previousSortItem: MenuItem? = null
 
     private val sortSelectedListener = object :
         BottomOverFlowFragment.OnSortItemSelected {
         override fun sortItemSelected(menuItem: MenuItem) {
+            if (previousSortItem?.title != menuItem.title) {
 
+                when (menuItem.itemId) {
+
+                }
+                menuItem.isChecked = true
+                previousSortItem = menuItem
+            } else {
+                menuItem.isChecked = false
+                previousSortItem = null
+            }
         }
     }
 
@@ -140,7 +151,7 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private var previousItem: MenuItem? = null
+    private var previousFilterItem: MenuItem? = null
 
     private val filterSelectedListener = object :
         BottomOverFlowFragment.OnFilterItemSelected {
@@ -154,7 +165,7 @@ class HomeActivity : AppCompatActivity() {
             transactionViewModel?.getCreditTransactionsAmount()?.removeObservers(this@HomeActivity)
             transactionViewModel?.getDebitTransactionsAmount()?.removeObservers(this@HomeActivity)
 
-            if (previousItem?.title != menuItem.title) {
+            if (previousFilterItem?.title != menuItem.title) {
                 when (menuItem.itemId) {
                     R.id.filter_credit -> {
                         transactionViewModel?.getCreditTransactions()
@@ -176,7 +187,7 @@ class HomeActivity : AppCompatActivity() {
                         datePickerFragment.show(supportFragmentManager, datePickerFragment.tag)
                     }
                 }
-                previousItem = menuItem
+                previousFilterItem = menuItem
                 menuItem.isChecked = true
             } else {
 
@@ -186,7 +197,7 @@ class HomeActivity : AppCompatActivity() {
                     ?.observe(this@HomeActivity, amountChangeObserver)
 
                 menuItem.isChecked = false
-                previousItem = null
+                previousFilterItem = null
             }
         }
     }
@@ -202,8 +213,11 @@ class HomeActivity : AppCompatActivity() {
 
         overflowIcon.setOnClickListener {
             val bundle = Bundle()
-            if (previousItem != null) {
-                bundle.putInt(BottomOverFlowFragment.SELECTED_FILTER, previousItem!!.itemId)
+            if (previousFilterItem != null) {
+                bundle.putInt(BottomOverFlowFragment.SELECTED_FILTER, previousFilterItem!!.itemId)
+            }
+            if (previousSortItem != null) {
+                bundle.putInt(BottomOverFlowFragment.SELECTED_SORT, previousSortItem!!.itemId)
             }
 
             val bottomOverFlowFragment = BottomOverFlowFragment()

@@ -13,6 +13,7 @@ class BottomOverFlowFragment : BottomSheetDialogFragment() {
 
     companion object {
         const val SELECTED_FILTER = "selected-filter"
+        const val SELECTED_SORT = "selected-sort"
     }
 
     private var onFilterItemSelected: OnFilterItemSelected? = null
@@ -37,6 +38,9 @@ class BottomOverFlowFragment : BottomSheetDialogFragment() {
 
         if (arguments != null && arguments!!.containsKey(SELECTED_FILTER)) {
             filterNavMenu.menu.findItem(arguments!!.getInt(SELECTED_FILTER)).isChecked = true
+        }
+        if (arguments != null && arguments!!.containsKey(SELECTED_SORT)) {
+            sortNavMenu.menu.findItem(arguments!!.getInt(SELECTED_SORT)).isChecked = true
         }
 
         sortNavMenu.setNavigationItemSelectedListener { menuItem ->
