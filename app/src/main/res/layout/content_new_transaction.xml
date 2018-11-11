@@ -58,12 +58,14 @@
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:chipMinTouchTargetSize="48dp"
                 android:text="@string/credit_choice" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/debitChip"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
+                app:chipMinTouchTargetSize="48dp"
                 android:layout_height="wrap_content"
                 android:text="@string/debit_choice" />
 
@@ -76,6 +78,8 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            app:hintAnimationEnabled="true"
+            app:hintEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/typeGroup">

@@ -112,6 +112,8 @@
     <string name="filter_debit">Debit</string>
     <string name="filter_category">Category</string>
     <string name="filter_date">Date</string>
+    <string name="accessibility_done_fab">Add transaction</string>
+    <string name="accessibility_list_transactions">List of transactions</string>
 
 
 </resources>
