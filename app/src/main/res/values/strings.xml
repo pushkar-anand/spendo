@@ -109,6 +109,9 @@
 
     <string name="filter_heading">Filter</string>
     <string name="filter_credit">Credit</string>
+    <string name="filter_debit">Debit</string>
+    <string name="filter_category">Category</string>
+    <string name="filter_date">Date</string>
 
 
 </resources>

@@ -5,7 +5,16 @@
         android:id="@+id/filter"
         android:checkableBehavior="none">
         <item
-            android:id="@+id/credit"
+            android:id="@+id/filter_credit"
             android:title="@string/filter_credit" />
+        <item
+            android:id="@+id/filter_debit"
+            android:title="@string/filter_debit" />
+        <item
+            android:id="@+id/filter_category"
+            android:title="@string/filter_category" />
+        <item
+            android:id="@+id/filter_date"
+            android:title="@string/filter_date" />
     </group>
 </menu>
