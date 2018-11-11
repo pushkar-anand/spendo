@@ -9,6 +9,18 @@ import kotlinx.android.synthetic.main.home_fragment_overflow_bottomsheet.*
 import me.pushkaranand.spendo.R
 
 class BottomOverFlowFragment : BottomSheetDialogFragment() {
+
+    private var onFilterItemSelected: OnFilterItemSelected? = null
+    private var onSortItemSelected: OnSortItemSelected? = null
+
+    interface OnFilterItemSelected {
+        fun filterItemSelected(itemId: Int)
+    }
+
+    interface OnSortItemSelected {
+        fun sortItemSelected(itemId: Int)
+    }
+
     override fun getTheme(): Int = R.style.BottomSheetDialogTheme
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -19,17 +31,21 @@ class BottomOverFlowFragment : BottomSheetDialogFragment() {
         super.onActivityCreated(savedInstanceState)
 
         sortNavMenu.setNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-
-            }
+            onSortItemSelected?.sortItemSelected(menuItem.itemId)
             true
         }
 
         filterNavMenu.setNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-
-            }
+            onFilterItemSelected?.filterItemSelected(menuItem.itemId)
             true
         }
+    }
+
+    fun setOnFilerItemSelectedListener(onFilterItemSelected: OnFilterItemSelected) {
+        this.onFilterItemSelected = onFilterItemSelected
+    }
+
+    fun setOnSortItemSelectedListener(onSortItemSelected: OnSortItemSelected) {
+        this.onSortItemSelected = onSortItemSelected
     }
 }
