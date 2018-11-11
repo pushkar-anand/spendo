@@ -31,7 +31,8 @@ class CategoryRepository(application: Application) {
     }
 
     fun updateLimit(categoryId: Long, newLimit: Double) {
-
+        val pair = Pair(categoryId, newLimit)
+        UpdateLimitAsyncTask(categoryDao).execute(pair)
     }
 
     private companion object {

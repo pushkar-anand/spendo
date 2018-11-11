@@ -48,6 +48,7 @@ dependencies {
     implementation 'com.firebase:firebase-jobdispatcher:0.8.5'
 
     implementation 'com.afollestad.material-dialogs:core:2.0.0-beta5'
+    implementation 'com.afollestad.material-dialogs:input:2.0.0-beta5'
 
     kapt "androidx.room:room-compiler:$room_version"
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"

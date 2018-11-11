@@ -25,7 +25,7 @@ class CategoriesRecyclerViewAdapter(context: Context) :
     }
 
     interface OnCategoryClickListener {
-        fun onClick(categoryId: Long)
+        fun onClick(category: Category)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
@@ -51,7 +51,7 @@ class CategoriesRecyclerViewAdapter(context: Context) :
             holder.categoryLimitTV.text = tmp
 
             holder.categoryItemCard.setOnClickListener {
-                onCategoryClickListener?.onClick(category.categoryID)
+                onCategoryClickListener?.onClick(category)
             }
         }
     }
