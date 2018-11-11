@@ -38,6 +38,7 @@
             android:elevation="12dp"
             android:text="@string/fab_title"
             android:textAllCaps="false"
+            android:textSize="16sp"
             app:cornerRadius="@dimen/fab_corner_radius"
             app:icon="@drawable/fab_add_white"
             app:layout_anchor="@id/bottomAppBar"
