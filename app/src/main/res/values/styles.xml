@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
@@ -44,7 +44,7 @@
         <item name="android:typeface">monospace</item>
     </style>
 
-    <style name="AppTheme.PreferenceScreen" parent="PreferenceThemeOverlay.v14.Material">
+    <style name="AppTheme.PreferenceScreen" parent="PreferenceThemeOverlay.v14.Material" tools:keep="@style/AppTheme_PreferenceScreen">
 
     </style>
 

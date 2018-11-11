@@ -12,7 +12,7 @@ class DatePickerFragment : DialogFragment() {
 
     private var onDateSet: OnDateSetListener? = null
 
-    public interface OnDateSetListener {
+    interface OnDateSetListener {
         fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int)
     }
 
@@ -31,7 +31,7 @@ class DatePickerFragment : DialogFragment() {
         return DatePickerDialog(requireContext(), dateSetListener, year, month, day)
     }
 
-    public fun setOnDateSetListener(onDateSet: OnDateSetListener) {
+    fun setOnDateSetListener(onDateSet: OnDateSetListener) {
         this.onDateSet = onDateSet
     }
 }

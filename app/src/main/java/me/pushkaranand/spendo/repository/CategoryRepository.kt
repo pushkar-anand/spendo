@@ -26,10 +26,6 @@ class CategoryRepository(application: Application) {
         InsertAsyncTask(categoryDao).execute(category)
     }
 
-    fun updateSpend(pairOfStringAndDouble: Pair<String, Double>) {
-        UpdateSpendAsyncTask(categoryDao).execute(pairOfStringAndDouble)
-    }
-
     fun updateLimit(categoryId: Long, newLimit: Double) {
         val pair = Pair(categoryId, newLimit)
         UpdateLimitAsyncTask(categoryDao).execute(pair)
