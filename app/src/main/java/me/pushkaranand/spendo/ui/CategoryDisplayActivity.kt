@@ -75,6 +75,8 @@ class CategoryDisplayActivity : AppCompatActivity() {
                     val limit = charSequence.toString().toDouble()
                     categoryViewModel?.updateLimit(categoryId = category.categoryID, newLimit = limit)
                 }
+                setCanceledOnTouchOutside(false)
+                setCancelable(false)
                 positiveButton(R.string.limit_edit_dialog_positive) { }
                 negativeButton(R.string.limit_edit_dialog_negative) { dismiss() }
             }

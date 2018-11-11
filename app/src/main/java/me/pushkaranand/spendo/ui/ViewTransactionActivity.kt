@@ -5,10 +5,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.afollestad.materialdialogs.MaterialDialog
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_view_transaction.*
 import kotlinx.android.synthetic.main.content_view_transaction.*
@@ -112,18 +112,19 @@ class ViewTransactionActivity : AppCompatActivity() {
     }
 
     private fun showDeleteDialog() {
-        AlertDialog.Builder(this)
-            .setTitle(getString(R.string.delete_dialog_title))
-            .setMessage(getString(R.string.delete_dialog_message))
-            .setPositiveButton(getString(R.string.delete_positive_action)) { _, _ ->
-                transactionViewModel?.getTransaction(transactionId!!)?.removeObservers(this)
+
+        MaterialDialog(this).show {
+            title(R.string.delete_dialog_title)
+            message(R.string.delete_dialog_message)
+            cancelOnTouchOutside(false)
+            positiveButton(R.string.delete_positive_action) {
+                transactionViewModel?.getTransaction(transactionId!!)?.removeObservers(this@ViewTransactionActivity)
                 transactionViewModel?.delete(transactionId!!)
-                val intent = Intent(this, HomeActivity::class.java)
+                val intent = Intent(this@ViewTransactionActivity, HomeActivity::class.java)
                 startActivity(intent)
                 finish()
             }
-            .setNegativeButton(getString(R.string.delete_negative_action)) { dialog, _ -> dialog.dismiss() }
-            .setCancelable(false)
-            .show()
+            negativeButton(R.string.delete_negative_action) { dismiss() }
+        }
     }
 }

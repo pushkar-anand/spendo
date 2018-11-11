@@ -15,6 +15,7 @@
         <item name="colorPrimary">@color/colorPrimaryIntro</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDarkIntro</item>
         <item name="colorAccent">@color/colorAccentIntro</item>
+        <item name="md_corner_radius">16dp</item>
 
     </style>
 
