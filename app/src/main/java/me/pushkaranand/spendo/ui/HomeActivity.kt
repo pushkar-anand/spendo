@@ -6,7 +6,6 @@ import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -90,16 +89,16 @@ class HomeActivity : AppCompatActivity() {
     private val transactionListChangeObserver = Observer<List<Transaction>> {
         adapter?.setTransactions(Sorting.sortByDateDescending(it as ArrayList<Transaction>))
     }
+    private val amountChangeObserver = Observer<Double> {
+        if (it != null) {
+            val str = getString(R.string.rupee_symbol) + it.toString()
+            amountView.text = str
+        }
+    }
 
     private fun setupLiveObserver() {
         transactionViewModel?.getAllTransactions()?.observe(this, transactionListChangeObserver)
-
-        transactionViewModel?.getTotalAmount()?.observe(this, Observer<Double> {
-            if (it != null) {
-                val str = getString(R.string.rupee_symbol) + it.toString()
-                amountView.text = str
-            }
-        })
+        transactionViewModel?.getTotalAmount()?.observe(this, amountChangeObserver)
     }
 
     private val transactionClickListener = object :
@@ -128,26 +127,39 @@ class HomeActivity : AppCompatActivity() {
             transactionViewModel?.getCreditTransactions()?.removeObservers(this@HomeActivity)
             transactionViewModel?.getDebitTransactions()?.removeObservers(this@HomeActivity)
 
+            transactionViewModel?.getTotalAmount()?.removeObservers(this@HomeActivity)
+            transactionViewModel?.getCreditTransactionsAmount()?.removeObservers(this@HomeActivity)
+            transactionViewModel?.getDebitTransactionsAmount()?.removeObservers(this@HomeActivity)
+
             if (previousItem?.title != menuItem.title) {
                 when (menuItem.itemId) {
                     R.id.filter_credit -> {
                         transactionViewModel?.getCreditTransactions()
                             ?.observe(this@HomeActivity, transactionListChangeObserver)
+                        transactionViewModel?.getCreditTransactionsAmount()
+                            ?.observe(this@HomeActivity, amountChangeObserver)
 
                     }
                     R.id.filter_debit -> {
 
                         transactionViewModel?.getDebitTransactions()
                             ?.observe(this@HomeActivity, transactionListChangeObserver)
+                        transactionViewModel?.getDebitTransactionsAmount()
+                            ?.observe(this@HomeActivity, amountChangeObserver)
+                    }
+                    R.id.filter_date -> {
+
                     }
                 }
                 previousItem = menuItem
                 menuItem.isChecked = true
-                amountView.visibility = View.GONE
             } else {
+
                 transactionViewModel?.getAllTransactions()
                     ?.observe(this@HomeActivity, transactionListChangeObserver)
-                amountView.visibility = View.VISIBLE
+                transactionViewModel?.getTotalAmount()
+                    ?.observe(this@HomeActivity, amountChangeObserver)
+
                 menuItem.isChecked = false
                 previousItem = null
             }
