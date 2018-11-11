@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kotlinx.android.synthetic.main.home_fragment_overflow_bottomsheet.*
 import me.pushkaranand.spendo.R
 
 class BottomOverFlowFragment : BottomSheetDialogFragment() {
@@ -12,5 +13,23 @@ class BottomOverFlowFragment : BottomSheetDialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.home_fragment_overflow_bottomsheet, container, false)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        sortNavMenu.setNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+
+            }
+            true
+        }
+
+        filterNavMenu.setNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+
+            }
+            true
+        }
     }
 }
