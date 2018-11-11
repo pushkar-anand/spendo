@@ -66,6 +66,7 @@ class CategoryDisplayActivity : AppCompatActivity() {
             val inputType = InputType.TYPE_NUMBER_FLAG_DECIMAL or InputType.TYPE_NUMBER_FLAG_SIGNED
             MaterialDialog(this@CategoryDisplayActivity).show {
                 title(R.string.limit_edit_dialog_title)
+                message(text = category.name)
                 input(
                     hintRes = R.string.limit_edit_dialog_hint,
                     prefill = category.spendLimit.toString(),
