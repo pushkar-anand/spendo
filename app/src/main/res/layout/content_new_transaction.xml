@@ -64,7 +64,6 @@
                 android:id="@+id/debitChip"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
-                app:chipMinTouchTargetSize="48dp"
                 android:layout_height="wrap_content"
                 android:text="@string/debit_choice" />
 
