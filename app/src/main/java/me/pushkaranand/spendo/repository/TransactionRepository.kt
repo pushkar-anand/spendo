@@ -42,12 +42,24 @@ class TransactionRepository(application: Application) {
         return transactionDao!!.getCreditTransactions()
     }
 
+    fun getCreditTransactionsAmount(): LiveData<Double> {
+        return transactionDao!!.getCreditTransactionsAmount()
+    }
+
     fun getDebitTransactions(): LiveData<List<Transaction>> {
         return transactionDao!!.getDebitTransactions()
     }
 
+    fun getDebitTransactionsAmount(): LiveData<Double> {
+        return transactionDao!!.getDebitTransactionsAmount()
+    }
+
     fun getTransactionOn(date: String): LiveData<List<Transaction>> {
         return transactionDao!!.getTransactionOn(date)
+    }
+
+    fun getTransactionOnAmount(date: String): LiveData<Double> {
+        return transactionDao!!.getTransactionOnAmount(date)
     }
 
     fun updateTransaction(transaction: Transaction) {

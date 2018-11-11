@@ -40,13 +40,26 @@ class TransactionViewModel(application: Application) : AndroidViewModel(applicat
         return transactionRepository.getCreditTransactions()
     }
 
+    fun getCreditTransactionsAmount(): LiveData<Double> {
+        return transactionRepository.getCreditTransactionsAmount()
+    }
+
     fun getDebitTransactions(): LiveData<List<Transaction>> {
         return transactionRepository.getDebitTransactions()
+    }
+
+    fun getDebitTransactionsAmount(): LiveData<Double> {
+        return transactionRepository.getDebitTransactionsAmount()
     }
 
     fun getTransactionOn(date: String): LiveData<List<Transaction>> {
         return transactionRepository.getTransactionOn(date)
     }
+
+    fun getTransactionOnAmount(date: String): LiveData<Double> {
+        return transactionRepository.getTransactionOnAmount(date)
+    }
+
 
     fun delete(transactionId: Long) {
         transactionRepository.delete(transactionId)

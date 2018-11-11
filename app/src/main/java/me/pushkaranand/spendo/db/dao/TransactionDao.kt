@@ -40,9 +40,18 @@ interface TransactionDao {
     @Query("SELECT * FROM transactions WHERE type = 'Credit'")
     fun getCreditTransactions(): LiveData<List<Transaction>>
 
+    @Query("SELECT SUM(amount) FROM transactions WHERE type = 'Credit'")
+    fun getCreditTransactionsAmount(): LiveData<Double>
+
     @Query("SELECT * FROM transactions WHERE type = 'Debit'")
     fun getDebitTransactions(): LiveData<List<Transaction>>
 
+    @Query("SELECT SUM(amount) FROM transactions WHERE type = 'Debit'")
+    fun getDebitTransactionsAmount(): LiveData<Double>
+
     @Query("SELECT * FROM transactions WHERE date = :date")
     fun getTransactionOn(date: String): LiveData<List<Transaction>>
+
+    @Query("SELECT SUM(amount) FROM transactions WHERE date = :date")
+    fun getTransactionOnAmount(date: String): LiveData<Double>
 }
