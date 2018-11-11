@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.card.MaterialCardView
 import me.pushkaranand.spendo.R
 import me.pushkaranand.spendo.db.entity.Category
 
@@ -14,11 +15,17 @@ class CategoriesRecyclerViewAdapter(context: Context) :
 
     private val mInflater: LayoutInflater = LayoutInflater.from(context)
     private var categories: List<Category>? = null
+    private var onCategoryClickListener: OnCategoryClickListener? = null
 
     class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val categoryNameTV: TextView = itemView.findViewById(R.id.categoryNameTV)
         val categorySpendTV: TextView = itemView.findViewById(R.id.categorySpendTV)
         val categoryLimitTV: TextView = itemView.findViewById(R.id.categoryLimitTV)
+        val categoryItemCard: MaterialCardView = itemView.findViewById(R.id.categoryItemCard)
+    }
+
+    interface OnCategoryClickListener {
+        fun onClick(categoryId: Long)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
@@ -42,7 +49,15 @@ class CategoriesRecyclerViewAdapter(context: Context) :
             holder.categorySpendTV.text = tmp
             tmp = "Monthly Limit: ${category.spendLimit}"
             holder.categoryLimitTV.text = tmp
+
+            holder.categoryItemCard.setOnClickListener {
+                onCategoryClickListener?.onClick(category.categoryID)
+            }
         }
+    }
+
+    fun setOnCategoryClickListener(onCategoryClickListener: OnCategoryClickListener) {
+        this.onCategoryClickListener = onCategoryClickListener
     }
 
     fun setCategories(categories: List<Category>) {

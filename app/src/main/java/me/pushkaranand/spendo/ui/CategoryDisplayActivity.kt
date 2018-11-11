@@ -55,9 +55,17 @@ class CategoryDisplayActivity : AppCompatActivity() {
         })
     }
 
+    private val categoryClickListener = object :
+        CategoriesRecyclerViewAdapter.OnCategoryClickListener {
+        override fun onClick(categoryId: Long) {
+
+        }
+    }
+
     private fun attachClickListeners() {
         addCategoryBtn.setOnClickListener {
 
         }
+        adapter?.setOnCategoryClickListener(categoryClickListener)
     }
 }
