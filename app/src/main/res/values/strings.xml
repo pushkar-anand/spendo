@@ -129,5 +129,8 @@
     <string name="reset_dialog_positive">Reset</string>
     <string name="reset_dialog_negative">Cancel</string>
 
+    <string name="share_link">http://bit.ly/spendo</string>
+    <string name="share_text">Want to know where you spend you money?? Install this app.</string>
+
 
 </resources>
