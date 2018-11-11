@@ -63,7 +63,7 @@ class CategoryDisplayActivity : AppCompatActivity() {
         CategoriesRecyclerViewAdapter.OnCategoryClickListener {
         override fun onClick(category: Category) {
 
-            val inputType = InputType.TYPE_NUMBER_FLAG_DECIMAL or InputType.TYPE_NUMBER_FLAG_SIGNED
+            val inputType = InputType.TYPE_NUMBER_FLAG_DECIMAL
             MaterialDialog(this@CategoryDisplayActivity).show {
                 title(R.string.limit_edit_dialog_title)
                 message(text = category.name)
@@ -86,6 +86,19 @@ class CategoryDisplayActivity : AppCompatActivity() {
 
     private fun attachClickListeners() {
         addCategoryBtn.setOnClickListener {
+
+            MaterialDialog(this).show {
+                title(R.string.add_category_dialog_title)
+                input(hintRes = R.string.add_category_dialog_name_hint) { _, charSequence ->
+                    val name = charSequence.toString()
+                    val category = Category(name = name, spend = 0.0, spendLimit = 0.0)
+                    categoryViewModel?.insert(category)
+                }
+                positiveButton(R.string.add_category_dialog_positive) { }
+                negativeButton(R.string.add_category_dialog_negative) { dismiss() }
+                cancelOnTouchOutside(false)
+                cancelable(false)
+            }
 
         }
         adapter?.setOnCategoryClickListener(categoryClickListener)
