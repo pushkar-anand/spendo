@@ -50,6 +50,8 @@ dependencies {
     implementation 'com.afollestad.material-dialogs:core:2.0.0-beta5'
     implementation 'com.afollestad.material-dialogs:input:2.0.0-beta5'
 
+    implementation 'com.github.husaynhakeem:about-page:0.1.1'
+
     kapt "androidx.room:room-compiler:$room_version"
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
 
