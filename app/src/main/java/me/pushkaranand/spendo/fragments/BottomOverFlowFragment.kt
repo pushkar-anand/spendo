@@ -41,11 +41,13 @@ class BottomOverFlowFragment : BottomSheetDialogFragment() {
 
         sortNavMenu.setNavigationItemSelectedListener { menuItem ->
             onSortItemSelected?.sortItemSelected(menuItem)
+            dismiss()
             true
         }
 
         filterNavMenu.setNavigationItemSelectedListener { menuItem ->
             onFilterItemSelected?.filterItemSelected(menuItem)
+            dismiss()
             true
         }
     }

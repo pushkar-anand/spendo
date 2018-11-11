@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.DatePicker
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -17,10 +18,13 @@ import me.pushkaranand.spendo.adapters.TransactionsRecyclerViewAdapter
 import me.pushkaranand.spendo.db.entity.Transaction
 import me.pushkaranand.spendo.fragments.BottomNavigationDrawerFragment
 import me.pushkaranand.spendo.fragments.BottomOverFlowFragment
+import me.pushkaranand.spendo.fragments.DatePickerFragment
 import me.pushkaranand.spendo.helpers.PrefHelper
 import me.pushkaranand.spendo.helpers.Sorting
 import me.pushkaranand.spendo.helpers.notifications.Notification
 import me.pushkaranand.spendo.viewmodel.TransactionViewModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class HomeActivity : AppCompatActivity() {
@@ -93,6 +97,8 @@ class HomeActivity : AppCompatActivity() {
         if (it != null) {
             val str = getString(R.string.rupee_symbol) + it.toString()
             amountView.text = str
+        } else {
+            amountView.text = getString(R.string.default_amount)
         }
     }
 
@@ -110,10 +116,27 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+
     private val sortSelectedListener = object :
         BottomOverFlowFragment.OnSortItemSelected {
         override fun sortItemSelected(menuItem: MenuItem) {
 
+        }
+    }
+
+    private val dateSetListener: DatePickerFragment.OnDateSetListener = object :
+        DatePickerFragment.OnDateSetListener {
+        override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {
+            val calendar = Calendar.getInstance()
+            calendar.set(year, month, day)
+            val time = calendar.time
+            val df = SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault())
+            val timeStr = df.format(time)
+
+            transactionViewModel?.getTransactionOn(timeStr)
+                ?.observe(this@HomeActivity, transactionListChangeObserver)
+            transactionViewModel?.getTransactionOnAmount(timeStr)
+                ?.observe(this@HomeActivity, amountChangeObserver)
         }
     }
 
@@ -148,7 +171,9 @@ class HomeActivity : AppCompatActivity() {
                             ?.observe(this@HomeActivity, amountChangeObserver)
                     }
                     R.id.filter_date -> {
-
+                        val datePickerFragment = DatePickerFragment()
+                        datePickerFragment.setOnDateSetListener(dateSetListener)
+                        datePickerFragment.show(supportFragmentManager, datePickerFragment.tag)
                     }
                 }
                 previousItem = menuItem
@@ -182,10 +207,10 @@ class HomeActivity : AppCompatActivity() {
             }
 
             val bottomOverFlowFragment = BottomOverFlowFragment()
-            bottomOverFlowFragment.show(supportFragmentManager, bottomOverFlowFragment.tag)
             bottomOverFlowFragment.arguments = bundle
             bottomOverFlowFragment.setOnFilerItemSelectedListener(filterSelectedListener)
             bottomOverFlowFragment.setOnSortItemSelectedListener(sortSelectedListener)
+            bottomOverFlowFragment.show(supportFragmentManager, bottomOverFlowFragment.tag)
         }
     }
 
