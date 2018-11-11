@@ -54,7 +54,7 @@ class CategoryDisplayActivity : AppCompatActivity() {
     }
 
     private fun setupLiveObserver() {
-        categoryViewModel?.getAllCategories()?.observe(this, Observer {
+        categoryViewModel?.getAllCategoriesLiveData()?.observe(this, Observer {
             adapter?.setCategories(it)
         })
     }

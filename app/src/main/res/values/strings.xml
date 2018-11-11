@@ -121,5 +121,10 @@
     <string name="accessibility_done_fab">Add transaction</string>
     <string name="accessibility_list_transactions">List of transactions</string>
 
+    <string name="reset_dialog_title">Reset</string>
+    <string name="reset_dialog_message">Are you sure you want to reset? It will erage all your transactions.</string>
+    <string name="reset_dialog_positive">Reset</string>
+    <string name="reset_dialog_negative">Cancel</string>
+
 
 </resources>

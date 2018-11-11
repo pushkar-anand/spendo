@@ -65,4 +65,8 @@ class TransactionViewModel(application: Application) : AndroidViewModel(applicat
         transactionRepository.delete(transactionId)
     }
 
+    fun deleteAll() {
+        transactionRepository.deleteAll()
+    }
+
 }

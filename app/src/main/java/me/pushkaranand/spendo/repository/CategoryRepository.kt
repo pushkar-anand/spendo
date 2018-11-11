@@ -15,10 +15,10 @@ class CategoryRepository(application: Application) {
     init {
         val spendoDatabase = SpendoDatabase.getDatabase(application)
         categoryDao = spendoDatabase!!.categoryDao()
-        allCategories = categoryDao!!.getAllCategories()
+        allCategories = categoryDao!!.getAllCategoriesLiveData()
     }
 
-    fun getAllCategories(): LiveData<List<Category>>? {
+    fun getAllCategoriesLiveData(): LiveData<List<Category>>? {
         return allCategories
     }
 

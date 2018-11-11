@@ -87,7 +87,7 @@ class EditTransactionActivity : AppCompatActivity() {
             })
 
         categoryViewModel
-            ?.getAllCategories()
+            ?.getAllCategoriesLiveData()
             ?.observe(this, Observer {
                 if (it != null) {
                     for (category in it) {

@@ -70,6 +70,10 @@ class TransactionRepository(application: Application) {
         DeleteAsyncTask(transactionDao, categoryDao).execute(transactionId)
     }
 
+    fun deleteAll() {
+        DeleteAllAsyncTask(transactionDao, categoryDao).execute()
+    }
+
     private companion object {
         class InsertAsyncTask(tDao: TransactionDao?, cDao: CategoryDao?) : AsyncTask<Transaction, Void, Void>() {
             private var transactionDao: TransactionDao? = tDao
@@ -140,6 +144,27 @@ class TransactionRepository(application: Application) {
 
                 return null
             }
+        }
+
+        class DeleteAllAsyncTask(tDao: TransactionDao?, cDao: CategoryDao?) : AsyncTask<Void, Void, Void>() {
+
+            private var transactionDao: TransactionDao? = tDao
+            private var categoryDao: CategoryDao? = cDao
+
+            override fun doInBackground(vararg params: Void?): Void? {
+
+                transactionDao?.deleteAll()
+
+                val categories = categoryDao!!.getAllCategories()
+
+                for (category in categories) {
+                    category.spendLimit = 0.0
+                    category.spend = 0.0
+                    categoryDao?.updateCategories(category)
+                }
+                return null
+            }
+
         }
     }
 

@@ -52,7 +52,7 @@ class NewTransactionActivity : AppCompatActivity() {
     }
 
     private fun addCategoryChips() {
-        categoryViewModel?.getAllCategories()?.observe(this, Observer {
+        categoryViewModel?.getAllCategoriesLiveData()?.observe(this, Observer {
             if (it != null) {
                 for (category in it) {
                     val chip = Chip(categoryGroup.context)

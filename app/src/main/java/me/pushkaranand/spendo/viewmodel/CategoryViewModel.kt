@@ -12,10 +12,10 @@ class CategoryViewModel(application: Application) : AndroidViewModel(application
     private val allCategories: LiveData<List<Category>>?
 
     init {
-        allCategories = categoryRepository.getAllCategories()
+        allCategories = categoryRepository.getAllCategoriesLiveData()
     }
 
-    fun getAllCategories(): LiveData<List<Category>>? {
+    fun getAllCategoriesLiveData(): LiveData<List<Category>>? {
         return allCategories
     }
 
