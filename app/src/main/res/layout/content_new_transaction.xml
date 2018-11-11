@@ -58,7 +58,6 @@
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:chipMinTouchTargetSize="48dp"
                 android:text="@string/credit_choice" />
 
             <com.google.android.material.chip.Chip
