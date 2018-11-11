@@ -38,6 +38,18 @@ class TransactionRepository(application: Application) {
         return transactionDao!!.getSingleTransactionLiveData(id)
     }
 
+    fun getCreditTransactions(): LiveData<List<Transaction>> {
+        return transactionDao!!.getCreditTransactions()
+    }
+
+    fun getDebitTransactions(): LiveData<List<Transaction>> {
+        return transactionDao!!.getDebitTransactions()
+    }
+
+    fun getTransactionOn(date: String): LiveData<List<Transaction>> {
+        return transactionDao!!.getTransactionOn(date)
+    }
+
     fun updateTransaction(transaction: Transaction) {
         UpdateAsyncTask(transactionDao, categoryDao).execute(transaction)
     }

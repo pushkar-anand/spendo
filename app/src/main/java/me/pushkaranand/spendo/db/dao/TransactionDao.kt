@@ -37,4 +37,12 @@ interface TransactionDao {
     @Query("SELECT * FROM transactions WHERE category = :category")
     fun getAllInCategory(category: String): List<Transaction>
 
+    @Query("SELECT * FROM transactions WHERE type = 'Credit'")
+    fun getCreditTransactions(): LiveData<List<Transaction>>
+
+    @Query("SELECT * FROM transactions WHERE type = 'Debit'")
+    fun getDebitTransactions(): LiveData<List<Transaction>>
+
+    @Query("SELECT * FROM transactions WHERE date = :date")
+    fun getTransactionOn(date: String): LiveData<List<Transaction>>
 }
