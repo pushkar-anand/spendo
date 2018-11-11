@@ -84,7 +84,9 @@
                 android:id="@+id/amountEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/amount_hint" />
+                android:hint="@string/amount_hint"
+                android:inputType="numberSigned|numberDecimal"
+                android:singleLine="true" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -125,6 +127,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/notes_hint"
+                android:inputType="textMultiLine"
                 android:singleLine="false" />
         </com.google.android.material.textfield.TextInputLayout>
 
