@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -86,10 +87,12 @@ class HomeActivity : AppCompatActivity() {
         transactionRecyclerView.addItemDecoration(itemDecor)*/
     }
 
+    private val transactionListChangeObserver = Observer<List<Transaction>> {
+        adapter?.setTransactions(Sorting.sortByDateDescending(it as ArrayList<Transaction>))
+    }
+
     private fun setupLiveObserver() {
-        transactionViewModel?.getAllTransactions()?.observe(this, Observer<List<Transaction>> {
-            adapter?.setTransactions(Sorting.sortByDateDescending(it as ArrayList<Transaction>))
-        })
+        transactionViewModel?.getAllTransactions()?.observe(this, transactionListChangeObserver)
 
         transactionViewModel?.getTotalAmount()?.observe(this, Observer<Double> {
             if (it != null) {
@@ -99,14 +102,57 @@ class HomeActivity : AppCompatActivity() {
         })
     }
 
-    private val transactionClickListener: TransactionsRecyclerViewAdapter.OnTransactionClickListener =
-        object : TransactionsRecyclerViewAdapter.OnTransactionClickListener {
-            override fun onClick(transactionId: Long) {
-                val intent = Intent(this@HomeActivity, ViewTransactionActivity::class.java)
-                intent.putExtra(ViewTransactionActivity.TRANSACTION_ID, transactionId)
-                startActivity(intent)
+    private val transactionClickListener = object :
+        TransactionsRecyclerViewAdapter.OnTransactionClickListener {
+        override fun onClick(transactionId: Long) {
+            val intent = Intent(this@HomeActivity, ViewTransactionActivity::class.java)
+            intent.putExtra(ViewTransactionActivity.TRANSACTION_ID, transactionId)
+            startActivity(intent)
+        }
+    }
+
+    private val sortSelectedListener = object :
+        BottomOverFlowFragment.OnSortItemSelected {
+        override fun sortItemSelected(menuItem: MenuItem) {
+
+        }
+    }
+
+    private var previousItem: MenuItem? = null
+
+    private val filterSelectedListener = object :
+        BottomOverFlowFragment.OnFilterItemSelected {
+        override fun filterItemSelected(menuItem: MenuItem) {
+
+            transactionViewModel?.getAllTransactions()?.removeObservers(this@HomeActivity)
+            transactionViewModel?.getCreditTransactions()?.removeObservers(this@HomeActivity)
+            transactionViewModel?.getDebitTransactions()?.removeObservers(this@HomeActivity)
+
+            if (previousItem?.title != menuItem.title) {
+                when (menuItem.itemId) {
+                    R.id.filter_credit -> {
+                        transactionViewModel?.getCreditTransactions()
+                            ?.observe(this@HomeActivity, transactionListChangeObserver)
+
+                    }
+                    R.id.filter_debit -> {
+
+                        transactionViewModel?.getDebitTransactions()
+                            ?.observe(this@HomeActivity, transactionListChangeObserver)
+                    }
+                }
+                previousItem = menuItem
+                menuItem.isChecked = true
+                amountView.visibility = View.GONE
+            } else {
+                transactionViewModel?.getAllTransactions()
+                    ?.observe(this@HomeActivity, transactionListChangeObserver)
+                amountView.visibility = View.VISIBLE
+                menuItem.isChecked = false
+                previousItem = null
             }
         }
+    }
 
     private fun attachClickListeners() {
 
@@ -118,8 +164,16 @@ class HomeActivity : AppCompatActivity() {
         adapter?.setOnTransactionClickListener(transactionClickListener)
 
         overflowIcon.setOnClickListener {
+            val bundle = Bundle()
+            if (previousItem != null) {
+                bundle.putInt(BottomOverFlowFragment.SELECTED_FILTER, previousItem!!.itemId)
+            }
+
             val bottomOverFlowFragment = BottomOverFlowFragment()
             bottomOverFlowFragment.show(supportFragmentManager, bottomOverFlowFragment.tag)
+            bottomOverFlowFragment.arguments = bundle
+            bottomOverFlowFragment.setOnFilerItemSelectedListener(filterSelectedListener)
+            bottomOverFlowFragment.setOnSortItemSelectedListener(sortSelectedListener)
         }
     }
 

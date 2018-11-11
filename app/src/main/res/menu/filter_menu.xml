@@ -3,18 +3,22 @@
 
     <group
         android:id="@+id/filter"
-        android:checkableBehavior="none">
+        android:checkableBehavior="single">
         <item
             android:id="@+id/filter_credit"
+            android:icon="@drawable/selector_drawable_tick"
             android:title="@string/filter_credit" />
         <item
             android:id="@+id/filter_debit"
+            android:icon="@drawable/selector_drawable_tick"
             android:title="@string/filter_debit" />
         <item
             android:id="@+id/filter_category"
+            android:icon="@drawable/selector_drawable_tick"
             android:title="@string/filter_category" />
         <item
             android:id="@+id/filter_date"
+            android:icon="@drawable/selector_drawable_tick"
             android:title="@string/filter_date" />
     </group>
 </menu>

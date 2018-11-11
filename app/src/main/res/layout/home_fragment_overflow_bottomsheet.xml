@@ -54,6 +54,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filterHeadingTV"
+        app:itemIconTint="@color/black"
         app:menu="@menu/filter_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

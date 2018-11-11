@@ -7,6 +7,7 @@
     <color name="colorBackground">#ffffff</color>
 
     <color name="white">#ffffff</color>
+    <color name="black">#000</color>
 
     <!-- Screens background color-->
     <color name="bg_slider_screen1">#ffab40</color>

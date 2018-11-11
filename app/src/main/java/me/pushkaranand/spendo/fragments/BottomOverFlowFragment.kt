@@ -2,6 +2,7 @@ package me.pushkaranand.spendo.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -10,15 +11,19 @@ import me.pushkaranand.spendo.R
 
 class BottomOverFlowFragment : BottomSheetDialogFragment() {
 
+    companion object {
+        const val SELECTED_FILTER = "selected-filter"
+    }
+
     private var onFilterItemSelected: OnFilterItemSelected? = null
     private var onSortItemSelected: OnSortItemSelected? = null
 
     interface OnFilterItemSelected {
-        fun filterItemSelected(itemId: Int)
+        fun filterItemSelected(menuItem: MenuItem)
     }
 
     interface OnSortItemSelected {
-        fun sortItemSelected(itemId: Int)
+        fun sortItemSelected(menuItem: MenuItem)
     }
 
     override fun getTheme(): Int = R.style.BottomSheetDialogTheme
@@ -30,13 +35,17 @@ class BottomOverFlowFragment : BottomSheetDialogFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        if (arguments != null && arguments!!.containsKey(SELECTED_FILTER)) {
+            filterNavMenu.menu.findItem(arguments!!.getInt(SELECTED_FILTER)).isChecked = true
+        }
+
         sortNavMenu.setNavigationItemSelectedListener { menuItem ->
-            onSortItemSelected?.sortItemSelected(menuItem.itemId)
+            onSortItemSelected?.sortItemSelected(menuItem)
             true
         }
 
         filterNavMenu.setNavigationItemSelectedListener { menuItem ->
-            onFilterItemSelected?.filterItemSelected(menuItem.itemId)
+            onFilterItemSelected?.filterItemSelected(menuItem)
             true
         }
     }
@@ -48,4 +57,5 @@ class BottomOverFlowFragment : BottomSheetDialogFragment() {
     fun setOnSortItemSelectedListener(onSortItemSelected: OnSortItemSelected) {
         this.onSortItemSelected = onSortItemSelected
     }
+
 }
