@@ -12,10 +12,10 @@
             android:id="@+id/filter_debit"
             android:icon="@drawable/selector_drawable_tick"
             android:title="@string/filter_debit" />
-        <item
+        <!--<item
             android:id="@+id/filter_category"
             android:icon="@drawable/selector_drawable_tick"
-            android:title="@string/filter_category" />
+            android:title="@string/filter_category" />-->
         <item
             android:id="@+id/filter_date"
             android:icon="@drawable/selector_drawable_tick"
