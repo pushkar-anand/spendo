@@ -46,6 +46,7 @@ class CategoryDisplayActivity : AppCompatActivity() {
         adapter = CategoriesRecyclerViewAdapter(this)
         categoryRecyclerView.adapter = adapter
         categoryRecyclerView.layoutManager = GridLayoutManager(this, 2)
+        //categoryRecyclerView.layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
     }
 
     private fun initViewModel() {
