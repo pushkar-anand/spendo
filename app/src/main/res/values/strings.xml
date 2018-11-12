@@ -139,7 +139,7 @@
     <string name="reset_dialog_negative">Cancel</string>
 
     <string name="share_link">http://bit.ly/spendo</string>
-    <string name="share_text">Want to know where you spend you money?? Install this app.</string>
+    <string name="share_text">Want to know where you spend your money?? Install this app.</string>
 
 
     <string name="app_desc">Spendo makes managing all cash transactions easy. Easily manage all your cash, track all your transactions, tag your transactions under different categories, set monthly limits to control your transactions and save more cash.\n\n Features:\n- Tag all your spends.\n- Set monthly spend limits\n- Get a reminder every day to add the day\'s transaction.\n- Add transaction specific notes.\n- Sort transactions.\n- Filter transactions.\n\nUpcoming Features:\n- Backup/Restore your spends to Device/Google Drive.\n- Ability to view charts &amp; graphs to understand your spends better.\n- More ways to filter and sort.\n</string>
