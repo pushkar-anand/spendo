@@ -3,10 +3,11 @@
 
     <dimen name="dots_height">40dp</dimen>
     <dimen name="dots_margin_bottom">20dp</dimen>
-    <dimen name="img_width_height">300dp</dimen>
-    <dimen name="slide_title">30sp</dimen>
-    <dimen name="slide_desc">18sp</dimen>
-    <dimen name="desc_padding">40dp</dimen>
+    <dimen name="img_width_height">290dp</dimen>
+    <dimen name="title_margin">8dp</dimen>
+    <dimen name="slide_title">25sp</dimen>
+    <dimen name="slide_desc">16sp</dimen>
+    <dimen name="desc_padding">20dp</dimen>
 
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="fab_size">56dp</dimen>
@@ -17,4 +18,5 @@
     <dimen name="guideline_depth_from_top">110dp</dimen>
     <dimen name="third_keyline">60dp</dimen>
     <dimen name="nav_icon_padding">24dp</dimen>
+
 </resources>

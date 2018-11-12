@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#ffffff</color>
-    <color name="colorPrimaryDark">#e0e0e0</color>
-    <color name="colorAccent">#546e7a</color>
+    <color name="colorPrimaryDark">#bdbdbd</color>
+    <color name="colorAccent">#3e2723</color>
+
     <color name="colorBackground">#ffffff</color>
+
     <color name="white">#ffffff</color>
     <color name="black">#000</color>
+
+    <color name="amount_color">#004d40</color>
 
     <!--FOR INTRO SLIDER -->
     <color name="colorPrimaryIntro">#ffffff</color>
