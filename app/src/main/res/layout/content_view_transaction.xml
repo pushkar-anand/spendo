@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:showIn="@layout/activity_view_transaction">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/moneyImg"
@@ -12,10 +11,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:contentDescription="@string/rupee_symbol_text"
         android:padding="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/typeTextView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/amountTextView"
         app:srcCompat="@drawable/ic_money_black" />
 
     <TextView
@@ -25,10 +26,12 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="2dp"
         android:padding="10dp"
         android:textAlignment="textStart"
-        android:textSize="30sp"
+        android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/moneyImg"
         app:layout_constraintTop_toTopOf="parent"
@@ -38,14 +41,11 @@
         android:id="@+id/typeTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
         android:textSize="24sp"
         android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/moneyImg"
+        app:layout_constraintStart_toStartOf="@+id/amountTextView"
         app:layout_constraintTop_toBottomOf="@+id/amountTextView"
         tools:text="Debit" />
 
@@ -54,10 +54,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
         android:padding="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/categoriesTextView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/typeTextView"
+        app:layout_constraintTop_toTopOf="@+id/categoriesTextView"
         app:srcCompat="@drawable/ic_categories_black" />
 
     <TextView
@@ -65,14 +65,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/categoryImg"
-        app:layout_constraintTop_toBottomOf="@+id/typeTextView"
+        app:layout_constraintTop_toTopOf="@+id/guideline3"
         tools:text="Category1\nCategory2\nCategory3\nCategory4" />
 
     <ImageView
@@ -80,10 +80,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
         android:padding="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/dateTextView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/categoriesTextView"
+        app:layout_constraintTop_toTopOf="@+id/dateTextView"
         app:srcCompat="@drawable/ic_calendar_black" />
 
     <TextView
@@ -91,16 +91,49 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:paddingStart="10dp"
         android:paddingTop="5dp"
         android:paddingEnd="10dp"
         android:paddingBottom="5dp"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/dateImg"
         app:layout_constraintTop_toBottomOf="@+id/categoriesTextView"
         tools:text="DD-MM-YYYY" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="130dp" />
+
+    <ImageView
+        android:id="@+id/notesImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:padding="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/notesTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/notesTextView"
+        app:srcCompat="@drawable/ic_notes_black" />
+
+    <TextView
+        android:id="@+id/notesTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/notesImg"
+        app:layout_constraintTop_toBottomOf="@+id/dateTextView"
+        tools:text="Notes" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
