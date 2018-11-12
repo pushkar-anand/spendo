@@ -6,11 +6,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.CategoryDisplayActivity">
 
-    <include layout="@layout/content_category_display" />
-
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <include layout="@layout/content_category_display" />
 
         <View
             android:layout_width="match_parent"
@@ -25,6 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             app:hideOnScroll="true"
+            app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
             app:layout_scrollFlags="scroll|enterAlways"
             app:navigationIcon="@drawable/menu_black" />
 
@@ -37,6 +38,7 @@
             android:textAllCaps="false"
             android:textSize="16sp"
             app:cornerRadius="@dimen/fab_corner_radius"
+            app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
             app:icon="@drawable/fab_add_white"
             app:layout_anchor="@id/bottomAppBarCategoryActivity"
             app:layout_anchorGravity="center_horizontal|top"

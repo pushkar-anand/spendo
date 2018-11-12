@@ -1,6 +1,7 @@
 package me.pushkaranand.spendo.adapters
 
 import android.content.Context
+import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +11,14 @@ import com.google.android.material.card.MaterialCardView
 import me.pushkaranand.spendo.R
 import me.pushkaranand.spendo.db.entity.Category
 
+
 class CategoriesRecyclerViewAdapter(context: Context) :
     RecyclerView.Adapter<CategoriesRecyclerViewAdapter.CategoryViewHolder>() {
+
+    companion object {
+        val width = Resources.getSystem().displayMetrics.widthPixels
+    }
+
 
     private val mInflater: LayoutInflater = LayoutInflater.from(context)
     private var categories: List<Category>? = null
@@ -22,6 +29,10 @@ class CategoriesRecyclerViewAdapter(context: Context) :
         val categorySpendTV: TextView = itemView.findViewById(R.id.categorySpendTV)
         val categoryLimitTV: TextView = itemView.findViewById(R.id.categoryLimitTV)
         val categoryItemCard: MaterialCardView = itemView.findViewById(R.id.categoryItemCard)
+        /*val w: Int = (0.5 * width).toInt()
+        init {
+            categoryItemCard.minimumWidth = w
+        }*/
     }
 
     interface OnCategoryClickListener {
@@ -47,7 +58,7 @@ class CategoriesRecyclerViewAdapter(context: Context) :
             holder.categoryNameTV.text = category.name
             var tmp = "Spend: ${category.spend}"
             holder.categorySpendTV.text = tmp
-            tmp = "Monthly Limit: ${category.spendLimit}"
+            tmp = "Limit: ${category.spendLimit}"
             holder.categoryLimitTV.text = tmp
 
             holder.categoryItemCard.setOnClickListener {

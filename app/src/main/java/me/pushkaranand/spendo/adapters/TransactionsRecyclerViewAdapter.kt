@@ -61,9 +61,13 @@ class TransactionsRecyclerViewAdapter(context: Context) :
             if (transaction.type == "Debit") {
                 //holder.transactionCard.setCardBackgroundColor(Color.parseColor("#ff1744"))
                 holder.amountTV.setTextColor(Color.parseColor("#ff1744"))
+                holder.dateTV.setTextColor(Color.parseColor("#ff1744"))
+                holder.categoryTV.setTextColor(Color.parseColor("#ff1744"))
             } else {
                 //holder.transactionCard.setCardBackgroundColor(Color.parseColor("#00c853"))
                 holder.amountTV.setTextColor(Color.parseColor("#00c853"))
+                holder.dateTV.setTextColor(Color.parseColor("#00c853"))
+                holder.categoryTV.setTextColor(Color.parseColor("#00c853"))
             }
         }
     }
