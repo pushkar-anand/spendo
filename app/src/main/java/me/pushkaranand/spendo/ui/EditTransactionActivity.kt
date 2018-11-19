@@ -121,6 +121,12 @@ class EditTransactionActivity : AppCompatActivity() {
             val time = calendar.time
             dateChip.text = df.format(time)
             currTransaction?.date = dateChip.text.toString()
+
+            val spilt = currTransaction?.date!!.split("-")
+
+            currTransaction?.day = spilt[0].toInt()
+            currTransaction?.month = spilt[1]
+            currTransaction?.year = spilt[2].toInt()
         }
     }
 
