@@ -21,7 +21,7 @@ class TransactionsRecyclerViewAdapter(context: Context) :
     private var onTransactionClick: OnTransactionClickListener? = null
 
     class TransactionsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val transactionCard: MaterialCardView = itemView.findViewById(R.id.transactionCard)
+        val transactionCard: MaterialCardView = itemView.findViewById(R.id.transactionCard) as MaterialCardView
         val dateTV: TextView = itemView.findViewById(R.id.dateTextView)
         val categoryTV: TextView = itemView.findViewById(R.id.categoryTextView)
         val amountTV: TextView = itemView.findViewById(R.id.amountTextView)
