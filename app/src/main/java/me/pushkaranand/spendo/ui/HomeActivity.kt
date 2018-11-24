@@ -241,7 +241,7 @@ class HomeActivity : AppCompatActivity() {
                     val categories = data.getStringExtra(NewTransactionActivity.TRANSACTION_CATEGORIES)
                     val date = data.getStringExtra(NewTransactionActivity.TRANSACTION_DATE)
                     var notes: String? = null
-                    if (data.hasCategory(NewTransactionActivity.TRANSACTION_NOTES)) {
+                    if (data.hasExtra(NewTransactionActivity.TRANSACTION_NOTES)) {
                         notes = data.getStringExtra(NewTransactionActivity.TRANSACTION_NOTES)
                     }
                     amount = if (type == getString(R.string.debit_choice)) {
