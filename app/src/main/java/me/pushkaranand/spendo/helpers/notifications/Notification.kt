@@ -53,7 +53,6 @@ class Notification {
             mBuilder.setContentTitle(notificationTitle)
                 .setContentText(notificationText)
                 .setContentIntent(pendingIntent)
-                .setPriority(Notification.PRIORITY_DEFAULT)
                 .setSmallIcon(R.drawable.ic_app_default)
                 .setDefaults(Notification.DEFAULT_ALL)
                 .setStyle(

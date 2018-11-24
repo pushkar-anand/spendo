@@ -15,9 +15,9 @@ class NotificationChannelHelper {
         @RequiresApi(Build.VERSION_CODES.O)
         private fun getAddTransactionReminderChannel():
                 NotificationChannel {
-            val channelName = "Add transaction reminder channel"
+            val channelName = "Add Transaction reminder"
             val channelDescription =
-                "This channel is used to send reminders to add new transaction when user asks so."
+                "Get daily transaction reminders"
             val channelImportance = NotificationManager.IMPORTANCE_DEFAULT
 
             val notificationChannel =
@@ -29,6 +29,7 @@ class NotificationChannelHelper {
             notificationChannel.description = channelDescription
             notificationChannel.enableLights(true)
             notificationChannel.enableVibration(true)
+            notificationChannel.importance = NotificationManager.IMPORTANCE_DEFAULT
 
             return notificationChannel
         }
