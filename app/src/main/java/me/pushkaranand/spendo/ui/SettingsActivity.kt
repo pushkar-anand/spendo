@@ -1,5 +1,6 @@
 package me.pushkaranand.spendo.ui
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -22,7 +23,8 @@ class SettingsActivity : AppCompatActivity(),
 
     override fun onPreferenceStartScreen(caller: PreferenceFragmentCompat?, pref: PreferenceScreen?): Boolean {
         if (pref?.key == getString(R.string.key_screen_title_about)) {
-            startActivity(Intent(this, AboutActivity::class.java))
+            val i = Intent(this, AboutActivity::class.java)
+            startActivity(i, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         } else {
 
             val ft = supportFragmentManager.beginTransaction()

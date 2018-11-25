@@ -1,6 +1,7 @@
 package me.pushkaranand.spendo.ui
 
 import android.app.Activity
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -225,7 +226,11 @@ class HomeActivity : AppCompatActivity() {
 
         addTxnBtn.setOnClickListener {
             val intent = Intent(this, NewTransactionActivity::class.java)
-            startActivityForResult(intent, NEW_TRANSACTION_REQUEST_CODE)
+            startActivityForResult(
+                intent,
+                NEW_TRANSACTION_REQUEST_CODE,
+                ActivityOptions.makeSceneTransitionAnimation(this).toBundle()
+            )
         }
 
         adapter?.setOnTransactionClickListener(transactionClickListener)
