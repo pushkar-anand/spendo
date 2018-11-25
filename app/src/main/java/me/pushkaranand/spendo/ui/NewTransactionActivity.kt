@@ -157,7 +157,7 @@ class NewTransactionActivity : AppCompatActivity() {
             if (proceed) {
                 intent.putExtra(TRANSACTION_DATE, dateChip.text)
                 setResult(Activity.RESULT_OK, intent)
-                finish()
+                finishAfterTransition()
             }
         }
     }
