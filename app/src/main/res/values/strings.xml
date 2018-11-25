@@ -54,6 +54,9 @@
 
 
     <!--ViewTransactionActivity -->
+    <string name="category_label">Category</string>
+    <string name="date_label">Date</string>
+    <string name="notes_label">Notes</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="delete_dialog_title">Delete</string>

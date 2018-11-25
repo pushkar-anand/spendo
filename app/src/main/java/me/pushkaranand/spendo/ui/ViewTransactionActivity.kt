@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.lifecycle.Observer
@@ -112,6 +113,12 @@ class ViewTransactionActivity : AppCompatActivity() {
                 tmp += "$c\n"
             }
             categoriesTextView.text = tmp
+
+            if (it.notes != null) {
+                notesImg.visibility = View.VISIBLE
+                notesTextView.visibility = View.VISIBLE
+                notesTextView.text = it.notes
+            }
         }
     }
 
