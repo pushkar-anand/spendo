@@ -58,6 +58,10 @@ class ViewTransactionActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return when (item!!.itemId) {
+            android.R.id.home -> {
+                finishAfterTransition()
+                true
+            }
             R.id.item_edit -> {
                 val intent = Intent(this, EditTransactionActivity::class.java)
                 intent.putExtra(EditTransactionActivity.TRANSACTION_EDIT_ID, transactionId)
@@ -73,6 +77,7 @@ class ViewTransactionActivity : AppCompatActivity() {
             }
         }
     }
+
 
     private fun initViewModel() {
         transactionViewModel =
