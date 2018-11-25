@@ -25,7 +25,7 @@ data class Transaction(
     var month: String = spilt[1]
     var year: Int = spilt[2].toInt()
 
-    fun setDateAndDay(date: String) {
+    fun setDayMonthAndYear(date: String) {
         val str = date.split("-")
         day = str[0].toInt()
         month = str[1]

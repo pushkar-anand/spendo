@@ -131,7 +131,7 @@ class EditTransactionActivity : AppCompatActivity() {
             val time = calendar.time
             dateChip.text = df.format(time)
 
-            currTransaction?.setDateAndDay(dateChip.text.toString())
+            currTransaction?.setDayMonthAndYear(dateChip.text.toString())
 
             /*
             currTransaction?.date = dateChip.text.toString()

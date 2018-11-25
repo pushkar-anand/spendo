@@ -10,7 +10,7 @@ android {
         applicationId "me.pushkaranand.spendo"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 7
+        versionCode 8
         versionName "1.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
