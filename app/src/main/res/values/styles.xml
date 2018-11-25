@@ -8,16 +8,22 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:colorBackground">@color/colorBackground</item>
 
+        <item name="android:windowActivityTransitions">true</item>
+
+        <item name="android:windowEnterTransition">@android:transition/explode</item>
+        <item name="android:windowExitTransition">@android:transition/explode</item>
+
+        <item name="android:windowSharedElementEnterTransition">@transition/shared_transition</item>
+        <item name="android:windowSharedElementExitTransition">@transition/shared_transition</item>
+
         <item name="md_corner_radius">16dp</item>
     </style>
 
 
-    <style name="AppTheme.Intro" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="AppTheme.Intro" parent="AppTheme">
         <item name="colorPrimary">@color/colorPrimaryIntro</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDarkIntro</item>
         <item name="colorAccent">@color/colorAccentIntro</item>
-        <item name="md_corner_radius">16dp</item>
-
     </style>
 
     <style name="AppTheme.ActionBar" parent="Theme.MaterialComponents.Light">
@@ -25,6 +31,14 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:colorBackground">@color/colorBackground</item>
+
+        <item name="android:windowActivityTransitions">true</item>
+
+        <item name="android:windowEnterTransition">@android:transition/explode</item>
+        <item name="android:windowExitTransition">@android:transition/explode</item>
+
+        <item name="android:windowSharedElementEnterTransition">@transition/shared_transition</item>
+        <item name="android:windowSharedElementExitTransition">@transition/shared_transition</item>
 
         <item name="md_corner_radius">16dp</item>
     </style>

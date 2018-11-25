@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.afollestad.materialdialogs.MaterialDialog
@@ -25,6 +26,10 @@ class ViewTransactionActivity : AppCompatActivity() {
         const val TRANSACTION_ID = "me.pushkaranand.spendo.ui.TRANSACTION_ID"
         private const val EDIT_TRANSACTION_REQUEST_CODE = 200
         const val TRANSACTION_RESULT = "me.pushkaranand.spendo.TRANSACTION.EDITED"
+
+        const val VIEW_NAME_AMOUNT = "detail:header:amount"
+        const val VIEW_NAME_CATEGORY = "detail:header:category"
+        const val VIEW_NAME_DATE = "detail:header:date"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,8 +44,8 @@ class ViewTransactionActivity : AppCompatActivity() {
             finish()
         } else {
             transactionId = intent.getLongExtra(TRANSACTION_ID, 0L)
-
             initViewModel()
+            setAnimationItems()
             setupViewModelObserver()
         }
     }
@@ -72,6 +77,12 @@ class ViewTransactionActivity : AppCompatActivity() {
     private fun initViewModel() {
         transactionViewModel =
                 ViewModelProviders.of(this).get(TransactionViewModel::class.java)
+    }
+
+    private fun setAnimationItems() {
+        ViewCompat.setTransitionName(amountTextView, VIEW_NAME_AMOUNT)
+        ViewCompat.setTransitionName(categoriesTextView, VIEW_NAME_CATEGORY)
+        ViewCompat.setTransitionName(dateTextView, VIEW_NAME_DATE)
     }
 
     private val observer = Observer<Transaction> {

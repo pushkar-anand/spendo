@@ -8,6 +8,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.DatePicker
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,6 +27,12 @@ import me.pushkaranand.spendo.helpers.notifications.Notification
 import me.pushkaranand.spendo.viewmodel.TransactionViewModel
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.Boolean
+import kotlin.Double
+import kotlin.Int
+import kotlin.Long
+import kotlin.String
+import android.util.Pair as UtilPair
 
 
 class HomeActivity : AppCompatActivity() {
@@ -109,10 +117,21 @@ class HomeActivity : AppCompatActivity() {
 
     private val transactionClickListener = object :
         TransactionsRecyclerViewAdapter.OnTransactionClickListener {
-        override fun onClick(transactionId: Long) {
+        override fun onClick(
+            transactionId: Long,
+            holder: TransactionsRecyclerViewAdapter.TransactionsViewHolder
+        ) {
+
+            val activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                this@HomeActivity,
+                Pair(holder.amountTV, ViewTransactionActivity.VIEW_NAME_AMOUNT),
+                Pair(holder.categoryTV, ViewTransactionActivity.VIEW_NAME_CATEGORY),
+                Pair(holder.dateTV, ViewTransactionActivity.VIEW_NAME_DATE)
+            )
+
             val intent = Intent(this@HomeActivity, ViewTransactionActivity::class.java)
             intent.putExtra(ViewTransactionActivity.TRANSACTION_ID, transactionId)
-            startActivity(intent)
+            startActivity(intent, activityOptions.toBundle())
         }
     }
 

@@ -28,7 +28,10 @@ class TransactionsRecyclerViewAdapter(context: Context) :
     }
 
     interface OnTransactionClickListener {
-        fun onClick(transactionId: Long)
+        fun onClick(
+            transactionId: Long,
+            holder: TransactionsViewHolder
+        )
     }
 
     fun setOnTransactionClickListener(onTransactionClick: OnTransactionClickListener) {
@@ -54,7 +57,7 @@ class TransactionsRecyclerViewAdapter(context: Context) :
             holder.amountTV.text = transaction.amount.toString()
 
             holder.transactionCard.setOnClickListener {
-                onTransactionClick?.onClick(transaction.transactionID)
+                onTransactionClick?.onClick(transaction.transactionID, holder)
             }
 
 
