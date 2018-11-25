@@ -1,6 +1,7 @@
 package me.pushkaranand.spendo.ui
 
 import android.app.Activity
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -65,7 +66,11 @@ class ViewTransactionActivity : AppCompatActivity() {
             R.id.item_edit -> {
                 val intent = Intent(this, EditTransactionActivity::class.java)
                 intent.putExtra(EditTransactionActivity.TRANSACTION_EDIT_ID, transactionId)
-                startActivityForResult(intent, EDIT_TRANSACTION_REQUEST_CODE)
+                startActivityForResult(
+                    intent,
+                    EDIT_TRANSACTION_REQUEST_CODE,
+                    ActivityOptions.makeSceneTransitionAnimation(this).toBundle()
+                )
                 true
             }
             R.id.item_delete -> {
@@ -137,7 +142,10 @@ class ViewTransactionActivity : AppCompatActivity() {
                 transactionViewModel?.getTransaction(transactionId!!)?.removeObservers(this@ViewTransactionActivity)
                 transactionViewModel?.delete(transactionId!!)
                 val intent = Intent(this@ViewTransactionActivity, HomeActivity::class.java)
-                startActivity(intent)
+                startActivity(
+                    intent,
+                    ActivityOptions.makeSceneTransitionAnimation(this@ViewTransactionActivity).toBundle()
+                )
                 finish()
             }
             negativeButton(R.string.delete_negative_action) { dismiss() }

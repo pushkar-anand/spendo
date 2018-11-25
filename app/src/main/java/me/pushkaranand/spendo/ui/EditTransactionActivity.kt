@@ -3,6 +3,7 @@ package me.pushkaranand.spendo.ui
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.DatePicker
 import android.widget.TextView
 import android.widget.Toast
@@ -51,6 +52,15 @@ class EditTransactionActivity : AppCompatActivity() {
             setupObservers()
             setupListeners()
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        if (item?.itemId == android.R.id.home) {
+            finishAfterTransition()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun initViewModel() {
@@ -201,7 +211,7 @@ class EditTransactionActivity : AppCompatActivity() {
                 val intent = Intent()
                 intent.putExtra(ViewTransactionActivity.TRANSACTION_RESULT, gson.toJson(currTransaction))
                 setResult(Activity.RESULT_OK, intent)
-                finish()
+                finishAfterTransition()
             }
         }
     }
