@@ -56,7 +56,7 @@ class CategoriesRecyclerViewAdapter(context: Context) :
         if (categories != null) {
             val category = categories!![position]
             holder.categoryNameTV.text = category.name
-            var tmp = "Spend: ${category.spend}"
+            var tmp = "Spent: ${category.spend}"
             holder.categorySpendTV.text = tmp
             tmp = "Limit: ${category.spendLimit}"
             holder.categoryLimitTV.text = tmp
