@@ -127,6 +127,7 @@
     <string name="filter_debit">Debit</string>
     <string name="filter_category" tools:keep="@string/filter_category">Category</string>
     <string name="filter_date">Date</string>
+    <string name="filter_month">Month</string>
 
 
     <string name="accessibility_done_fab">Add transaction</string>

@@ -54,4 +54,10 @@ interface TransactionDao {
 
     @Query("SELECT SUM(amount) FROM transactions WHERE date = :date")
     fun getTransactionOnAmount(date: String): LiveData<Double>
+
+    @Query("SELECT * FROM transactions WHERE month = :month")
+    fun getTransactionOfMonth(month: String): LiveData<List<Transaction>>
+
+    @Query("SELECT SUM(amount) FROM transactions WHERE month = :month")
+    fun getTransactionAmountOfMonth(month: String): LiveData<Double>
 }

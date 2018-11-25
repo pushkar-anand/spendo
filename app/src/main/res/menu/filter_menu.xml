@@ -20,5 +20,10 @@
             android:id="@+id/filter_date"
             android:icon="@drawable/selector_drawable_tick"
             android:title="@string/filter_date" />
+
+        <item
+            android:id="@+id/filter_month"
+            android:icon="@drawable/selector_drawable_tick"
+            android:title="@string/filter_month" />
     </group>
 </menu>

@@ -154,6 +154,7 @@ class HomeActivity : AppCompatActivity() {
             }
         }
     }
+    private var lastDate: String? = null
 
     private val dateSetListener: DatePickerFragment.OnDateSetListener = object :
         DatePickerFragment.OnDateSetListener {
@@ -168,6 +169,7 @@ class HomeActivity : AppCompatActivity() {
                 ?.observe(this@HomeActivity, transactionListChangeObserver)
             transactionViewModel?.getTransactionOnAmount(timeStr)
                 ?.observe(this@HomeActivity, amountChangeObserver)
+            lastDate = timeStr
         }
     }
 
@@ -184,6 +186,11 @@ class HomeActivity : AppCompatActivity() {
             transactionViewModel?.getTotalAmount()?.removeObservers(this@HomeActivity)
             transactionViewModel?.getCreditTransactionsAmount()?.removeObservers(this@HomeActivity)
             transactionViewModel?.getDebitTransactionsAmount()?.removeObservers(this@HomeActivity)
+
+            if (lastDate != null) {
+                transactionViewModel?.getTransactionOn(lastDate!!)?.removeObservers(this@HomeActivity)
+                transactionViewModel?.getTransactionOnAmount(lastDate!!)?.removeObservers(this@HomeActivity)
+            }
 
             if (previousFilterItem?.title != menuItem.title) {
                 when (menuItem.itemId) {
@@ -205,6 +212,9 @@ class HomeActivity : AppCompatActivity() {
                         val datePickerFragment = DatePickerFragment()
                         datePickerFragment.setOnDateSetListener(dateSetListener)
                         datePickerFragment.show(supportFragmentManager, datePickerFragment.tag)
+                    }
+                    R.id.filter_month -> {
+
                     }
                 }
                 previousFilterItem = menuItem
