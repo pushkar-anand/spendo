@@ -49,6 +49,7 @@
             android:label="@string/title_activity_edit_transaction"
             android:parentActivityName=".ui.ViewTransactionActivity"
             android:theme="@style/AppTheme.ActionBar" />
+        <activity android:name=".ui.AboutActivity" />
 
         <!-- Services -->
         <service
@@ -72,8 +73,15 @@
                 <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
             </intent-filter>
         </service>
+        <service
+            android:name=".services.jobs.MonthlyResetJob"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
+            </intent-filter>
+        </service>
+        <service android:name=".services.MonthlyResetJobIntentService" />
 
-        <activity android:name=".ui.AboutActivity"></activity>
     </application>
 
 </manifest>
