@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import me.pushkaranand.spendo.db.entity.Transaction
 import me.pushkaranand.spendo.repository.TransactionRepository
+import java.text.DateFormatSymbols
 
 
 class TransactionViewModel(application: Application) : AndroidViewModel(application) {
@@ -58,6 +59,16 @@ class TransactionViewModel(application: Application) : AndroidViewModel(applicat
 
     fun getTransactionOnAmount(date: String): LiveData<Double> {
         return transactionRepository.getTransactionOnAmount(date)
+    }
+
+    fun getTransactionOfMonthYear(month: Int, year: Int): LiveData<List<Transaction>> {
+        val monthStr = DateFormatSymbols().months[month].substring(0, 3)
+        return transactionRepository.getTransactionOfMonthYear(monthStr, year)
+    }
+
+    fun getTransactionAmountOfMonthYear(month: Int, year: Int): LiveData<Double> {
+        val monthStr = DateFormatSymbols().months[month].substring(0, 3)
+        return transactionRepository.getTransactionAmountOfMonthYear(monthStr, year)
     }
 
 

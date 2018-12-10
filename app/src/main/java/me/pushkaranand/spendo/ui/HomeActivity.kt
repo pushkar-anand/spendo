@@ -14,6 +14,7 @@ import androidx.core.util.Pair
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.whiteelephant.monthpicker.MonthPickerDialog
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.content_home.*
 import me.pushkaranand.spendo.R
@@ -173,6 +174,24 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+    private val today = Calendar.getInstance()
+
+    private var lastMonthYearSelected: Pair<Int, Int>? = null
+
+    private val monthPickerDialog =
+        MonthPickerDialog.Builder(
+            this,
+            MonthPickerDialog.OnDateSetListener { selectedMonth, selectedYear ->
+                lastMonthYearSelected = Pair(selectedMonth, selectedYear)
+                transactionViewModel?.getTransactionOfMonthYear(selectedMonth, selectedYear)
+                    ?.observe(this@HomeActivity, transactionListChangeObserver)
+                transactionViewModel?.getTransactionAmountOfMonthYear(selectedMonth, selectedYear)
+                    ?.observe(this@HomeActivity, amountChangeObserver)
+            },
+            today.get(Calendar.YEAR), today.get(Calendar.MONTH)
+        )
+
+
     private var previousFilterItem: MenuItem? = null
 
     private val filterSelectedListener = object :
@@ -190,6 +209,21 @@ class HomeActivity : AppCompatActivity() {
             if (lastDate != null) {
                 transactionViewModel?.getTransactionOn(lastDate!!)?.removeObservers(this@HomeActivity)
                 transactionViewModel?.getTransactionOnAmount(lastDate!!)?.removeObservers(this@HomeActivity)
+                lastDate = null
+            }
+
+            if (lastMonthYearSelected != null) {
+                transactionViewModel?.getTransactionOfMonthYear(
+                    lastMonthYearSelected?.first!!,
+                    lastMonthYearSelected?.second!!
+                )
+                    ?.removeObservers(this@HomeActivity)
+                transactionViewModel?.getTransactionAmountOfMonthYear(
+                    lastMonthYearSelected?.first!!,
+                    lastMonthYearSelected?.second!!
+                )
+                    ?.removeObservers(this@HomeActivity)
+                lastMonthYearSelected = null
             }
 
             if (previousFilterItem?.title != menuItem.title) {
@@ -214,7 +248,7 @@ class HomeActivity : AppCompatActivity() {
                         datePickerFragment.show(supportFragmentManager, datePickerFragment.tag)
                     }
                     R.id.filter_month -> {
-
+                        monthPickerDialog.build().show()
                     }
                 }
                 previousFilterItem = menuItem

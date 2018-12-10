@@ -62,6 +62,14 @@ class TransactionRepository(application: Application) {
         return transactionDao!!.getTransactionOnAmount(date)
     }
 
+    fun getTransactionOfMonthYear(month: String, year: Int): LiveData<List<Transaction>> {
+        return transactionDao!!.getTransactionOfMonthYear(month, year)
+    }
+
+    fun getTransactionAmountOfMonthYear(month: String, year: Int): LiveData<Double> {
+        return transactionDao!!.getTransactionAmountOfMonthYear(month, year)
+    }
+
     fun updateTransaction(transaction: Transaction) {
         UpdateAsyncTask(transactionDao, categoryDao).execute(transaction)
     }
