@@ -9,7 +9,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import me.pushkaranand.spendo.R
-import me.pushkaranand.spendo.ui.HomeActivity
+import me.pushkaranand.spendo.ui.activities.home.HomeActivity
 
 
 class Notification {

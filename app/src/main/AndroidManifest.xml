@@ -18,7 +18,7 @@
             android:name=".ui.IntroSliderActivity"
             android:theme="@style/AppTheme.Intro" />
         <activity
-            android:name=".ui.HomeActivity"
+            android:name=".ui.activities.home.HomeActivity"
             android:label="@string/title_activity_home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,20 +29,20 @@
         <activity
             android:name=".ui.NewTransactionActivity"
             android:label="@string/title_activity_new_transaction"
-            android:parentActivityName=".ui.HomeActivity"
+            android:parentActivityName=".ui.activities.home.HomeActivity"
             android:theme="@style/AppTheme.ActionBar" />
         <activity
             android:name=".ui.ViewTransactionActivity"
-            android:parentActivityName=".ui.HomeActivity">
+            android:parentActivityName=".ui.activities.home.HomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.HomeActivity" />
+                android:value=".ui.activities.home.HomeActivity" />
         </activity>
         <activity android:name=".ui.CategoryDisplayActivity" />
         <activity
             android:name=".ui.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".ui.HomeActivity"
+            android:parentActivityName=".ui.activities.home.HomeActivity"
             android:theme="@style/AppTheme.ActionBar" />
         <activity
             android:name=".ui.EditTransactionActivity"

@@ -16,6 +16,9 @@ interface TransactionDao {
     @Insert
     fun newTransaction(transaction: Transaction)
 
+    @Insert
+    suspend fun insert(transaction: Transaction)
+
     @Update
     fun updateTransactions(vararg transaction: Transaction)
 

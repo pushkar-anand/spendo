@@ -1,4 +1,4 @@
-package me.pushkaranand.spendo.ui
+package me.pushkaranand.spendo.ui.activities.home
 
 import android.app.Activity
 import android.app.ActivityOptions
@@ -26,15 +26,12 @@ import me.pushkaranand.spendo.fragments.DatePickerFragment
 import me.pushkaranand.spendo.helpers.PrefHelper
 import me.pushkaranand.spendo.helpers.Sorting
 import me.pushkaranand.spendo.helpers.notifications.Notification
+import me.pushkaranand.spendo.ui.IntroSliderActivity
+import me.pushkaranand.spendo.ui.NewTransactionActivity
+import me.pushkaranand.spendo.ui.ViewTransactionActivity
 import me.pushkaranand.spendo.viewmodel.TransactionViewModel
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.Boolean
-import kotlin.Double
-import kotlin.Int
-import kotlin.Long
-import kotlin.String
-import android.util.Pair as UtilPair
 
 
 class HomeActivity : AppCompatActivity() {
@@ -126,9 +123,18 @@ class HomeActivity : AppCompatActivity() {
 
             val activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 this@HomeActivity,
-                Pair(holder.amountTV, ViewTransactionActivity.VIEW_NAME_AMOUNT),
-                Pair(holder.categoryTV, ViewTransactionActivity.VIEW_NAME_CATEGORY),
-                Pair(holder.dateTV, ViewTransactionActivity.VIEW_NAME_DATE)
+                Pair(
+                    holder.amountTV,
+                    ViewTransactionActivity.VIEW_NAME_AMOUNT
+                ),
+                Pair(
+                    holder.categoryTV,
+                    ViewTransactionActivity.VIEW_NAME_CATEGORY
+                ),
+                Pair(
+                    holder.dateTV,
+                    ViewTransactionActivity.VIEW_NAME_DATE
+                )
             )
 
             val intent = Intent(this@HomeActivity, ViewTransactionActivity::class.java)

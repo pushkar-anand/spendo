@@ -19,6 +19,9 @@ interface CategoryDao {
     @Insert
     fun newCategory(category: Category)
 
+    @Insert
+    suspend fun insert(category: Category)
+
     @Update
     fun updateCategories(vararg category: Category)
 

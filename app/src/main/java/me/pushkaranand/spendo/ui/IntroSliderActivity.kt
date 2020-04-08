@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.activity_intro_slider.*
 import me.pushkaranand.spendo.R
 import me.pushkaranand.spendo.adapters.IntroSliderPagerAdapter
 import me.pushkaranand.spendo.helpers.PrefHelper
+import me.pushkaranand.spendo.ui.activities.home.HomeActivity
 
 
 class IntroSliderActivity : AppCompatActivity() {

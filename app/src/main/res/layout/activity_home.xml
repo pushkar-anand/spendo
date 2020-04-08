@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:elevation="0dp"
-    tools:context=".ui.HomeActivity">
+    tools:context=".ui.activities.home.HomeActivity">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
