@@ -105,24 +105,24 @@ class NewTransactionActivity : AppCompatActivity() {
             var proceed = true
 
             val intent = Intent()
+            var amount = 0.0
 
-            val amount = amountTextInputLayout.editText?.text.toString().trim()
+            val amountString = amountTextInputLayout.editText?.text.toString().trim()
 
-            if (amount.isEmpty()) {
+            if (amountString.isEmpty()) {
                 proceed = false
                 amountTextInputLayout.error = "Required!!!"
-            } else {
-                intent.putExtra(TRANSACTION_AMOUNT, amount)
             }
 
             var type: String? = null
-            val typeChipID = typeGroup.checkedChipId
-            when (typeChipID) {
+            when (typeGroup.checkedChipId) {
                 R.id.creditChip -> {
                     type = creditChip.text.toString()
+                    amount = amountString.toDouble()
                 }
                 R.id.debitChip -> {
                     type = debitChip.text.toString()
+                    amount = amountString.toDouble() * -1
                 }
             }
 
@@ -135,6 +135,7 @@ class NewTransactionActivity : AppCompatActivity() {
                 proceed = false
             } else {
                 intent.putExtra(TRANSACTION_TYPE, type)
+                intent.putExtra(TRANSACTION_AMOUNT, amount)
             }
 
             if (selectedCategories.size > 0) {
@@ -150,7 +151,7 @@ class NewTransactionActivity : AppCompatActivity() {
             }
 
             val notes = notesTextInputLayout.editText?.text.toString().trim()
-            if (!notes.isEmpty()) {
+            if (notes.isNotEmpty()) {
                 intent.putExtra(TRANSACTION_NOTES, notes)
             }
 

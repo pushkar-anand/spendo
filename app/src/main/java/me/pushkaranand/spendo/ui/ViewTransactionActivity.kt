@@ -16,7 +16,7 @@ import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_view_transaction.*
 import kotlinx.android.synthetic.main.content_view_transaction.*
 import me.pushkaranand.spendo.R
-import me.pushkaranand.spendo.db.entity.Transaction
+import me.pushkaranand.spendo.data.db.entity.Transaction
 import me.pushkaranand.spendo.ui.activities.home.HomeActivity
 import me.pushkaranand.spendo.viewmodel.TransactionViewModel
 

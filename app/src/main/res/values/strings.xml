@@ -19,6 +19,7 @@
     <string name="title_activity_home">Spendo</string>
     <string name="fab_title">New Transaction</string>
     <string name="overflow_icon">Overflow Icon</string>
+    <string name="amount" translatable="false">\u20B9 %.2f</string>
 
     <!--NewTransactionActivity-->
     <string name="title_activity_new_transaction">New Transaction</string>

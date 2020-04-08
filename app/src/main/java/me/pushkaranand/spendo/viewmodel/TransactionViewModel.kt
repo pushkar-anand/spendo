@@ -3,7 +3,7 @@ package me.pushkaranand.spendo.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import me.pushkaranand.spendo.db.entity.Transaction
+import me.pushkaranand.spendo.data.db.entity.Transaction
 import me.pushkaranand.spendo.repository.TransactionRepository
 import java.text.DateFormatSymbols
 

@@ -1,5 +1,6 @@
 package me.pushkaranand.spendo.fragments
 
+
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
@@ -11,8 +12,8 @@ import com.afollestad.materialdialogs.MaterialDialog
 import me.pushkaranand.spendo.R
 import me.pushkaranand.spendo.custom.TimePreference
 import me.pushkaranand.spendo.custom.TimePreferenceDialogFragmentCompat
-import me.pushkaranand.spendo.helpers.JobHelpers
 import me.pushkaranand.spendo.viewmodel.TransactionViewModel
+
 
 class SettingsFragment : PreferenceFragmentCompat() {
 
@@ -38,7 +39,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         if (dialogFragment != null) {
             dialogFragment.setTargetFragment(this, 0)
             dialogFragment.show(
-                this.fragmentManager,
+                this.requireFragmentManager(),
                 "androidx.preference.Preference" + ".PreferenceFragment.DIALOG"
             )
         } else {
@@ -56,8 +57,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     private fun initAndSetupGeneralScreenPrefs() {
 
-        val resetBtn = findPreference(getString(R.string.key_custom_reset)) as Preference
-        resetBtn.setOnPreferenceClickListener {
+        val resetBtn = findPreference(getString(R.string.key_custom_reset)) as Preference?
+        resetBtn?.setOnPreferenceClickListener {
 
             MaterialDialog(context!!).show {
                 title(R.string.reset_dialog_title)
@@ -75,21 +76,15 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     private fun initAndSetupNotificationScreenPref() {
 
-        val dailyAddReminderSwitchPref: SwitchPreference =
-            findPreference(getString(R.string.key_daily_add_reminder)) as SwitchPreference
+        val dailyAddReminderSwitchPref =
+            findPreference(getString(R.string.key_daily_add_reminder)) as SwitchPreference?
+        val dailyAddReminderTimePreference =
+            findPreference(getString(R.string.key_remind_time)) as TimePreference?
 
-        val dailyAddReminderTimePreference: TimePreference =
-            findPreference(getString(R.string.key_remind_time)) as TimePreference
+        dailyAddReminderTimePreference?.setSummary()
 
-        dailyAddReminderTimePreference.setSummary()
-
-        dailyAddReminderSwitchPref.setOnPreferenceChangeListener { _, newValue ->
-            if (newValue as Boolean) {
-                val t = dailyAddReminderTimePreference.getTime()
-                JobHelpers.dispatchAddReminderJob(context!!, t)
-            } else {
-                JobHelpers.cancelAddReminderJob(context!!)
-            }
+        dailyAddReminderSwitchPref?.setOnPreferenceChangeListener { _, newValue ->
+            var boolean = newValue as Boolean
             true
         }
 

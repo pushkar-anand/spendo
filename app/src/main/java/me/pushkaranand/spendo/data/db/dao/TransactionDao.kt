@@ -1,17 +1,18 @@
-package me.pushkaranand.spendo.db.dao
+package me.pushkaranand.spendo.data.db.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
-import me.pushkaranand.spendo.db.entity.Transaction
+import androidx.room.*
+import androidx.sqlite.db.SupportSQLiteQuery
+import me.pushkaranand.spendo.data.db.entity.Transaction
 
 @Dao
 interface TransactionDao {
 
     @Query("SELECT * FROM transactions")
     fun getAllTransactions(): LiveData<List<Transaction>>
+
+    @RawQuery(observedEntities = [Transaction::class])
+    fun getTransactions(query: SupportSQLiteQuery): LiveData<List<Transaction>>
 
     @Insert
     fun newTransaction(transaction: Transaction)

@@ -1,4 +1,4 @@
-package me.pushkaranand.spendo.db.entity
+package me.pushkaranand.spendo.data.db.entity
 
 import androidx.room.Entity
 import androidx.room.Ignore
@@ -34,4 +34,10 @@ data class Transaction(
         year = str[2].toInt()
         this.date = date
     }
+
+    enum class TYPE(val type: String) {
+        DEBIT("Debit"),
+        CREDIT("Credit")
+    }
+
 }

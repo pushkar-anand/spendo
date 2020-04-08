@@ -3,9 +3,9 @@ package me.pushkaranand.spendo.repository
 import android.app.Application
 import android.os.AsyncTask
 import androidx.lifecycle.LiveData
-import me.pushkaranand.spendo.db.SpendoDatabase
-import me.pushkaranand.spendo.db.dao.CategoryDao
-import me.pushkaranand.spendo.db.entity.Category
+import me.pushkaranand.spendo.data.db.SpendoDatabase
+import me.pushkaranand.spendo.data.db.dao.CategoryDao
+import me.pushkaranand.spendo.data.db.entity.Category
 
 class CategoryRepository(application: Application) {
 

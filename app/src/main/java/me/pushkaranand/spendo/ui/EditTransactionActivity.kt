@@ -15,7 +15,7 @@ import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_new_transaction.*
 import kotlinx.android.synthetic.main.content_new_transaction.*
 import me.pushkaranand.spendo.R
-import me.pushkaranand.spendo.db.entity.Transaction
+import me.pushkaranand.spendo.data.db.entity.Transaction
 import me.pushkaranand.spendo.fragments.DatePickerFragment
 import me.pushkaranand.spendo.viewmodel.CategoryViewModel
 import me.pushkaranand.spendo.viewmodel.TransactionViewModel

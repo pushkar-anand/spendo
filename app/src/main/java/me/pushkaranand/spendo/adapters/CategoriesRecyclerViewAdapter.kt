@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
 import me.pushkaranand.spendo.R
-import me.pushkaranand.spendo.db.entity.Category
+import me.pushkaranand.spendo.data.db.entity.Category
 
 
 class CategoriesRecyclerViewAdapter(context: Context) :

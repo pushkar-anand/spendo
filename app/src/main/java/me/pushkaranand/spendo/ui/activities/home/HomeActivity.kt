@@ -12,37 +12,35 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.whiteelephant.monthpicker.MonthPickerDialog
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.content_home.*
 import me.pushkaranand.spendo.R
 import me.pushkaranand.spendo.adapters.TransactionsRecyclerViewAdapter
-import me.pushkaranand.spendo.db.entity.Transaction
+import me.pushkaranand.spendo.data.Filter
+import me.pushkaranand.spendo.data.db.entity.Transaction
 import me.pushkaranand.spendo.fragments.BottomNavigationDrawerFragment
 import me.pushkaranand.spendo.fragments.BottomOverFlowFragment
 import me.pushkaranand.spendo.fragments.DatePickerFragment
 import me.pushkaranand.spendo.helpers.PrefHelper
-import me.pushkaranand.spendo.helpers.Sorting
 import me.pushkaranand.spendo.helpers.notifications.Notification
 import me.pushkaranand.spendo.ui.IntroSliderActivity
 import me.pushkaranand.spendo.ui.NewTransactionActivity
 import me.pushkaranand.spendo.ui.ViewTransactionActivity
-import me.pushkaranand.spendo.viewmodel.TransactionViewModel
+import org.koin.android.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
 
 class HomeActivity : AppCompatActivity() {
 
-    private var transactionViewModel: TransactionViewModel? = null
+    private val homeViewModel: HomeViewModel by viewModel()
 
     companion object {
         private const val NEW_TRANSACTION_REQUEST_CODE = 100
     }
 
-    private var adapter: TransactionsRecyclerViewAdapter? = null
+    private lateinit var adapter: TransactionsRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -51,7 +49,6 @@ class HomeActivity : AppCompatActivity() {
         setSupportActionBar(bottomAppBar)
         checkFirstRun()
         initRecyclerView()
-        initViewModel()
         setupLiveObserver()
         attachClickListeners()
     }
@@ -83,35 +80,23 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun initViewModel() {
-        transactionViewModel =
-                ViewModelProviders.of(this).get(TransactionViewModel::class.java)
-    }
-
     private fun initRecyclerView() {
         adapter = TransactionsRecyclerViewAdapter(this)
         transactionRecyclerView.adapter = adapter
         transactionRecyclerView.layoutManager = LinearLayoutManager(this)
-
-        /*val itemDecor = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
-        transactionRecyclerView.addItemDecoration(itemDecor)*/
     }
 
     private val transactionListChangeObserver = Observer<List<Transaction>> {
-        adapter?.setTransactions(Sorting.sortByDateDescending(it as ArrayList<Transaction>))
+        adapter.transactions = it
+
     }
     private val amountChangeObserver = Observer<Double> {
-        if (it != null) {
-            val str = getString(R.string.rupee_symbol) + it.toString()
-            amountView.text = str
-        } else {
-            amountView.text = getString(R.string.default_amount)
-        }
+        amountView.text = getString(R.string.amount, it)
     }
 
     private fun setupLiveObserver() {
-        transactionViewModel?.getAllTransactions()?.observe(this, transactionListChangeObserver)
-        transactionViewModel?.getTotalAmount()?.observe(this, amountChangeObserver)
+        homeViewModel.transactions.observe(this, transactionListChangeObserver)
+        homeViewModel.transactionsTotalAmount.observe(this, amountChangeObserver)
     }
 
     private val transactionClickListener = object :
@@ -149,10 +134,6 @@ class HomeActivity : AppCompatActivity() {
         BottomOverFlowFragment.OnSortItemSelected {
         override fun sortItemSelected(menuItem: MenuItem) {
             if (previousSortItem?.title != menuItem.title) {
-
-                when (menuItem.itemId) {
-
-                }
                 menuItem.isChecked = true
                 previousSortItem = menuItem
             } else {
@@ -170,32 +151,32 @@ class HomeActivity : AppCompatActivity() {
             calendar.set(year, month, day)
             val time = calendar.time
             val df = SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault())
-            val timeStr = df.format(time)
-
-            transactionViewModel?.getTransactionOn(timeStr)
-                ?.observe(this@HomeActivity, transactionListChangeObserver)
-            transactionViewModel?.getTransactionOnAmount(timeStr)
-                ?.observe(this@HomeActivity, amountChangeObserver)
-            lastDate = timeStr
+            val filterDate = df.format(time)
+            homeViewModel.updateFilter(Filter.DATE, filterDate)
+            lastDate = filterDate
         }
     }
 
-    private val today = Calendar.getInstance()
+    //private val today = Calendar.getInstance()
 
-    private var lastMonthYearSelected: Pair<Int, Int>? = null
+/*    private var lastMonthYearSelected: Pair<Int, Int>? = null
 
     private val monthPickerDialog =
         MonthPickerDialog.Builder(
             this,
             MonthPickerDialog.OnDateSetListener { selectedMonth, selectedYear ->
+*//*                homeViewModel.updateFilter(
+                    Filter.DATE,
+
+                )
                 lastMonthYearSelected = Pair(selectedMonth, selectedYear)
                 transactionViewModel?.getTransactionOfMonthYear(selectedMonth, selectedYear)
                     ?.observe(this@HomeActivity, transactionListChangeObserver)
                 transactionViewModel?.getTransactionAmountOfMonthYear(selectedMonth, selectedYear)
-                    ?.observe(this@HomeActivity, amountChangeObserver)
+                    ?.observe(this@HomeActivity, amountChangeObserver)*//*
             },
             today.get(Calendar.YEAR), today.get(Calendar.MONTH)
-        )
+        )*/
 
 
     private var previousFilterItem: MenuItem? = null
@@ -204,71 +185,18 @@ class HomeActivity : AppCompatActivity() {
         BottomOverFlowFragment.OnFilterItemSelected {
         override fun filterItemSelected(menuItem: MenuItem) {
 
-            transactionViewModel?.getAllTransactions()?.removeObservers(this@HomeActivity)
-            transactionViewModel?.getCreditTransactions()?.removeObservers(this@HomeActivity)
-            transactionViewModel?.getDebitTransactions()?.removeObservers(this@HomeActivity)
-
-            transactionViewModel?.getTotalAmount()?.removeObservers(this@HomeActivity)
-            transactionViewModel?.getCreditTransactionsAmount()?.removeObservers(this@HomeActivity)
-            transactionViewModel?.getDebitTransactionsAmount()?.removeObservers(this@HomeActivity)
-
-            if (lastDate != null) {
-                transactionViewModel?.getTransactionOn(lastDate!!)?.removeObservers(this@HomeActivity)
-                transactionViewModel?.getTransactionOnAmount(lastDate!!)?.removeObservers(this@HomeActivity)
-                lastDate = null
-            }
-
-            if (lastMonthYearSelected != null) {
-                transactionViewModel?.getTransactionOfMonthYear(
-                    lastMonthYearSelected?.first!!,
-                    lastMonthYearSelected?.second!!
-                )
-                    ?.removeObservers(this@HomeActivity)
-                transactionViewModel?.getTransactionAmountOfMonthYear(
-                    lastMonthYearSelected?.first!!,
-                    lastMonthYearSelected?.second!!
-                )
-                    ?.removeObservers(this@HomeActivity)
-                lastMonthYearSelected = null
-            }
-
-            if (previousFilterItem?.title != menuItem.title) {
+            previousFilterItem = if (previousFilterItem?.title != menuItem.title) {
                 when (menuItem.itemId) {
-                    R.id.filter_credit -> {
-                        transactionViewModel?.getCreditTransactions()
-                            ?.observe(this@HomeActivity, transactionListChangeObserver)
-                        transactionViewModel?.getCreditTransactionsAmount()
-                            ?.observe(this@HomeActivity, amountChangeObserver)
-
-                    }
-                    R.id.filter_debit -> {
-
-                        transactionViewModel?.getDebitTransactions()
-                            ?.observe(this@HomeActivity, transactionListChangeObserver)
-                        transactionViewModel?.getDebitTransactionsAmount()
-                            ?.observe(this@HomeActivity, amountChangeObserver)
-                    }
-                    R.id.filter_date -> {
-                        val datePickerFragment = DatePickerFragment()
-                        datePickerFragment.setOnDateSetListener(dateSetListener)
-                        datePickerFragment.show(supportFragmentManager, datePickerFragment.tag)
-                    }
-                    R.id.filter_month -> {
-                        monthPickerDialog.build().show()
-                    }
+                    R.id.filter_credit -> homeViewModel.updateFilter(Filter.CREDIT)
+                    R.id.filter_debit -> homeViewModel.updateFilter(Filter.DEBIT)
+                    R.id.filter_date -> openDatePicker()
                 }
-                previousFilterItem = menuItem
-                menuItem.isChecked = true
+                menuItem
             } else {
-
-                transactionViewModel?.getAllTransactions()
-                    ?.observe(this@HomeActivity, transactionListChangeObserver)
-                transactionViewModel?.getTotalAmount()
-                    ?.observe(this@HomeActivity, amountChangeObserver)
-
-                menuItem.isChecked = false
-                previousFilterItem = null
+                homeViewModel.updateFilter(Filter.NONE)
+                null
             }
+            menuItem.isChecked = !menuItem.isChecked
         }
     }
 
@@ -283,7 +211,7 @@ class HomeActivity : AppCompatActivity() {
             )
         }
 
-        adapter?.setOnTransactionClickListener(transactionClickListener)
+        adapter.setOnTransactionClickListener(transactionClickListener)
 
         overflowIcon.setOnClickListener {
             val bundle = Bundle()
@@ -306,35 +234,41 @@ class HomeActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
         if (requestCode == NEW_TRANSACTION_REQUEST_CODE) {
-
             when (resultCode) {
                 Activity.RESULT_OK -> {
-                    val amount: Double
-                    val amountString = data!!.getStringExtra(NewTransactionActivity.TRANSACTION_AMOUNT)
-                    val type = data.getStringExtra(NewTransactionActivity.TRANSACTION_TYPE)
-                    val categories = data.getStringExtra(NewTransactionActivity.TRANSACTION_CATEGORIES)
-                    val date = data.getStringExtra(NewTransactionActivity.TRANSACTION_DATE)
-                    var notes: String? = null
-                    if (data.hasExtra(NewTransactionActivity.TRANSACTION_NOTES)) {
-                        notes = data.getStringExtra(NewTransactionActivity.TRANSACTION_NOTES)
-                    }
-                    amount = if (type == getString(R.string.debit_choice)) {
-                        -amountString.toDouble()
-                    } else {
-                        amountString.toDouble()
-                    }
-                    val transaction =
-                        Transaction(amount = amount, type = type, category = categories, date = date, notes = notes)
-
-                    transactionViewModel?.insert(transaction)
+                    saveTransaction(data!!)
                 }
             }
         }
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    private fun openDatePicker() {
+        val datePickerFragment = DatePickerFragment()
+        datePickerFragment.setOnDateSetListener(dateSetListener)
+        datePickerFragment.show(supportFragmentManager, datePickerFragment.tag)
     }
 
     private fun createNotificationChannels() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             Notification.createAllNotificationChannels(this)
         }
+    }
+
+    private fun saveTransaction(data: Intent) {
+        val amount = data.getDoubleExtra(
+            NewTransactionActivity.TRANSACTION_AMOUNT,
+            0.0
+        )
+        val type = data.getStringExtra(NewTransactionActivity.TRANSACTION_TYPE)
+        val categories =
+            data.getStringExtra(NewTransactionActivity.TRANSACTION_CATEGORIES)
+        val date = data.getStringExtra(NewTransactionActivity.TRANSACTION_DATE)
+        val notes = data.getStringExtra(NewTransactionActivity.TRANSACTION_NOTES)
+        homeViewModel.saveTransaction(
+            Transaction(
+                0, amount, type!!, categories!!, date!!, notes
+            )
+        )
     }
 }

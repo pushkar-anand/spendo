@@ -4,10 +4,10 @@ import android.app.Application
 import android.os.AsyncTask
 import androidx.lifecycle.LiveData
 import com.google.gson.Gson
-import me.pushkaranand.spendo.db.SpendoDatabase
-import me.pushkaranand.spendo.db.dao.CategoryDao
-import me.pushkaranand.spendo.db.dao.TransactionDao
-import me.pushkaranand.spendo.db.entity.Transaction
+import me.pushkaranand.spendo.data.db.SpendoDatabase
+import me.pushkaranand.spendo.data.db.dao.CategoryDao
+import me.pushkaranand.spendo.data.db.dao.TransactionDao
+import me.pushkaranand.spendo.data.db.entity.Transaction
 
 class TransactionRepository(application: Application) {
 

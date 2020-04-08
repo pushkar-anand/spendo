@@ -10,15 +10,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
 import com.google.gson.Gson
 import me.pushkaranand.spendo.R
-import me.pushkaranand.spendo.db.entity.Transaction
+import me.pushkaranand.spendo.data.db.entity.Transaction
 
 
 class TransactionsRecyclerViewAdapter(context: Context) :
     RecyclerView.Adapter<TransactionsRecyclerViewAdapter.TransactionsViewHolder>() {
 
     private val mInflater: LayoutInflater = LayoutInflater.from(context)
-    private var transactions: List<Transaction>? = null
     private var onTransactionClick: OnTransactionClickListener? = null
+
+    var transactions: List<Transaction> = emptyList()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     class TransactionsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val transactionCard: MaterialCardView = itemView.findViewById(R.id.transactionCard) as MaterialCardView
@@ -44,47 +49,34 @@ class TransactionsRecyclerViewAdapter(context: Context) :
     }
 
     override fun onBindViewHolder(holder: TransactionsViewHolder, position: Int) {
-        if (transactions != null) {
-            val transaction = transactions!![position]
+        val transaction = transactions[position]
 
-            val str = "${transaction.day}-${transaction.month}"
-            holder.dateTV.text = str
+        val str = "${transaction.day}-${transaction.month}"
+        holder.dateTV.text = str
 
-            val gson = Gson()
-            val list = gson.fromJson(transaction.category, ArrayList::class.java)
-            holder.categoryTV.text = list[0].toString()
+        val gson = Gson()
+        val list = gson.fromJson(transaction.category, ArrayList::class.java)
+        holder.categoryTV.text = list[0].toString()
 
-            holder.amountTV.text = transaction.amount.toString()
+        holder.amountTV.text = transaction.amount.toString()
 
-            holder.transactionCard.setOnClickListener {
-                onTransactionClick?.onClick(transaction.transactionID, holder)
-            }
-
-
-            if (transaction.type == "Debit") {
-                //holder.transactionCard.setCardBackgroundColor(Color.parseColor("#ff1744"))
-                holder.amountTV.setTextColor(Color.parseColor("#ff1744"))
-                holder.dateTV.setTextColor(Color.parseColor("#ff1744"))
-                holder.categoryTV.setTextColor(Color.parseColor("#ff1744"))
-            } else {
-                //holder.transactionCard.setCardBackgroundColor(Color.parseColor("#00c853"))
-                holder.amountTV.setTextColor(Color.parseColor("#00c853"))
-                holder.dateTV.setTextColor(Color.parseColor("#00c853"))
-                holder.categoryTV.setTextColor(Color.parseColor("#00c853"))
-            }
+        holder.transactionCard.setOnClickListener {
+            onTransactionClick?.onClick(transaction.transactionID, holder)
         }
-    }
 
-    fun setTransactions(transactions: List<Transaction>) {
-        this.transactions = transactions
-        notifyDataSetChanged()
-    }
 
-    override fun getItemCount(): Int {
-        return if (transactions != null) {
-            transactions!!.size
+        if (transaction.type == "Debit") {
+            //holder.transactionCard.setCardBackgroundColor(Color.parseColor("#ff1744"))
+            holder.amountTV.setTextColor(Color.parseColor("#ff1744"))
+            holder.dateTV.setTextColor(Color.parseColor("#ff1744"))
+            holder.categoryTV.setTextColor(Color.parseColor("#ff1744"))
         } else {
-            0
+            //holder.transactionCard.setCardBackgroundColor(Color.parseColor("#00c853"))
+            holder.amountTV.setTextColor(Color.parseColor("#00c853"))
+            holder.dateTV.setTextColor(Color.parseColor("#00c853"))
+            holder.categoryTV.setTextColor(Color.parseColor("#00c853"))
         }
     }
+
+    override fun getItemCount() = transactions.size
 }
