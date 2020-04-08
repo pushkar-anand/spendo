@@ -13,7 +13,7 @@ import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_new_transaction.*
 import kotlinx.android.synthetic.main.content_new_transaction.*
 import me.pushkaranand.spendo.R
-import me.pushkaranand.spendo.fragments.DatePickerFragment
+import me.pushkaranand.spendo.ui.fragments.DatePickerFragment
 import me.pushkaranand.spendo.viewmodel.CategoryViewModel
 import java.text.SimpleDateFormat
 import java.util.*
@@ -93,7 +93,8 @@ class NewTransactionActivity : AppCompatActivity() {
 
     private fun setupDatePicker() {
         dateChip.setOnClickListener {
-            val datePickerFragment = DatePickerFragment()
+            val datePickerFragment =
+                DatePickerFragment()
             datePickerFragment.setOnDateSetListener(dateSetListener)
             datePickerFragment.show(supportFragmentManager, datePickerFragment.tag)
         }

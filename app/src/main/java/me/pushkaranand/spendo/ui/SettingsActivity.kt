@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceScreen
 import me.pushkaranand.spendo.R
-import me.pushkaranand.spendo.fragments.SettingsFragment
+import me.pushkaranand.spendo.ui.fragments.SettingsFragment
 
 class SettingsActivity : AppCompatActivity(),
     PreferenceFragmentCompat.OnPreferenceStartScreenCallback {
@@ -17,7 +17,10 @@ class SettingsActivity : AppCompatActivity(),
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportFragmentManager.beginTransaction()
-            .replace(android.R.id.content, SettingsFragment())
+            .replace(
+                android.R.id.content,
+                SettingsFragment()
+            )
             .commit()
     }
 
@@ -28,7 +31,8 @@ class SettingsActivity : AppCompatActivity(),
         } else {
 
             val ft = supportFragmentManager.beginTransaction()
-            val settingsFragment = SettingsFragment()
+            val settingsFragment =
+                SettingsFragment()
             val args = Bundle()
             args.putString(PreferenceFragmentCompat.ARG_PREFERENCE_ROOT, pref?.key)
             settingsFragment.arguments = args

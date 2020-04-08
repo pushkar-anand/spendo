@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.content_category_display.*
 import me.pushkaranand.spendo.R
 import me.pushkaranand.spendo.adapters.CategoriesRecyclerViewAdapter
 import me.pushkaranand.spendo.data.db.entity.Category
-import me.pushkaranand.spendo.fragments.BottomNavigationDrawerFragment
+import me.pushkaranand.spendo.ui.fragments.BottomNavigationDrawerFragment
 import me.pushkaranand.spendo.viewmodel.CategoryViewModel
 
 class CategoryDisplayActivity : AppCompatActivity() {
@@ -35,7 +35,8 @@ class CategoryDisplayActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
             android.R.id.home -> {
-                val bottomNavDrawerFragment = BottomNavigationDrawerFragment()
+                val bottomNavDrawerFragment =
+                    BottomNavigationDrawerFragment()
                 bottomNavDrawerFragment.show(supportFragmentManager, bottomNavDrawerFragment.tag)
             }
         }

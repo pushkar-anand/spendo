@@ -19,14 +19,14 @@ import me.pushkaranand.spendo.R
 import me.pushkaranand.spendo.adapters.TransactionsRecyclerViewAdapter
 import me.pushkaranand.spendo.data.Filter
 import me.pushkaranand.spendo.data.db.entity.Transaction
-import me.pushkaranand.spendo.fragments.BottomNavigationDrawerFragment
-import me.pushkaranand.spendo.fragments.BottomOverFlowFragment
-import me.pushkaranand.spendo.fragments.DatePickerFragment
 import me.pushkaranand.spendo.helpers.PrefHelper
 import me.pushkaranand.spendo.helpers.notifications.Notification
 import me.pushkaranand.spendo.ui.IntroSliderActivity
 import me.pushkaranand.spendo.ui.NewTransactionActivity
 import me.pushkaranand.spendo.ui.ViewTransactionActivity
+import me.pushkaranand.spendo.ui.fragments.BottomNavigationDrawerFragment
+import me.pushkaranand.spendo.ui.fragments.BottomOverFlowFragment
+import me.pushkaranand.spendo.ui.fragments.DatePickerFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
 import java.util.*
@@ -62,7 +62,8 @@ class HomeActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
             android.R.id.home -> {
-                val bottomNavDrawerFragment = BottomNavigationDrawerFragment()
+                val bottomNavDrawerFragment =
+                    BottomNavigationDrawerFragment()
                 bottomNavDrawerFragment.show(supportFragmentManager, bottomNavDrawerFragment.tag)
             }
         }
@@ -222,7 +223,8 @@ class HomeActivity : AppCompatActivity() {
                 bundle.putInt(BottomOverFlowFragment.SELECTED_SORT, previousSortItem!!.itemId)
             }
 
-            val bottomOverFlowFragment = BottomOverFlowFragment()
+            val bottomOverFlowFragment =
+                BottomOverFlowFragment()
             bottomOverFlowFragment.arguments = bundle
             bottomOverFlowFragment.setOnFilerItemSelectedListener(filterSelectedListener)
             bottomOverFlowFragment.setOnSortItemSelectedListener(sortSelectedListener)
@@ -244,7 +246,8 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun openDatePicker() {
-        val datePickerFragment = DatePickerFragment()
+        val datePickerFragment =
+            DatePickerFragment()
         datePickerFragment.setOnDateSetListener(dateSetListener)
         datePickerFragment.show(supportFragmentManager, datePickerFragment.tag)
     }

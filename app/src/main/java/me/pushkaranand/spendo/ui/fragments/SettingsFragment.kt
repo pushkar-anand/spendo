@@ -1,4 +1,4 @@
-package me.pushkaranand.spendo.fragments
+package me.pushkaranand.spendo.ui.fragments
 
 
 import android.os.Bundle
