@@ -40,6 +40,7 @@
             android:text="@string/fab_title"
             android:textAllCaps="false"
             android:textSize="16sp"
+            android:backgroundTint="@color/colorAccent"
             app:cornerRadius="@dimen/fab_corner_radius"
             app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
             app:icon="@drawable/fab_add_white"

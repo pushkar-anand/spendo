@@ -17,23 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/sortNavMenu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:itemTextAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sortHeadingTV"
-        app:menu="@menu/sort_menu" />
-
-    <View
-        android:id="@+id/divider1"
-        style="@style/BottomSheetEntryDivider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sortNavMenu" />
-
     <TextView
         android:id="@+id/filterHeadingTV"
         android:layout_width="0dp"
@@ -46,15 +29,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider1" />
 
+    <View
+        android:id="@+id/divider1"
+        style="@style/BottomSheetEntryDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sortNavMenu" />
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/sortNavMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp"
+        app:itemTextAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sortHeadingTV"
+        app:menu="@menu/sort_menu" />
+
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/filterNavMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:elevation="0dp"
+        app:itemIconTint="@color/black"
         app:itemTextAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filterHeadingTV"
-        app:itemIconTint="@color/black"
         app:menu="@menu/filter_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
