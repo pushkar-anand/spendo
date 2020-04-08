@@ -6,6 +6,8 @@
 
     <color name="colorBackground">#EDE9E9</color>
 
+    <color name="colorIconTint">#FFF</color>
+
     <color name="white">#ffffff</color>
     <color name="black">#000</color>
 

@@ -14,6 +14,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
+        android:backgroundTint="@color/colorAccent"
+        app:tint="@color/colorIconTint"
         android:contentDescription="@string/accessibility_done_fab"
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@drawable/fab_done_white" />
