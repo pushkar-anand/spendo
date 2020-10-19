@@ -1,6 +1,7 @@
 package me.pushkaranand.spendo.data.source.local
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.sqlite.db.SimpleSQLiteQuery
 import androidx.sqlite.db.SupportSQLiteQuery
@@ -46,18 +47,21 @@ class LocalDataSource(application: Application) : DataSource {
         query.append("SELECT * FROM TRANSACTIONS ")
         when (filterBy) {
             Filter.CREDIT -> {
-                query.append("WHERE type = ${Transaction.TYPE.CREDIT} ")
+                query.append("WHERE type = '${Transaction.TYPE.CREDIT.type}' ")
             }
             Filter.DEBIT -> {
-                query.append("WHERE type = ${Transaction.TYPE.DEBIT} ")
+                query.append("WHERE type = '${Transaction.TYPE.DEBIT.type}' ")
             }
             Filter.DATE -> {
-                query.append("WHERE date = $filterDate ")
+                query.append("WHERE date = '$filterDate' ")
             }
             Filter.NONE -> {
 
             }
         }
+
+        Log.d("QueryBuilder", "Executing query:$query ")
+
         return SimpleSQLiteQuery(query.toString())
     }
 
